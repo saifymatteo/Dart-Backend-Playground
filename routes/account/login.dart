@@ -8,19 +8,19 @@ import '../../main.dart';
 Future<Response> onRequest(RequestContext context) async {
   switch (context.request.method) {
     case HttpMethod.delete:
-      return ApiResult.badRequest();
+      return ApiResult.methodNotAllowed();
     case HttpMethod.get:
-      return ApiResult.badRequest();
+      return ApiResult.methodNotAllowed();
     case HttpMethod.head:
-      return ApiResult.badRequest();
+      return ApiResult.methodNotAllowed();
     case HttpMethod.options:
-      return ApiResult.badRequest();
+      return ApiResult.methodNotAllowed();
     case HttpMethod.patch:
-      return ApiResult.badRequest();
+      return ApiResult.methodNotAllowed();
     case HttpMethod.post:
       return _onPostRequest(context);
     case HttpMethod.put:
-      return ApiResult.badRequest();
+      return ApiResult.methodNotAllowed();
   }
 }
 
