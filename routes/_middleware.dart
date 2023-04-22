@@ -1,6 +1,7 @@
+import 'package:backend_playground/exception/exception.dart';
 import 'package:backend_playground/user/user.dart';
 import 'package:dart_frog/dart_frog.dart';
-import 'package:logging/logging.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:orm/orm.dart';
 
 import '../components/response/api_result.dart';
@@ -33,13 +34,39 @@ Handler middleware(Handler handler) {
 Future<Response> _handleRequest(Handler handler, RequestContext context) async {
   try {
     return await handler(context);
-  } on PrismaException catch (e) {
+  }
+  // ! General Exception
+  on PrismaException catch (e) {
+    var code = 400;
+    Map<String, Object>? error = {'error': e.message};
+
+    if (e.message.contains('fields: (')) {
+      code = 409;
+      error = {
+        'error': 'field(s) already exists',
+        'fields': PrismaUniqueConstraintsException(
+          message: e.message,
+          engine: e.engine,
+        ).affectedFields,
+      };
+    }
+
+    return Response.json(
+      statusCode: code,
+      headers: context.request.headers,
+      body: error,
+    );
+  }
+  // ! Json Exception
+  on CheckedFromJsonException catch (e) {
     return Response.json(
       statusCode: 400,
       headers: context.request.headers,
-      body: {'error': e.message},
+      body: {'error': 'missing field(s) ${e.key}'},
     );
-  } catch (e, s) {
+  }
+  // ! Unknown Exception
+  catch (e, s) {
     return Response.json(
       statusCode: 500,
       headers: context.request.headers,
