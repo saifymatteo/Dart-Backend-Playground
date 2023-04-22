@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Backend-Playground.iml" filepath="$PROJECT_DIR$/.idea/Backend-Playground.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Dart-Frog-Playground.iml" filepath="$PROJECT_DIR$/.idea/Dart-Frog-Playground.iml" />
     </modules>
   </component>
 </project>
