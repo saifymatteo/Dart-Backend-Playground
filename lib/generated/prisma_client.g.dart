@@ -7,26 +7,47 @@ part of 'prisma_client.dart';
 // **************************************************************************
 
 AccountWhereInput _$AccountWhereInputFromJson(Map<String, dynamic> json) =>
-    AccountWhereInput(
-      AND: (json['AND'] as List<dynamic>?)
-          ?.map((e) => AccountWhereInput.fromJson(e as Map<String, dynamic>)),
-      OR: (json['OR'] as List<dynamic>?)
-          ?.map((e) => AccountWhereInput.fromJson(e as Map<String, dynamic>)),
-      NOT: (json['NOT'] as List<dynamic>?)
-          ?.map((e) => AccountWhereInput.fromJson(e as Map<String, dynamic>)),
-      id: json['id'] == null
-          ? null
-          : BigIntFilter.fromJson(json['id'] as Map<String, dynamic>),
-      username: json['username'] == null
-          ? null
-          : StringFilter.fromJson(json['username'] as Map<String, dynamic>),
-      password: json['password'] == null
-          ? null
-          : StringFilter.fromJson(json['password'] as Map<String, dynamic>),
-      person: json['person'] == null
-          ? null
-          : PersonListRelationFilter.fromJson(
-              json['person'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountWhereInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountWhereInput(
+          AND: $checkedConvert(
+              'AND',
+              (v) => (v as List<dynamic>?)?.map((e) =>
+                  AccountWhereInput.fromJson(e as Map<String, dynamic>))),
+          OR: $checkedConvert(
+              'OR',
+              (v) => (v as List<dynamic>?)?.map((e) =>
+                  AccountWhereInput.fromJson(e as Map<String, dynamic>))),
+          NOT: $checkedConvert(
+              'NOT',
+              (v) => (v as List<dynamic>?)?.map((e) =>
+                  AccountWhereInput.fromJson(e as Map<String, dynamic>))),
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFilter.fromJson(v as Map<String, dynamic>)),
+          username: $checkedConvert(
+              'username',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          password: $checkedConvert(
+              'password',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          person: $checkedConvert(
+              'person',
+              (v) => v == null
+                  ? null
+                  : PersonListRelationFilter.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountWhereInputToJson(AccountWhereInput instance) {
@@ -50,14 +71,26 @@ Map<String, dynamic> _$AccountWhereInputToJson(AccountWhereInput instance) {
 
 AccountOrderByWithRelationInput _$AccountOrderByWithRelationInputFromJson(
         Map<String, dynamic> json) =>
-    AccountOrderByWithRelationInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      username: $enumDecodeNullable(_$SortOrderEnumMap, json['username']),
-      password: $enumDecodeNullable(_$SortOrderEnumMap, json['password']),
-      person: json['person'] == null
-          ? null
-          : PersonOrderByRelationAggregateInput.fromJson(
-              json['person'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountOrderByWithRelationInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountOrderByWithRelationInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          username: $checkedConvert(
+              'username', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          password: $checkedConvert(
+              'password', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          person: $checkedConvert(
+              'person',
+              (v) => v == null
+                  ? null
+                  : PersonOrderByRelationAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountOrderByWithRelationInputToJson(
@@ -84,9 +117,17 @@ const _$SortOrderEnumMap = {
 
 AccountWhereUniqueInput _$AccountWhereUniqueInputFromJson(
         Map<String, dynamic> json) =>
-    AccountWhereUniqueInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      username: json['username'] as String?,
+    $checkedCreate(
+      'AccountWhereUniqueInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountWhereUniqueInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          username: $checkedConvert('username', (v) => v as String?),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountWhereUniqueInputToJson(
@@ -106,30 +147,57 @@ Map<String, dynamic> _$AccountWhereUniqueInputToJson(
 
 AccountOrderByWithAggregationInput _$AccountOrderByWithAggregationInputFromJson(
         Map<String, dynamic> json) =>
-    AccountOrderByWithAggregationInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      username: $enumDecodeNullable(_$SortOrderEnumMap, json['username']),
-      password: $enumDecodeNullable(_$SortOrderEnumMap, json['password']),
-      $count: json['_count'] == null
-          ? null
-          : AccountCountOrderByAggregateInput.fromJson(
-              json['_count'] as Map<String, dynamic>),
-      $avg: json['_avg'] == null
-          ? null
-          : AccountAvgOrderByAggregateInput.fromJson(
-              json['_avg'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : AccountMaxOrderByAggregateInput.fromJson(
-              json['_max'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : AccountMinOrderByAggregateInput.fromJson(
-              json['_min'] as Map<String, dynamic>),
-      $sum: json['_sum'] == null
-          ? null
-          : AccountSumOrderByAggregateInput.fromJson(
-              json['_sum'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountOrderByWithAggregationInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountOrderByWithAggregationInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          username: $checkedConvert(
+              'username', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          password: $checkedConvert(
+              'password', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : AccountCountOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $avg: $checkedConvert(
+              '_avg',
+              (v) => v == null
+                  ? null
+                  : AccountAvgOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : AccountMaxOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : AccountMinOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $sum: $checkedConvert(
+              '_sum',
+              (v) => v == null
+                  ? null
+                  : AccountSumOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$count': '_count',
+        r'$avg': '_avg',
+        r'$max': '_max',
+        r'$min': '_min',
+        r'$sum': '_sum'
+      },
     );
 
 Map<String, dynamic> _$AccountOrderByWithAggregationInputToJson(
@@ -156,28 +224,47 @@ Map<String, dynamic> _$AccountOrderByWithAggregationInputToJson(
 AccountScalarWhereWithAggregatesInput
     _$AccountScalarWhereWithAggregatesInputFromJson(
             Map<String, dynamic> json) =>
-        AccountScalarWhereWithAggregatesInput(
-          AND: (json['AND'] as List<dynamic>?)?.map((e) =>
-              AccountScalarWhereWithAggregatesInput.fromJson(
-                  e as Map<String, dynamic>)),
-          OR: (json['OR'] as List<dynamic>?)?.map((e) =>
-              AccountScalarWhereWithAggregatesInput.fromJson(
-                  e as Map<String, dynamic>)),
-          NOT: (json['NOT'] as List<dynamic>?)?.map((e) =>
-              AccountScalarWhereWithAggregatesInput.fromJson(
-                  e as Map<String, dynamic>)),
-          id: json['id'] == null
-              ? null
-              : BigIntWithAggregatesFilter.fromJson(
-                  json['id'] as Map<String, dynamic>),
-          username: json['username'] == null
-              ? null
-              : StringWithAggregatesFilter.fromJson(
-                  json['username'] as Map<String, dynamic>),
-          password: json['password'] == null
-              ? null
-              : StringWithAggregatesFilter.fromJson(
-                  json['password'] as Map<String, dynamic>),
+        $checkedCreate(
+          'AccountScalarWhereWithAggregatesInput',
+          json,
+          ($checkedConvert) {
+            final val = AccountScalarWhereWithAggregatesInput(
+              AND: $checkedConvert(
+                  'AND',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      AccountScalarWhereWithAggregatesInput.fromJson(
+                          e as Map<String, dynamic>))),
+              OR: $checkedConvert(
+                  'OR',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      AccountScalarWhereWithAggregatesInput.fromJson(
+                          e as Map<String, dynamic>))),
+              NOT: $checkedConvert(
+                  'NOT',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      AccountScalarWhereWithAggregatesInput.fromJson(
+                          e as Map<String, dynamic>))),
+              id: $checkedConvert(
+                  'id',
+                  (v) => v == null
+                      ? null
+                      : BigIntWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              username: $checkedConvert(
+                  'username',
+                  (v) => v == null
+                      ? null
+                      : StringWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              password: $checkedConvert(
+                  'password',
+                  (v) => v == null
+                      ? null
+                      : StringWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$AccountScalarWhereWithAggregatesInputToJson(
@@ -200,40 +287,72 @@ Map<String, dynamic> _$AccountScalarWhereWithAggregatesInputToJson(
 }
 
 PersonWhereInput _$PersonWhereInputFromJson(Map<String, dynamic> json) =>
-    PersonWhereInput(
-      AND: (json['AND'] as List<dynamic>?)
-          ?.map((e) => PersonWhereInput.fromJson(e as Map<String, dynamic>)),
-      OR: (json['OR'] as List<dynamic>?)
-          ?.map((e) => PersonWhereInput.fromJson(e as Map<String, dynamic>)),
-      NOT: (json['NOT'] as List<dynamic>?)
-          ?.map((e) => PersonWhereInput.fromJson(e as Map<String, dynamic>)),
-      id: json['id'] == null
-          ? null
-          : BigIntFilter.fromJson(json['id'] as Map<String, dynamic>),
-      firstName: json['first_name'] == null
-          ? null
-          : StringFilter.fromJson(json['first_name'] as Map<String, dynamic>),
-      lastName: json['last_name'] == null
-          ? null
-          : StringFilter.fromJson(json['last_name'] as Map<String, dynamic>),
-      gender: json['gender'] == null
-          ? null
-          : StringFilter.fromJson(json['gender'] as Map<String, dynamic>),
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTimeFilter.fromJson(
-              json['date_of_birth'] as Map<String, dynamic>),
-      email: json['email'] == null
-          ? null
-          : StringNullableFilter.fromJson(
-              json['email'] as Map<String, dynamic>),
-      accountId: json['account_id'] == null
-          ? null
-          : BigIntFilter.fromJson(json['account_id'] as Map<String, dynamic>),
-      account: json['account'] == null
-          ? null
-          : AccountRelationFilter.fromJson(
-              json['account'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonWhereInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonWhereInput(
+          AND: $checkedConvert(
+              'AND',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => PersonWhereInput.fromJson(e as Map<String, dynamic>))),
+          OR: $checkedConvert(
+              'OR',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => PersonWhereInput.fromJson(e as Map<String, dynamic>))),
+          NOT: $checkedConvert(
+              'NOT',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => PersonWhereInput.fromJson(e as Map<String, dynamic>))),
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFilter.fromJson(v as Map<String, dynamic>)),
+          firstName: $checkedConvert(
+              'first_name',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          lastName: $checkedConvert(
+              'last_name',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          gender: $checkedConvert(
+              'gender',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => v == null
+                  ? null
+                  : DateTimeFilter.fromJson(v as Map<String, dynamic>)),
+          email: $checkedConvert(
+              'email',
+              (v) => v == null
+                  ? null
+                  : StringNullableFilter.fromJson(v as Map<String, dynamic>)),
+          accountId: $checkedConvert(
+              'account_id',
+              (v) => v == null
+                  ? null
+                  : BigIntFilter.fromJson(v as Map<String, dynamic>)),
+          account: $checkedConvert(
+              'account',
+              (v) => v == null
+                  ? null
+                  : AccountRelationFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonWhereInputToJson(PersonWhereInput instance) {
@@ -261,19 +380,40 @@ Map<String, dynamic> _$PersonWhereInputToJson(PersonWhereInput instance) {
 
 PersonOrderByWithRelationInput _$PersonOrderByWithRelationInputFromJson(
         Map<String, dynamic> json) =>
-    PersonOrderByWithRelationInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      firstName: $enumDecodeNullable(_$SortOrderEnumMap, json['first_name']),
-      lastName: $enumDecodeNullable(_$SortOrderEnumMap, json['last_name']),
-      gender: $enumDecodeNullable(_$SortOrderEnumMap, json['gender']),
-      dateOfBirth:
-          $enumDecodeNullable(_$SortOrderEnumMap, json['date_of_birth']),
-      email: $enumDecodeNullable(_$SortOrderEnumMap, json['email']),
-      accountId: $enumDecodeNullable(_$SortOrderEnumMap, json['account_id']),
-      account: json['account'] == null
-          ? null
-          : AccountOrderByWithRelationInput.fromJson(
-              json['account'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonOrderByWithRelationInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonOrderByWithRelationInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          firstName: $checkedConvert(
+              'first_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          lastName: $checkedConvert(
+              'last_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          gender: $checkedConvert(
+              'gender', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          email: $checkedConvert(
+              'email', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          accountId: $checkedConvert(
+              'account_id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          account: $checkedConvert(
+              'account',
+              (v) => v == null
+                  ? null
+                  : AccountOrderByWithRelationInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonOrderByWithRelationInputToJson(
@@ -299,9 +439,17 @@ Map<String, dynamic> _$PersonOrderByWithRelationInputToJson(
 
 PersonWhereUniqueInput _$PersonWhereUniqueInputFromJson(
         Map<String, dynamic> json) =>
-    PersonWhereUniqueInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      email: json['email'] as String?,
+    $checkedCreate(
+      'PersonWhereUniqueInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonWhereUniqueInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          email: $checkedConvert('email', (v) => v as String?),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$PersonWhereUniqueInputToJson(
@@ -321,35 +469,69 @@ Map<String, dynamic> _$PersonWhereUniqueInputToJson(
 
 PersonOrderByWithAggregationInput _$PersonOrderByWithAggregationInputFromJson(
         Map<String, dynamic> json) =>
-    PersonOrderByWithAggregationInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      firstName: $enumDecodeNullable(_$SortOrderEnumMap, json['first_name']),
-      lastName: $enumDecodeNullable(_$SortOrderEnumMap, json['last_name']),
-      gender: $enumDecodeNullable(_$SortOrderEnumMap, json['gender']),
-      dateOfBirth:
-          $enumDecodeNullable(_$SortOrderEnumMap, json['date_of_birth']),
-      email: $enumDecodeNullable(_$SortOrderEnumMap, json['email']),
-      accountId: $enumDecodeNullable(_$SortOrderEnumMap, json['account_id']),
-      $count: json['_count'] == null
-          ? null
-          : PersonCountOrderByAggregateInput.fromJson(
-              json['_count'] as Map<String, dynamic>),
-      $avg: json['_avg'] == null
-          ? null
-          : PersonAvgOrderByAggregateInput.fromJson(
-              json['_avg'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : PersonMaxOrderByAggregateInput.fromJson(
-              json['_max'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : PersonMinOrderByAggregateInput.fromJson(
-              json['_min'] as Map<String, dynamic>),
-      $sum: json['_sum'] == null
-          ? null
-          : PersonSumOrderByAggregateInput.fromJson(
-              json['_sum'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonOrderByWithAggregationInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonOrderByWithAggregationInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          firstName: $checkedConvert(
+              'first_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          lastName: $checkedConvert(
+              'last_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          gender: $checkedConvert(
+              'gender', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          email: $checkedConvert(
+              'email', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          accountId: $checkedConvert(
+              'account_id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : PersonCountOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $avg: $checkedConvert(
+              '_avg',
+              (v) => v == null
+                  ? null
+                  : PersonAvgOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : PersonMaxOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : PersonMinOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+          $sum: $checkedConvert(
+              '_sum',
+              (v) => v == null
+                  ? null
+                  : PersonSumOrderByAggregateInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id',
+        r'$count': '_count',
+        r'$avg': '_avg',
+        r'$max': '_max',
+        r'$min': '_min',
+        r'$sum': '_sum'
+      },
     );
 
 Map<String, dynamic> _$PersonOrderByWithAggregationInputToJson(
@@ -379,44 +561,77 @@ Map<String, dynamic> _$PersonOrderByWithAggregationInputToJson(
 
 PersonScalarWhereWithAggregatesInput
     _$PersonScalarWhereWithAggregatesInputFromJson(Map<String, dynamic> json) =>
-        PersonScalarWhereWithAggregatesInput(
-          AND: (json['AND'] as List<dynamic>?)?.map((e) =>
-              PersonScalarWhereWithAggregatesInput.fromJson(
-                  e as Map<String, dynamic>)),
-          OR: (json['OR'] as List<dynamic>?)?.map((e) =>
-              PersonScalarWhereWithAggregatesInput.fromJson(
-                  e as Map<String, dynamic>)),
-          NOT: (json['NOT'] as List<dynamic>?)?.map((e) =>
-              PersonScalarWhereWithAggregatesInput.fromJson(
-                  e as Map<String, dynamic>)),
-          id: json['id'] == null
-              ? null
-              : BigIntWithAggregatesFilter.fromJson(
-                  json['id'] as Map<String, dynamic>),
-          firstName: json['first_name'] == null
-              ? null
-              : StringWithAggregatesFilter.fromJson(
-                  json['first_name'] as Map<String, dynamic>),
-          lastName: json['last_name'] == null
-              ? null
-              : StringWithAggregatesFilter.fromJson(
-                  json['last_name'] as Map<String, dynamic>),
-          gender: json['gender'] == null
-              ? null
-              : StringWithAggregatesFilter.fromJson(
-                  json['gender'] as Map<String, dynamic>),
-          dateOfBirth: json['date_of_birth'] == null
-              ? null
-              : DateTimeWithAggregatesFilter.fromJson(
-                  json['date_of_birth'] as Map<String, dynamic>),
-          email: json['email'] == null
-              ? null
-              : StringNullableWithAggregatesFilter.fromJson(
-                  json['email'] as Map<String, dynamic>),
-          accountId: json['account_id'] == null
-              ? null
-              : BigIntWithAggregatesFilter.fromJson(
-                  json['account_id'] as Map<String, dynamic>),
+        $checkedCreate(
+          'PersonScalarWhereWithAggregatesInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonScalarWhereWithAggregatesInput(
+              AND: $checkedConvert(
+                  'AND',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonScalarWhereWithAggregatesInput.fromJson(
+                          e as Map<String, dynamic>))),
+              OR: $checkedConvert(
+                  'OR',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonScalarWhereWithAggregatesInput.fromJson(
+                          e as Map<String, dynamic>))),
+              NOT: $checkedConvert(
+                  'NOT',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonScalarWhereWithAggregatesInput.fromJson(
+                          e as Map<String, dynamic>))),
+              id: $checkedConvert(
+                  'id',
+                  (v) => v == null
+                      ? null
+                      : BigIntWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              firstName: $checkedConvert(
+                  'first_name',
+                  (v) => v == null
+                      ? null
+                      : StringWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              lastName: $checkedConvert(
+                  'last_name',
+                  (v) => v == null
+                      ? null
+                      : StringWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              gender: $checkedConvert(
+                  'gender',
+                  (v) => v == null
+                      ? null
+                      : StringWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              dateOfBirth: $checkedConvert(
+                  'date_of_birth',
+                  (v) => v == null
+                      ? null
+                      : DateTimeWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              email: $checkedConvert(
+                  'email',
+                  (v) => v == null
+                      ? null
+                      : StringNullableWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              accountId: $checkedConvert(
+                  'account_id',
+                  (v) => v == null
+                      ? null
+                      : BigIntWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
+          fieldKeyMap: const {
+            'firstName': 'first_name',
+            'lastName': 'last_name',
+            'dateOfBirth': 'date_of_birth',
+            'accountId': 'account_id'
+          },
         );
 
 Map<String, dynamic> _$PersonScalarWhereWithAggregatesInputToJson(
@@ -443,14 +658,24 @@ Map<String, dynamic> _$PersonScalarWhereWithAggregatesInputToJson(
 }
 
 AccountCreateInput _$AccountCreateInputFromJson(Map<String, dynamic> json) =>
-    AccountCreateInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      username: json['username'] as String,
-      password: json['password'] as String,
-      person: json['person'] == null
-          ? null
-          : PersonCreateNestedManyWithoutAccountInput.fromJson(
-              json['person'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountCreateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountCreateInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          username: $checkedConvert('username', (v) => v as String),
+          password: $checkedConvert('password', (v) => v as String),
+          person: $checkedConvert(
+              'person',
+              (v) => v == null
+                  ? null
+                  : PersonCreateNestedManyWithoutAccountInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountCreateInputToJson(AccountCreateInput instance) {
@@ -471,14 +696,24 @@ Map<String, dynamic> _$AccountCreateInputToJson(AccountCreateInput instance) {
 
 AccountUncheckedCreateInput _$AccountUncheckedCreateInputFromJson(
         Map<String, dynamic> json) =>
-    AccountUncheckedCreateInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      username: json['username'] as String,
-      password: json['password'] as String,
-      person: json['person'] == null
-          ? null
-          : PersonUncheckedCreateNestedManyWithoutAccountInput.fromJson(
-              json['person'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountUncheckedCreateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountUncheckedCreateInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          username: $checkedConvert('username', (v) => v as String),
+          password: $checkedConvert('password', (v) => v as String),
+          person: $checkedConvert(
+              'person',
+              (v) => v == null
+                  ? null
+                  : PersonUncheckedCreateNestedManyWithoutAccountInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountUncheckedCreateInputToJson(
@@ -499,23 +734,38 @@ Map<String, dynamic> _$AccountUncheckedCreateInputToJson(
 }
 
 AccountUpdateInput _$AccountUpdateInputFromJson(Map<String, dynamic> json) =>
-    AccountUpdateInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      username: json['username'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['username'] as Map<String, dynamic>),
-      password: json['password'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['password'] as Map<String, dynamic>),
-      person: json['person'] == null
-          ? null
-          : PersonUpdateManyWithoutAccountNestedInput.fromJson(
-              json['person'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountUpdateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountUpdateInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          username: $checkedConvert(
+              'username',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          password: $checkedConvert(
+              'password',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          person: $checkedConvert(
+              'person',
+              (v) => v == null
+                  ? null
+                  : PersonUpdateManyWithoutAccountNestedInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountUpdateInputToJson(AccountUpdateInput instance) {
@@ -536,23 +786,38 @@ Map<String, dynamic> _$AccountUpdateInputToJson(AccountUpdateInput instance) {
 
 AccountUncheckedUpdateInput _$AccountUncheckedUpdateInputFromJson(
         Map<String, dynamic> json) =>
-    AccountUncheckedUpdateInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      username: json['username'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['username'] as Map<String, dynamic>),
-      password: json['password'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['password'] as Map<String, dynamic>),
-      person: json['person'] == null
-          ? null
-          : PersonUncheckedUpdateManyWithoutAccountNestedInput.fromJson(
-              json['person'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountUncheckedUpdateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountUncheckedUpdateInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          username: $checkedConvert(
+              'username',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          password: $checkedConvert(
+              'password',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          person: $checkedConvert(
+              'person',
+              (v) => v == null
+                  ? null
+                  : PersonUncheckedUpdateManyWithoutAccountNestedInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountUncheckedUpdateInputToJson(
@@ -574,10 +839,18 @@ Map<String, dynamic> _$AccountUncheckedUpdateInputToJson(
 
 AccountCreateManyInput _$AccountCreateManyInputFromJson(
         Map<String, dynamic> json) =>
-    AccountCreateManyInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      username: json['username'] as String,
-      password: json['password'] as String,
+    $checkedCreate(
+      'AccountCreateManyInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountCreateManyInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          username: $checkedConvert('username', (v) => v as String),
+          password: $checkedConvert('password', (v) => v as String),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountCreateManyInputToJson(
@@ -598,19 +871,32 @@ Map<String, dynamic> _$AccountCreateManyInputToJson(
 
 AccountUpdateManyMutationInput _$AccountUpdateManyMutationInputFromJson(
         Map<String, dynamic> json) =>
-    AccountUpdateManyMutationInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      username: json['username'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['username'] as Map<String, dynamic>),
-      password: json['password'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['password'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountUpdateManyMutationInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountUpdateManyMutationInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          username: $checkedConvert(
+              'username',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          password: $checkedConvert(
+              'password',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountUpdateManyMutationInputToJson(
@@ -631,19 +917,32 @@ Map<String, dynamic> _$AccountUpdateManyMutationInputToJson(
 
 AccountUncheckedUpdateManyInput _$AccountUncheckedUpdateManyInputFromJson(
         Map<String, dynamic> json) =>
-    AccountUncheckedUpdateManyInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      username: json['username'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['username'] as Map<String, dynamic>),
-      password: json['password'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['password'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountUncheckedUpdateManyInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountUncheckedUpdateManyInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          username: $checkedConvert(
+              'username',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          password: $checkedConvert(
+              'password',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountUncheckedUpdateManyInputToJson(
@@ -663,16 +962,31 @@ Map<String, dynamic> _$AccountUncheckedUpdateManyInputToJson(
 }
 
 PersonCreateInput _$PersonCreateInputFromJson(Map<String, dynamic> json) =>
-    PersonCreateInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      gender: json['gender'] as String,
-      dateOfBirth: const DateTimeJsonConverter()
-          .fromJson(json['date_of_birth'] as String),
-      email: json['email'] as String?,
-      account: AccountCreateNestedOneWithoutPersonInput.fromJson(
-          json['account'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonCreateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonCreateInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          firstName: $checkedConvert('first_name', (v) => v as String),
+          lastName: $checkedConvert('last_name', (v) => v as String),
+          gender: $checkedConvert('gender', (v) => v as String),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => const DateTimeJsonConverter().fromJson(v as String)),
+          email: $checkedConvert('email', (v) => v as String?),
+          account: $checkedConvert(
+              'account',
+              (v) => AccountCreateNestedOneWithoutPersonInput.fromJson(
+                  v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth'
+      },
     );
 
 Map<String, dynamic> _$PersonCreateInputToJson(PersonCreateInput instance) {
@@ -697,15 +1011,30 @@ Map<String, dynamic> _$PersonCreateInputToJson(PersonCreateInput instance) {
 
 PersonUncheckedCreateInput _$PersonUncheckedCreateInputFromJson(
         Map<String, dynamic> json) =>
-    PersonUncheckedCreateInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      gender: json['gender'] as String,
-      dateOfBirth: const DateTimeJsonConverter()
-          .fromJson(json['date_of_birth'] as String),
-      email: json['email'] as String?,
-      accountId: BigInt.parse(json['account_id'] as String),
+    $checkedCreate(
+      'PersonUncheckedCreateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonUncheckedCreateInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          firstName: $checkedConvert('first_name', (v) => v as String),
+          lastName: $checkedConvert('last_name', (v) => v as String),
+          gender: $checkedConvert('gender', (v) => v as String),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => const DateTimeJsonConverter().fromJson(v as String)),
+          email: $checkedConvert('email', (v) => v as String?),
+          accountId:
+              $checkedConvert('account_id', (v) => BigInt.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonUncheckedCreateInputToJson(
@@ -730,35 +1059,61 @@ Map<String, dynamic> _$PersonUncheckedCreateInputToJson(
 }
 
 PersonUpdateInput _$PersonUpdateInputFromJson(Map<String, dynamic> json) =>
-    PersonUpdateInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      firstName: json['first_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['first_name'] as Map<String, dynamic>),
-      lastName: json['last_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['last_name'] as Map<String, dynamic>),
-      gender: json['gender'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['gender'] as Map<String, dynamic>),
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTimeFieldUpdateOperationsInput.fromJson(
-              json['date_of_birth'] as Map<String, dynamic>),
-      email: json['email'] == null
-          ? null
-          : NullableStringFieldUpdateOperationsInput.fromJson(
-              json['email'] as Map<String, dynamic>),
-      account: json['account'] == null
-          ? null
-          : AccountUpdateOneRequiredWithoutPersonNestedInput.fromJson(
-              json['account'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonUpdateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonUpdateInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          firstName: $checkedConvert(
+              'first_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          lastName: $checkedConvert(
+              'last_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          gender: $checkedConvert(
+              'gender',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => v == null
+                  ? null
+                  : DateTimeFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          email: $checkedConvert(
+              'email',
+              (v) => v == null
+                  ? null
+                  : NullableStringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          account: $checkedConvert(
+              'account',
+              (v) => v == null
+                  ? null
+                  : AccountUpdateOneRequiredWithoutPersonNestedInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth'
+      },
     );
 
 Map<String, dynamic> _$PersonUpdateInputToJson(PersonUpdateInput instance) {
@@ -782,35 +1137,62 @@ Map<String, dynamic> _$PersonUpdateInputToJson(PersonUpdateInput instance) {
 
 PersonUncheckedUpdateInput _$PersonUncheckedUpdateInputFromJson(
         Map<String, dynamic> json) =>
-    PersonUncheckedUpdateInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      firstName: json['first_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['first_name'] as Map<String, dynamic>),
-      lastName: json['last_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['last_name'] as Map<String, dynamic>),
-      gender: json['gender'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['gender'] as Map<String, dynamic>),
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTimeFieldUpdateOperationsInput.fromJson(
-              json['date_of_birth'] as Map<String, dynamic>),
-      email: json['email'] == null
-          ? null
-          : NullableStringFieldUpdateOperationsInput.fromJson(
-              json['email'] as Map<String, dynamic>),
-      accountId: json['account_id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['account_id'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonUncheckedUpdateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonUncheckedUpdateInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          firstName: $checkedConvert(
+              'first_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          lastName: $checkedConvert(
+              'last_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          gender: $checkedConvert(
+              'gender',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => v == null
+                  ? null
+                  : DateTimeFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          email: $checkedConvert(
+              'email',
+              (v) => v == null
+                  ? null
+                  : NullableStringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          accountId: $checkedConvert(
+              'account_id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonUncheckedUpdateInputToJson(
@@ -835,15 +1217,30 @@ Map<String, dynamic> _$PersonUncheckedUpdateInputToJson(
 
 PersonCreateManyInput _$PersonCreateManyInputFromJson(
         Map<String, dynamic> json) =>
-    PersonCreateManyInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      gender: json['gender'] as String,
-      dateOfBirth: const DateTimeJsonConverter()
-          .fromJson(json['date_of_birth'] as String),
-      email: json['email'] as String?,
-      accountId: BigInt.parse(json['account_id'] as String),
+    $checkedCreate(
+      'PersonCreateManyInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonCreateManyInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          firstName: $checkedConvert('first_name', (v) => v as String),
+          lastName: $checkedConvert('last_name', (v) => v as String),
+          gender: $checkedConvert('gender', (v) => v as String),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => const DateTimeJsonConverter().fromJson(v as String)),
+          email: $checkedConvert('email', (v) => v as String?),
+          accountId:
+              $checkedConvert('account_id', (v) => BigInt.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonCreateManyInputToJson(
@@ -869,31 +1266,55 @@ Map<String, dynamic> _$PersonCreateManyInputToJson(
 
 PersonUpdateManyMutationInput _$PersonUpdateManyMutationInputFromJson(
         Map<String, dynamic> json) =>
-    PersonUpdateManyMutationInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      firstName: json['first_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['first_name'] as Map<String, dynamic>),
-      lastName: json['last_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['last_name'] as Map<String, dynamic>),
-      gender: json['gender'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['gender'] as Map<String, dynamic>),
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTimeFieldUpdateOperationsInput.fromJson(
-              json['date_of_birth'] as Map<String, dynamic>),
-      email: json['email'] == null
-          ? null
-          : NullableStringFieldUpdateOperationsInput.fromJson(
-              json['email'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonUpdateManyMutationInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonUpdateManyMutationInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          firstName: $checkedConvert(
+              'first_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          lastName: $checkedConvert(
+              'last_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          gender: $checkedConvert(
+              'gender',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => v == null
+                  ? null
+                  : DateTimeFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          email: $checkedConvert(
+              'email',
+              (v) => v == null
+                  ? null
+                  : NullableStringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth'
+      },
     );
 
 Map<String, dynamic> _$PersonUpdateManyMutationInputToJson(
@@ -917,35 +1338,62 @@ Map<String, dynamic> _$PersonUpdateManyMutationInputToJson(
 
 PersonUncheckedUpdateManyInput _$PersonUncheckedUpdateManyInputFromJson(
         Map<String, dynamic> json) =>
-    PersonUncheckedUpdateManyInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      firstName: json['first_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['first_name'] as Map<String, dynamic>),
-      lastName: json['last_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['last_name'] as Map<String, dynamic>),
-      gender: json['gender'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['gender'] as Map<String, dynamic>),
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTimeFieldUpdateOperationsInput.fromJson(
-              json['date_of_birth'] as Map<String, dynamic>),
-      email: json['email'] == null
-          ? null
-          : NullableStringFieldUpdateOperationsInput.fromJson(
-              json['email'] as Map<String, dynamic>),
-      accountId: json['account_id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['account_id'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonUncheckedUpdateManyInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonUncheckedUpdateManyInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          firstName: $checkedConvert(
+              'first_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          lastName: $checkedConvert(
+              'last_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          gender: $checkedConvert(
+              'gender',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => v == null
+                  ? null
+                  : DateTimeFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          email: $checkedConvert(
+              'email',
+              (v) => v == null
+                  ? null
+                  : NullableStringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          accountId: $checkedConvert(
+              'account_id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonUncheckedUpdateManyInputToJson(
@@ -968,21 +1416,39 @@ Map<String, dynamic> _$PersonUncheckedUpdateManyInputToJson(
   return val;
 }
 
-BigIntFilter _$BigIntFilterFromJson(Map<String, dynamic> json) => BigIntFilter(
-      equals: json['equals'] == null
-          ? null
-          : BigInt.parse(json['equals'] as String),
-      $in:
-          (json['in'] as List<dynamic>?)?.map((e) => BigInt.parse(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => BigInt.parse(e as String)),
-      lt: json['lt'] == null ? null : BigInt.parse(json['lt'] as String),
-      lte: json['lte'] == null ? null : BigInt.parse(json['lte'] as String),
-      gt: json['gt'] == null ? null : BigInt.parse(json['gt'] as String),
-      gte: json['gte'] == null ? null : BigInt.parse(json['gte'] as String),
-      not: json['not'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['not'] as Map<String, dynamic>),
+BigIntFilter _$BigIntFilterFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'BigIntFilter',
+      json,
+      ($checkedConvert) {
+        final val = BigIntFilter(
+          equals: $checkedConvert(
+              'equals', (v) => v == null ? null : BigInt.parse(v as String)),
+          $in: $checkedConvert(
+              'in',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          lt: $checkedConvert(
+              'lt', (v) => v == null ? null : BigInt.parse(v as String)),
+          lte: $checkedConvert(
+              'lte', (v) => v == null ? null : BigInt.parse(v as String)),
+          gt: $checkedConvert(
+              'gt', (v) => v == null ? null : BigInt.parse(v as String)),
+          gte: $checkedConvert(
+              'gte', (v) => v == null ? null : BigInt.parse(v as String)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$BigIntFilterToJson(BigIntFilter instance) {
@@ -1005,21 +1471,35 @@ Map<String, dynamic> _$BigIntFilterToJson(BigIntFilter instance) {
   return val;
 }
 
-StringFilter _$StringFilterFromJson(Map<String, dynamic> json) => StringFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      mode: $enumDecodeNullable(_$QueryModeEnumMap, json['mode']),
-      not: json['not'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['not'] as Map<String, dynamic>),
+StringFilter _$StringFilterFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'StringFilter',
+      json,
+      ($checkedConvert) {
+        final val = StringFilter(
+          equals: $checkedConvert('equals', (v) => v as String?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          lt: $checkedConvert('lt', (v) => v as String?),
+          lte: $checkedConvert('lte', (v) => v as String?),
+          gt: $checkedConvert('gt', (v) => v as String?),
+          gte: $checkedConvert('gte', (v) => v as String?),
+          contains: $checkedConvert('contains', (v) => v as String?),
+          startsWith: $checkedConvert('startsWith', (v) => v as String?),
+          endsWith: $checkedConvert('endsWith', (v) => v as String?),
+          mode: $checkedConvert(
+              'mode', (v) => $enumDecodeNullable(_$QueryModeEnumMap, v)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedStringFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$StringFilterToJson(StringFilter instance) {
@@ -1053,16 +1533,29 @@ const _$QueryModeEnumMap = {
 
 PersonListRelationFilter _$PersonListRelationFilterFromJson(
         Map<String, dynamic> json) =>
-    PersonListRelationFilter(
-      every: json['every'] == null
-          ? null
-          : PersonWhereInput.fromJson(json['every'] as Map<String, dynamic>),
-      some: json['some'] == null
-          ? null
-          : PersonWhereInput.fromJson(json['some'] as Map<String, dynamic>),
-      none: json['none'] == null
-          ? null
-          : PersonWhereInput.fromJson(json['none'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonListRelationFilter',
+      json,
+      ($checkedConvert) {
+        final val = PersonListRelationFilter(
+          every: $checkedConvert(
+              'every',
+              (v) => v == null
+                  ? null
+                  : PersonWhereInput.fromJson(v as Map<String, dynamic>)),
+          some: $checkedConvert(
+              'some',
+              (v) => v == null
+                  ? null
+                  : PersonWhereInput.fromJson(v as Map<String, dynamic>)),
+          none: $checkedConvert(
+              'none',
+              (v) => v == null
+                  ? null
+                  : PersonWhereInput.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$PersonListRelationFilterToJson(
@@ -1083,8 +1576,17 @@ Map<String, dynamic> _$PersonListRelationFilterToJson(
 
 PersonOrderByRelationAggregateInput
     _$PersonOrderByRelationAggregateInputFromJson(Map<String, dynamic> json) =>
-        PersonOrderByRelationAggregateInput(
-          $count: $enumDecodeNullable(_$SortOrderEnumMap, json['_count']),
+        $checkedCreate(
+          'PersonOrderByRelationAggregateInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonOrderByRelationAggregateInput(
+              $count: $checkedConvert(
+                  '_count', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+            );
+            return val;
+          },
+          fieldKeyMap: const {r'$count': '_count'},
         );
 
 Map<String, dynamic> _$PersonOrderByRelationAggregateInputToJson(
@@ -1103,10 +1605,20 @@ Map<String, dynamic> _$PersonOrderByRelationAggregateInputToJson(
 
 AccountCountOrderByAggregateInput _$AccountCountOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    AccountCountOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      username: $enumDecodeNullable(_$SortOrderEnumMap, json['username']),
-      password: $enumDecodeNullable(_$SortOrderEnumMap, json['password']),
+    $checkedCreate(
+      'AccountCountOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountCountOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          username: $checkedConvert(
+              'username', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          password: $checkedConvert(
+              'password', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountCountOrderByAggregateInputToJson(
@@ -1127,8 +1639,16 @@ Map<String, dynamic> _$AccountCountOrderByAggregateInputToJson(
 
 AccountAvgOrderByAggregateInput _$AccountAvgOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    AccountAvgOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
+    $checkedCreate(
+      'AccountAvgOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountAvgOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountAvgOrderByAggregateInputToJson(
@@ -1147,10 +1667,20 @@ Map<String, dynamic> _$AccountAvgOrderByAggregateInputToJson(
 
 AccountMaxOrderByAggregateInput _$AccountMaxOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    AccountMaxOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      username: $enumDecodeNullable(_$SortOrderEnumMap, json['username']),
-      password: $enumDecodeNullable(_$SortOrderEnumMap, json['password']),
+    $checkedCreate(
+      'AccountMaxOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountMaxOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          username: $checkedConvert(
+              'username', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          password: $checkedConvert(
+              'password', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountMaxOrderByAggregateInputToJson(
@@ -1171,10 +1701,20 @@ Map<String, dynamic> _$AccountMaxOrderByAggregateInputToJson(
 
 AccountMinOrderByAggregateInput _$AccountMinOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    AccountMinOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      username: $enumDecodeNullable(_$SortOrderEnumMap, json['username']),
-      password: $enumDecodeNullable(_$SortOrderEnumMap, json['password']),
+    $checkedCreate(
+      'AccountMinOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountMinOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          username: $checkedConvert(
+              'username', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          password: $checkedConvert(
+              'password', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountMinOrderByAggregateInputToJson(
@@ -1195,8 +1735,16 @@ Map<String, dynamic> _$AccountMinOrderByAggregateInputToJson(
 
 AccountSumOrderByAggregateInput _$AccountSumOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    AccountSumOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
+    $checkedCreate(
+      'AccountSumOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountSumOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountSumOrderByAggregateInputToJson(
@@ -1215,37 +1763,71 @@ Map<String, dynamic> _$AccountSumOrderByAggregateInputToJson(
 
 BigIntWithAggregatesFilter _$BigIntWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
-    BigIntWithAggregatesFilter(
-      equals: json['equals'] == null
-          ? null
-          : BigInt.parse(json['equals'] as String),
-      $in:
-          (json['in'] as List<dynamic>?)?.map((e) => BigInt.parse(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => BigInt.parse(e as String)),
-      lt: json['lt'] == null ? null : BigInt.parse(json['lt'] as String),
-      lte: json['lte'] == null ? null : BigInt.parse(json['lte'] as String),
-      gt: json['gt'] == null ? null : BigInt.parse(json['gt'] as String),
-      gte: json['gte'] == null ? null : BigInt.parse(json['gte'] as String),
-      not: json['not'] == null
-          ? null
-          : NestedBigIntWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $avg: json['_avg'] == null
-          ? null
-          : NestedFloatFilter.fromJson(json['_avg'] as Map<String, dynamic>),
-      $sum: json['_sum'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['_sum'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    $checkedCreate(
+      'BigIntWithAggregatesFilter',
+      json,
+      ($checkedConvert) {
+        final val = BigIntWithAggregatesFilter(
+          equals: $checkedConvert(
+              'equals', (v) => v == null ? null : BigInt.parse(v as String)),
+          $in: $checkedConvert(
+              'in',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          lt: $checkedConvert(
+              'lt', (v) => v == null ? null : BigInt.parse(v as String)),
+          lte: $checkedConvert(
+              'lte', (v) => v == null ? null : BigInt.parse(v as String)),
+          gt: $checkedConvert(
+              'gt', (v) => v == null ? null : BigInt.parse(v as String)),
+          gte: $checkedConvert(
+              'gte', (v) => v == null ? null : BigInt.parse(v as String)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntWithAggregatesFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : NestedIntFilter.fromJson(v as Map<String, dynamic>)),
+          $avg: $checkedConvert(
+              '_avg',
+              (v) => v == null
+                  ? null
+                  : NestedFloatFilter.fromJson(v as Map<String, dynamic>)),
+          $sum: $checkedConvert(
+              '_sum',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$in': 'in',
+        r'$count': '_count',
+        r'$avg': '_avg',
+        r'$sum': '_sum',
+        r'$min': '_min',
+        r'$max': '_max'
+      },
     );
 
 Map<String, dynamic> _$BigIntWithAggregatesFilterToJson(
@@ -1276,31 +1858,55 @@ Map<String, dynamic> _$BigIntWithAggregatesFilterToJson(
 
 StringWithAggregatesFilter _$StringWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
-    StringWithAggregatesFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      mode: $enumDecodeNullable(_$QueryModeEnumMap, json['mode']),
-      not: json['not'] == null
-          ? null
-          : NestedStringWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    $checkedCreate(
+      'StringWithAggregatesFilter',
+      json,
+      ($checkedConvert) {
+        final val = StringWithAggregatesFilter(
+          equals: $checkedConvert('equals', (v) => v as String?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          lt: $checkedConvert('lt', (v) => v as String?),
+          lte: $checkedConvert('lte', (v) => v as String?),
+          gt: $checkedConvert('gt', (v) => v as String?),
+          gte: $checkedConvert('gte', (v) => v as String?),
+          contains: $checkedConvert('contains', (v) => v as String?),
+          startsWith: $checkedConvert('startsWith', (v) => v as String?),
+          endsWith: $checkedConvert('endsWith', (v) => v as String?),
+          mode: $checkedConvert(
+              'mode', (v) => $enumDecodeNullable(_$QueryModeEnumMap, v)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedStringWithAggregatesFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : NestedIntFilter.fromJson(v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : NestedStringFilter.fromJson(v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : NestedStringFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$in': 'in',
+        r'$count': '_count',
+        r'$min': '_min',
+        r'$max': '_max'
+      },
     );
 
 Map<String, dynamic> _$StringWithAggregatesFilterToJson(
@@ -1332,24 +1938,48 @@ Map<String, dynamic> _$StringWithAggregatesFilterToJson(
 }
 
 DateTimeFilter _$DateTimeFilterFromJson(Map<String, dynamic> json) =>
-    DateTimeFilter(
-      equals: _$JsonConverterFromJson<String, DateTime>(
-          json['equals'], const DateTimeJsonConverter().fromJson),
-      $in: (json['in'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      lt: _$JsonConverterFromJson<String, DateTime>(
-          json['lt'], const DateTimeJsonConverter().fromJson),
-      lte: _$JsonConverterFromJson<String, DateTime>(
-          json['lte'], const DateTimeJsonConverter().fromJson),
-      gt: _$JsonConverterFromJson<String, DateTime>(
-          json['gt'], const DateTimeJsonConverter().fromJson),
-      gte: _$JsonConverterFromJson<String, DateTime>(
-          json['gte'], const DateTimeJsonConverter().fromJson),
-      not: json['not'] == null
-          ? null
-          : NestedDateTimeFilter.fromJson(json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'DateTimeFilter',
+      json,
+      ($checkedConvert) {
+        final val = DateTimeFilter(
+          equals: $checkedConvert(
+              'equals',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          $in: $checkedConvert(
+              'in',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          lt: $checkedConvert(
+              'lt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          lte: $checkedConvert(
+              'lte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gt: $checkedConvert(
+              'gt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gte: $checkedConvert(
+              'gte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$DateTimeFilterToJson(DateTimeFilter instance) {
@@ -1403,22 +2033,35 @@ Json? _$JsonConverterToJson<Json, Value>(
 
 StringNullableFilter _$StringNullableFilterFromJson(
         Map<String, dynamic> json) =>
-    StringNullableFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      mode: $enumDecodeNullable(_$QueryModeEnumMap, json['mode']),
-      not: json['not'] == null
-          ? null
-          : NestedStringNullableFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'StringNullableFilter',
+      json,
+      ($checkedConvert) {
+        final val = StringNullableFilter(
+          equals: $checkedConvert('equals', (v) => v as String?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          lt: $checkedConvert('lt', (v) => v as String?),
+          lte: $checkedConvert('lte', (v) => v as String?),
+          gt: $checkedConvert('gt', (v) => v as String?),
+          gte: $checkedConvert('gte', (v) => v as String?),
+          contains: $checkedConvert('contains', (v) => v as String?),
+          startsWith: $checkedConvert('startsWith', (v) => v as String?),
+          endsWith: $checkedConvert('endsWith', (v) => v as String?),
+          mode: $checkedConvert(
+              'mode', (v) => $enumDecodeNullable(_$QueryModeEnumMap, v)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedStringNullableFilter.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$StringNullableFilterToJson(
@@ -1448,13 +2091,25 @@ Map<String, dynamic> _$StringNullableFilterToJson(
 
 AccountRelationFilter _$AccountRelationFilterFromJson(
         Map<String, dynamic> json) =>
-    AccountRelationFilter(
-      $is: json['is'] == null
-          ? null
-          : AccountWhereInput.fromJson(json['is'] as Map<String, dynamic>),
-      isNot: json['isNot'] == null
-          ? null
-          : AccountWhereInput.fromJson(json['isNot'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountRelationFilter',
+      json,
+      ($checkedConvert) {
+        final val = AccountRelationFilter(
+          $is: $checkedConvert(
+              'is',
+              (v) => v == null
+                  ? null
+                  : AccountWhereInput.fromJson(v as Map<String, dynamic>)),
+          isNot: $checkedConvert(
+              'isNot',
+              (v) => v == null
+                  ? null
+                  : AccountWhereInput.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$is': 'is'},
     );
 
 Map<String, dynamic> _$AccountRelationFilterToJson(
@@ -1474,15 +2129,34 @@ Map<String, dynamic> _$AccountRelationFilterToJson(
 
 PersonCountOrderByAggregateInput _$PersonCountOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    PersonCountOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      firstName: $enumDecodeNullable(_$SortOrderEnumMap, json['first_name']),
-      lastName: $enumDecodeNullable(_$SortOrderEnumMap, json['last_name']),
-      gender: $enumDecodeNullable(_$SortOrderEnumMap, json['gender']),
-      dateOfBirth:
-          $enumDecodeNullable(_$SortOrderEnumMap, json['date_of_birth']),
-      email: $enumDecodeNullable(_$SortOrderEnumMap, json['email']),
-      accountId: $enumDecodeNullable(_$SortOrderEnumMap, json['account_id']),
+    $checkedCreate(
+      'PersonCountOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonCountOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          firstName: $checkedConvert(
+              'first_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          lastName: $checkedConvert(
+              'last_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          gender: $checkedConvert(
+              'gender', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          email: $checkedConvert(
+              'email', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          accountId: $checkedConvert(
+              'account_id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonCountOrderByAggregateInputToJson(
@@ -1507,9 +2181,19 @@ Map<String, dynamic> _$PersonCountOrderByAggregateInputToJson(
 
 PersonAvgOrderByAggregateInput _$PersonAvgOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    PersonAvgOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      accountId: $enumDecodeNullable(_$SortOrderEnumMap, json['account_id']),
+    $checkedCreate(
+      'PersonAvgOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonAvgOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          accountId: $checkedConvert(
+              'account_id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'accountId': 'account_id'},
     );
 
 Map<String, dynamic> _$PersonAvgOrderByAggregateInputToJson(
@@ -1529,15 +2213,34 @@ Map<String, dynamic> _$PersonAvgOrderByAggregateInputToJson(
 
 PersonMaxOrderByAggregateInput _$PersonMaxOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    PersonMaxOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      firstName: $enumDecodeNullable(_$SortOrderEnumMap, json['first_name']),
-      lastName: $enumDecodeNullable(_$SortOrderEnumMap, json['last_name']),
-      gender: $enumDecodeNullable(_$SortOrderEnumMap, json['gender']),
-      dateOfBirth:
-          $enumDecodeNullable(_$SortOrderEnumMap, json['date_of_birth']),
-      email: $enumDecodeNullable(_$SortOrderEnumMap, json['email']),
-      accountId: $enumDecodeNullable(_$SortOrderEnumMap, json['account_id']),
+    $checkedCreate(
+      'PersonMaxOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonMaxOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          firstName: $checkedConvert(
+              'first_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          lastName: $checkedConvert(
+              'last_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          gender: $checkedConvert(
+              'gender', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          email: $checkedConvert(
+              'email', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          accountId: $checkedConvert(
+              'account_id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonMaxOrderByAggregateInputToJson(
@@ -1562,15 +2265,34 @@ Map<String, dynamic> _$PersonMaxOrderByAggregateInputToJson(
 
 PersonMinOrderByAggregateInput _$PersonMinOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    PersonMinOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      firstName: $enumDecodeNullable(_$SortOrderEnumMap, json['first_name']),
-      lastName: $enumDecodeNullable(_$SortOrderEnumMap, json['last_name']),
-      gender: $enumDecodeNullable(_$SortOrderEnumMap, json['gender']),
-      dateOfBirth:
-          $enumDecodeNullable(_$SortOrderEnumMap, json['date_of_birth']),
-      email: $enumDecodeNullable(_$SortOrderEnumMap, json['email']),
-      accountId: $enumDecodeNullable(_$SortOrderEnumMap, json['account_id']),
+    $checkedCreate(
+      'PersonMinOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonMinOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          firstName: $checkedConvert(
+              'first_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          lastName: $checkedConvert(
+              'last_name', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          gender: $checkedConvert(
+              'gender', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          email: $checkedConvert(
+              'email', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          accountId: $checkedConvert(
+              'account_id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonMinOrderByAggregateInputToJson(
@@ -1595,9 +2317,19 @@ Map<String, dynamic> _$PersonMinOrderByAggregateInputToJson(
 
 PersonSumOrderByAggregateInput _$PersonSumOrderByAggregateInputFromJson(
         Map<String, dynamic> json) =>
-    PersonSumOrderByAggregateInput(
-      id: $enumDecodeNullable(_$SortOrderEnumMap, json['id']),
-      accountId: $enumDecodeNullable(_$SortOrderEnumMap, json['account_id']),
+    $checkedCreate(
+      'PersonSumOrderByAggregateInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonSumOrderByAggregateInput(
+          id: $checkedConvert(
+              'id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+          accountId: $checkedConvert(
+              'account_id', (v) => $enumDecodeNullable(_$SortOrderEnumMap, v)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'accountId': 'account_id'},
     );
 
 Map<String, dynamic> _$PersonSumOrderByAggregateInputToJson(
@@ -1617,34 +2349,69 @@ Map<String, dynamic> _$PersonSumOrderByAggregateInputToJson(
 
 DateTimeWithAggregatesFilter _$DateTimeWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
-    DateTimeWithAggregatesFilter(
-      equals: _$JsonConverterFromJson<String, DateTime>(
-          json['equals'], const DateTimeJsonConverter().fromJson),
-      $in: (json['in'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      lt: _$JsonConverterFromJson<String, DateTime>(
-          json['lt'], const DateTimeJsonConverter().fromJson),
-      lte: _$JsonConverterFromJson<String, DateTime>(
-          json['lte'], const DateTimeJsonConverter().fromJson),
-      gt: _$JsonConverterFromJson<String, DateTime>(
-          json['gt'], const DateTimeJsonConverter().fromJson),
-      gte: _$JsonConverterFromJson<String, DateTime>(
-          json['gte'], const DateTimeJsonConverter().fromJson),
-      not: json['not'] == null
-          ? null
-          : NestedDateTimeWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedDateTimeFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedDateTimeFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    $checkedCreate(
+      'DateTimeWithAggregatesFilter',
+      json,
+      ($checkedConvert) {
+        final val = DateTimeWithAggregatesFilter(
+          equals: $checkedConvert(
+              'equals',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          $in: $checkedConvert(
+              'in',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          lt: $checkedConvert(
+              'lt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          lte: $checkedConvert(
+              'lte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gt: $checkedConvert(
+              'gt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gte: $checkedConvert(
+              'gte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeWithAggregatesFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : NestedIntFilter.fromJson(v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeFilter.fromJson(v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$in': 'in',
+        r'$count': '_count',
+        r'$min': '_min',
+        r'$max': '_max'
+      },
     );
 
 Map<String, dynamic> _$DateTimeWithAggregatesFilterToJson(
@@ -1690,34 +2457,58 @@ Map<String, dynamic> _$DateTimeWithAggregatesFilterToJson(
 
 StringNullableWithAggregatesFilter _$StringNullableWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
-    StringNullableWithAggregatesFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      mode: $enumDecodeNullable(_$QueryModeEnumMap, json['mode']),
-      not: json['not'] == null
-          ? null
-          : NestedStringNullableWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntNullableFilter.fromJson(
-              json['_count'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedStringNullableFilter.fromJson(
-              json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedStringNullableFilter.fromJson(
-              json['_max'] as Map<String, dynamic>),
+    $checkedCreate(
+      'StringNullableWithAggregatesFilter',
+      json,
+      ($checkedConvert) {
+        final val = StringNullableWithAggregatesFilter(
+          equals: $checkedConvert('equals', (v) => v as String?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          lt: $checkedConvert('lt', (v) => v as String?),
+          lte: $checkedConvert('lte', (v) => v as String?),
+          gt: $checkedConvert('gt', (v) => v as String?),
+          gte: $checkedConvert('gte', (v) => v as String?),
+          contains: $checkedConvert('contains', (v) => v as String?),
+          startsWith: $checkedConvert('startsWith', (v) => v as String?),
+          endsWith: $checkedConvert('endsWith', (v) => v as String?),
+          mode: $checkedConvert(
+              'mode', (v) => $enumDecodeNullable(_$QueryModeEnumMap, v)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedStringNullableWithAggregatesFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : NestedIntNullableFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : NestedStringNullableFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : NestedStringNullableFilter.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$in': 'in',
+        r'$count': '_count',
+        r'$min': '_min',
+        r'$max': '_max'
+      },
     );
 
 Map<String, dynamic> _$StringNullableWithAggregatesFilterToJson(
@@ -1751,19 +2542,35 @@ Map<String, dynamic> _$StringNullableWithAggregatesFilterToJson(
 PersonCreateNestedManyWithoutAccountInput
     _$PersonCreateNestedManyWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonCreateNestedManyWithoutAccountInput(
-          create: (json['create'] as List<dynamic>?)?.map((e) =>
-              PersonCreateWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
-              (e) => PersonCreateOrConnectWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          createMany: json['createMany'] == null
-              ? null
-              : PersonCreateManyAccountInputEnvelope.fromJson(
-                  json['createMany'] as Map<String, dynamic>),
-          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
+        $checkedCreate(
+          'PersonCreateNestedManyWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonCreateNestedManyWithoutAccountInput(
+              create: $checkedConvert(
+                  'create',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              connectOrCreate: $checkedConvert(
+                  'connectOrCreate',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateOrConnectWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              createMany: $checkedConvert(
+                  'createMany',
+                  (v) => v == null
+                      ? null
+                      : PersonCreateManyAccountInputEnvelope.fromJson(
+                          v as Map<String, dynamic>)),
+              connect: $checkedConvert(
+                  'connect',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonCreateNestedManyWithoutAccountInputToJson(
@@ -1787,19 +2594,35 @@ Map<String, dynamic> _$PersonCreateNestedManyWithoutAccountInputToJson(
 PersonUncheckedCreateNestedManyWithoutAccountInput
     _$PersonUncheckedCreateNestedManyWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUncheckedCreateNestedManyWithoutAccountInput(
-          create: (json['create'] as List<dynamic>?)?.map((e) =>
-              PersonCreateWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
-              (e) => PersonCreateOrConnectWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          createMany: json['createMany'] == null
-              ? null
-              : PersonCreateManyAccountInputEnvelope.fromJson(
-                  json['createMany'] as Map<String, dynamic>),
-          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
+        $checkedCreate(
+          'PersonUncheckedCreateNestedManyWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUncheckedCreateNestedManyWithoutAccountInput(
+              create: $checkedConvert(
+                  'create',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              connectOrCreate: $checkedConvert(
+                  'connectOrCreate',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateOrConnectWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              createMany: $checkedConvert(
+                  'createMany',
+                  (v) => v == null
+                      ? null
+                      : PersonCreateManyAccountInputEnvelope.fromJson(
+                          v as Map<String, dynamic>)),
+              connect: $checkedConvert(
+                  'connect',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonUncheckedCreateNestedManyWithoutAccountInputToJson(
@@ -1822,20 +2645,24 @@ Map<String, dynamic> _$PersonUncheckedCreateNestedManyWithoutAccountInputToJson(
 
 BigIntFieldUpdateOperationsInput _$BigIntFieldUpdateOperationsInputFromJson(
         Map<String, dynamic> json) =>
-    BigIntFieldUpdateOperationsInput(
-      set: json['set'] == null ? null : BigInt.parse(json['set'] as String),
-      increment: json['increment'] == null
-          ? null
-          : BigInt.parse(json['increment'] as String),
-      decrement: json['decrement'] == null
-          ? null
-          : BigInt.parse(json['decrement'] as String),
-      multiply: json['multiply'] == null
-          ? null
-          : BigInt.parse(json['multiply'] as String),
-      divide: json['divide'] == null
-          ? null
-          : BigInt.parse(json['divide'] as String),
+    $checkedCreate(
+      'BigIntFieldUpdateOperationsInput',
+      json,
+      ($checkedConvert) {
+        final val = BigIntFieldUpdateOperationsInput(
+          set: $checkedConvert(
+              'set', (v) => v == null ? null : BigInt.parse(v as String)),
+          increment: $checkedConvert(
+              'increment', (v) => v == null ? null : BigInt.parse(v as String)),
+          decrement: $checkedConvert(
+              'decrement', (v) => v == null ? null : BigInt.parse(v as String)),
+          multiply: $checkedConvert(
+              'multiply', (v) => v == null ? null : BigInt.parse(v as String)),
+          divide: $checkedConvert(
+              'divide', (v) => v == null ? null : BigInt.parse(v as String)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$BigIntFieldUpdateOperationsInputToJson(
@@ -1858,8 +2685,15 @@ Map<String, dynamic> _$BigIntFieldUpdateOperationsInputToJson(
 
 StringFieldUpdateOperationsInput _$StringFieldUpdateOperationsInputFromJson(
         Map<String, dynamic> json) =>
-    StringFieldUpdateOperationsInput(
-      set: json['set'] as String?,
+    $checkedCreate(
+      'StringFieldUpdateOperationsInput',
+      json,
+      ($checkedConvert) {
+        final val = StringFieldUpdateOperationsInput(
+          set: $checkedConvert('set', (v) => v as String?),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$StringFieldUpdateOperationsInputToJson(
@@ -1879,36 +2713,70 @@ Map<String, dynamic> _$StringFieldUpdateOperationsInputToJson(
 PersonUpdateManyWithoutAccountNestedInput
     _$PersonUpdateManyWithoutAccountNestedInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUpdateManyWithoutAccountNestedInput(
-          create: (json['create'] as List<dynamic>?)?.map((e) =>
-              PersonCreateWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
-              (e) => PersonCreateOrConnectWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          upsert: (json['upsert'] as List<dynamic>?)?.map((e) =>
-              PersonUpsertWithWhereUniqueWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          createMany: json['createMany'] == null
-              ? null
-              : PersonCreateManyAccountInputEnvelope.fromJson(
-                  json['createMany'] as Map<String, dynamic>),
-          set: (json['set'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          disconnect: (json['disconnect'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          delete: (json['delete'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          update: (json['update'] as List<dynamic>?)?.map((e) =>
-              PersonUpdateWithWhereUniqueWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          updateMany: (json['updateMany'] as List<dynamic>?)?.map((e) =>
-              PersonUpdateManyWithWhereWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          deleteMany: (json['deleteMany'] as List<dynamic>?)?.map((e) =>
-              PersonScalarWhereInput.fromJson(e as Map<String, dynamic>)),
+        $checkedCreate(
+          'PersonUpdateManyWithoutAccountNestedInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUpdateManyWithoutAccountNestedInput(
+              create: $checkedConvert(
+                  'create',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              connectOrCreate: $checkedConvert(
+                  'connectOrCreate',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateOrConnectWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              upsert: $checkedConvert(
+                  'upsert',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonUpsertWithWhereUniqueWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              createMany: $checkedConvert(
+                  'createMany',
+                  (v) => v == null
+                      ? null
+                      : PersonCreateManyAccountInputEnvelope.fromJson(
+                          v as Map<String, dynamic>)),
+              set: $checkedConvert(
+                  'set',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              disconnect: $checkedConvert(
+                  'disconnect',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              delete: $checkedConvert(
+                  'delete',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              connect: $checkedConvert(
+                  'connect',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              update: $checkedConvert(
+                  'update',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonUpdateWithWhereUniqueWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              updateMany: $checkedConvert(
+                  'updateMany',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonUpdateManyWithWhereWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              deleteMany: $checkedConvert(
+                  'deleteMany',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonScalarWhereInput.fromJson(
+                          e as Map<String, dynamic>))),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonUpdateManyWithoutAccountNestedInputToJson(
@@ -1942,36 +2810,70 @@ Map<String, dynamic> _$PersonUpdateManyWithoutAccountNestedInputToJson(
 PersonUncheckedUpdateManyWithoutAccountNestedInput
     _$PersonUncheckedUpdateManyWithoutAccountNestedInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUncheckedUpdateManyWithoutAccountNestedInput(
-          create: (json['create'] as List<dynamic>?)?.map((e) =>
-              PersonCreateWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
-              (e) => PersonCreateOrConnectWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          upsert: (json['upsert'] as List<dynamic>?)?.map((e) =>
-              PersonUpsertWithWhereUniqueWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          createMany: json['createMany'] == null
-              ? null
-              : PersonCreateManyAccountInputEnvelope.fromJson(
-                  json['createMany'] as Map<String, dynamic>),
-          set: (json['set'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          disconnect: (json['disconnect'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          delete: (json['delete'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
-              PersonWhereUniqueInput.fromJson(e as Map<String, dynamic>)),
-          update: (json['update'] as List<dynamic>?)?.map((e) =>
-              PersonUpdateWithWhereUniqueWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          updateMany: (json['updateMany'] as List<dynamic>?)?.map((e) =>
-              PersonUpdateManyWithWhereWithoutAccountInput.fromJson(
-                  e as Map<String, dynamic>)),
-          deleteMany: (json['deleteMany'] as List<dynamic>?)?.map((e) =>
-              PersonScalarWhereInput.fromJson(e as Map<String, dynamic>)),
+        $checkedCreate(
+          'PersonUncheckedUpdateManyWithoutAccountNestedInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUncheckedUpdateManyWithoutAccountNestedInput(
+              create: $checkedConvert(
+                  'create',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              connectOrCreate: $checkedConvert(
+                  'connectOrCreate',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonCreateOrConnectWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              upsert: $checkedConvert(
+                  'upsert',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonUpsertWithWhereUniqueWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              createMany: $checkedConvert(
+                  'createMany',
+                  (v) => v == null
+                      ? null
+                      : PersonCreateManyAccountInputEnvelope.fromJson(
+                          v as Map<String, dynamic>)),
+              set: $checkedConvert(
+                  'set',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              disconnect: $checkedConvert(
+                  'disconnect',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              delete: $checkedConvert(
+                  'delete',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              connect: $checkedConvert(
+                  'connect',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonWhereUniqueInput.fromJson(
+                          e as Map<String, dynamic>))),
+              update: $checkedConvert(
+                  'update',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonUpdateWithWhereUniqueWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              updateMany: $checkedConvert(
+                  'updateMany',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonUpdateManyWithWhereWithoutAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              deleteMany: $checkedConvert(
+                  'deleteMany',
+                  (v) => (v as List<dynamic>?)?.map((e) =>
+                      PersonScalarWhereInput.fromJson(
+                          e as Map<String, dynamic>))),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonUncheckedUpdateManyWithoutAccountNestedInputToJson(
@@ -2005,19 +2907,32 @@ Map<String, dynamic> _$PersonUncheckedUpdateManyWithoutAccountNestedInputToJson(
 AccountCreateNestedOneWithoutPersonInput
     _$AccountCreateNestedOneWithoutPersonInputFromJson(
             Map<String, dynamic> json) =>
-        AccountCreateNestedOneWithoutPersonInput(
-          create: json['create'] == null
-              ? null
-              : AccountCreateWithoutPersonInput.fromJson(
-                  json['create'] as Map<String, dynamic>),
-          connectOrCreate: json['connectOrCreate'] == null
-              ? null
-              : AccountCreateOrConnectWithoutPersonInput.fromJson(
-                  json['connectOrCreate'] as Map<String, dynamic>),
-          connect: json['connect'] == null
-              ? null
-              : AccountWhereUniqueInput.fromJson(
-                  json['connect'] as Map<String, dynamic>),
+        $checkedCreate(
+          'AccountCreateNestedOneWithoutPersonInput',
+          json,
+          ($checkedConvert) {
+            final val = AccountCreateNestedOneWithoutPersonInput(
+              create: $checkedConvert(
+                  'create',
+                  (v) => v == null
+                      ? null
+                      : AccountCreateWithoutPersonInput.fromJson(
+                          v as Map<String, dynamic>)),
+              connectOrCreate: $checkedConvert(
+                  'connectOrCreate',
+                  (v) => v == null
+                      ? null
+                      : AccountCreateOrConnectWithoutPersonInput.fromJson(
+                          v as Map<String, dynamic>)),
+              connect: $checkedConvert(
+                  'connect',
+                  (v) => v == null
+                      ? null
+                      : AccountWhereUniqueInput.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$AccountCreateNestedOneWithoutPersonInputToJson(
@@ -2038,9 +2953,18 @@ Map<String, dynamic> _$AccountCreateNestedOneWithoutPersonInputToJson(
 
 DateTimeFieldUpdateOperationsInput _$DateTimeFieldUpdateOperationsInputFromJson(
         Map<String, dynamic> json) =>
-    DateTimeFieldUpdateOperationsInput(
-      set: _$JsonConverterFromJson<String, DateTime>(
-          json['set'], const DateTimeJsonConverter().fromJson),
+    $checkedCreate(
+      'DateTimeFieldUpdateOperationsInput',
+      json,
+      ($checkedConvert) {
+        final val = DateTimeFieldUpdateOperationsInput(
+          set: $checkedConvert(
+              'set',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$DateTimeFieldUpdateOperationsInputToJson(
@@ -2063,8 +2987,15 @@ Map<String, dynamic> _$DateTimeFieldUpdateOperationsInputToJson(
 NullableStringFieldUpdateOperationsInput
     _$NullableStringFieldUpdateOperationsInputFromJson(
             Map<String, dynamic> json) =>
-        NullableStringFieldUpdateOperationsInput(
-          set: json['set'] as String?,
+        $checkedCreate(
+          'NullableStringFieldUpdateOperationsInput',
+          json,
+          ($checkedConvert) {
+            final val = NullableStringFieldUpdateOperationsInput(
+              set: $checkedConvert('set', (v) => v as String?),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$NullableStringFieldUpdateOperationsInputToJson(
@@ -2084,27 +3015,44 @@ Map<String, dynamic> _$NullableStringFieldUpdateOperationsInputToJson(
 AccountUpdateOneRequiredWithoutPersonNestedInput
     _$AccountUpdateOneRequiredWithoutPersonNestedInputFromJson(
             Map<String, dynamic> json) =>
-        AccountUpdateOneRequiredWithoutPersonNestedInput(
-          create: json['create'] == null
-              ? null
-              : AccountCreateWithoutPersonInput.fromJson(
-                  json['create'] as Map<String, dynamic>),
-          connectOrCreate: json['connectOrCreate'] == null
-              ? null
-              : AccountCreateOrConnectWithoutPersonInput.fromJson(
-                  json['connectOrCreate'] as Map<String, dynamic>),
-          upsert: json['upsert'] == null
-              ? null
-              : AccountUpsertWithoutPersonInput.fromJson(
-                  json['upsert'] as Map<String, dynamic>),
-          connect: json['connect'] == null
-              ? null
-              : AccountWhereUniqueInput.fromJson(
-                  json['connect'] as Map<String, dynamic>),
-          update: json['update'] == null
-              ? null
-              : AccountUpdateWithoutPersonInput.fromJson(
-                  json['update'] as Map<String, dynamic>),
+        $checkedCreate(
+          'AccountUpdateOneRequiredWithoutPersonNestedInput',
+          json,
+          ($checkedConvert) {
+            final val = AccountUpdateOneRequiredWithoutPersonNestedInput(
+              create: $checkedConvert(
+                  'create',
+                  (v) => v == null
+                      ? null
+                      : AccountCreateWithoutPersonInput.fromJson(
+                          v as Map<String, dynamic>)),
+              connectOrCreate: $checkedConvert(
+                  'connectOrCreate',
+                  (v) => v == null
+                      ? null
+                      : AccountCreateOrConnectWithoutPersonInput.fromJson(
+                          v as Map<String, dynamic>)),
+              upsert: $checkedConvert(
+                  'upsert',
+                  (v) => v == null
+                      ? null
+                      : AccountUpsertWithoutPersonInput.fromJson(
+                          v as Map<String, dynamic>)),
+              connect: $checkedConvert(
+                  'connect',
+                  (v) => v == null
+                      ? null
+                      : AccountWhereUniqueInput.fromJson(
+                          v as Map<String, dynamic>)),
+              update: $checkedConvert(
+                  'update',
+                  (v) => v == null
+                      ? null
+                      : AccountUpdateWithoutPersonInput.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$AccountUpdateOneRequiredWithoutPersonNestedInputToJson(
@@ -2126,21 +3074,38 @@ Map<String, dynamic> _$AccountUpdateOneRequiredWithoutPersonNestedInputToJson(
 }
 
 NestedBigIntFilter _$NestedBigIntFilterFromJson(Map<String, dynamic> json) =>
-    NestedBigIntFilter(
-      equals: json['equals'] == null
-          ? null
-          : BigInt.parse(json['equals'] as String),
-      $in:
-          (json['in'] as List<dynamic>?)?.map((e) => BigInt.parse(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => BigInt.parse(e as String)),
-      lt: json['lt'] == null ? null : BigInt.parse(json['lt'] as String),
-      lte: json['lte'] == null ? null : BigInt.parse(json['lte'] as String),
-      gt: json['gt'] == null ? null : BigInt.parse(json['gt'] as String),
-      gte: json['gte'] == null ? null : BigInt.parse(json['gte'] as String),
-      not: json['not'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedBigIntFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedBigIntFilter(
+          equals: $checkedConvert(
+              'equals', (v) => v == null ? null : BigInt.parse(v as String)),
+          $in: $checkedConvert(
+              'in',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          lt: $checkedConvert(
+              'lt', (v) => v == null ? null : BigInt.parse(v as String)),
+          lte: $checkedConvert(
+              'lte', (v) => v == null ? null : BigInt.parse(v as String)),
+          gt: $checkedConvert(
+              'gt', (v) => v == null ? null : BigInt.parse(v as String)),
+          gte: $checkedConvert(
+              'gte', (v) => v == null ? null : BigInt.parse(v as String)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$NestedBigIntFilterToJson(NestedBigIntFilter instance) {
@@ -2164,20 +3129,32 @@ Map<String, dynamic> _$NestedBigIntFilterToJson(NestedBigIntFilter instance) {
 }
 
 NestedStringFilter _$NestedStringFilterFromJson(Map<String, dynamic> json) =>
-    NestedStringFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      not: json['not'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedStringFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedStringFilter(
+          equals: $checkedConvert('equals', (v) => v as String?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          lt: $checkedConvert('lt', (v) => v as String?),
+          lte: $checkedConvert('lte', (v) => v as String?),
+          gt: $checkedConvert('gt', (v) => v as String?),
+          gte: $checkedConvert('gte', (v) => v as String?),
+          contains: $checkedConvert('contains', (v) => v as String?),
+          startsWith: $checkedConvert('startsWith', (v) => v as String?),
+          endsWith: $checkedConvert('endsWith', (v) => v as String?),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedStringFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$NestedStringFilterToJson(NestedStringFilter instance) {
@@ -2205,37 +3182,71 @@ Map<String, dynamic> _$NestedStringFilterToJson(NestedStringFilter instance) {
 
 NestedBigIntWithAggregatesFilter _$NestedBigIntWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
-    NestedBigIntWithAggregatesFilter(
-      equals: json['equals'] == null
-          ? null
-          : BigInt.parse(json['equals'] as String),
-      $in:
-          (json['in'] as List<dynamic>?)?.map((e) => BigInt.parse(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => BigInt.parse(e as String)),
-      lt: json['lt'] == null ? null : BigInt.parse(json['lt'] as String),
-      lte: json['lte'] == null ? null : BigInt.parse(json['lte'] as String),
-      gt: json['gt'] == null ? null : BigInt.parse(json['gt'] as String),
-      gte: json['gte'] == null ? null : BigInt.parse(json['gte'] as String),
-      not: json['not'] == null
-          ? null
-          : NestedBigIntWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $avg: json['_avg'] == null
-          ? null
-          : NestedFloatFilter.fromJson(json['_avg'] as Map<String, dynamic>),
-      $sum: json['_sum'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['_sum'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedBigIntFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedBigIntWithAggregatesFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedBigIntWithAggregatesFilter(
+          equals: $checkedConvert(
+              'equals', (v) => v == null ? null : BigInt.parse(v as String)),
+          $in: $checkedConvert(
+              'in',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) =>
+                  (v as List<dynamic>?)?.map((e) => BigInt.parse(e as String))),
+          lt: $checkedConvert(
+              'lt', (v) => v == null ? null : BigInt.parse(v as String)),
+          lte: $checkedConvert(
+              'lte', (v) => v == null ? null : BigInt.parse(v as String)),
+          gt: $checkedConvert(
+              'gt', (v) => v == null ? null : BigInt.parse(v as String)),
+          gte: $checkedConvert(
+              'gte', (v) => v == null ? null : BigInt.parse(v as String)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntWithAggregatesFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : NestedIntFilter.fromJson(v as Map<String, dynamic>)),
+          $avg: $checkedConvert(
+              '_avg',
+              (v) => v == null
+                  ? null
+                  : NestedFloatFilter.fromJson(v as Map<String, dynamic>)),
+          $sum: $checkedConvert(
+              '_sum',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : NestedBigIntFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$in': 'in',
+        r'$count': '_count',
+        r'$avg': '_avg',
+        r'$sum': '_sum',
+        r'$min': '_min',
+        r'$max': '_max'
+      },
     );
 
 Map<String, dynamic> _$NestedBigIntWithAggregatesFilterToJson(
@@ -2265,17 +3276,29 @@ Map<String, dynamic> _$NestedBigIntWithAggregatesFilterToJson(
 }
 
 NestedIntFilter _$NestedIntFilterFromJson(Map<String, dynamic> json) =>
-    NestedIntFilter(
-      equals: json['equals'] as int?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as int),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as int),
-      lt: json['lt'] as int?,
-      lte: json['lte'] as int?,
-      gt: json['gt'] as int?,
-      gte: json['gte'] as int?,
-      not: json['not'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedIntFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedIntFilter(
+          equals: $checkedConvert('equals', (v) => v as int?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as int)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as int)),
+          lt: $checkedConvert('lt', (v) => v as int?),
+          lte: $checkedConvert('lte', (v) => v as int?),
+          gt: $checkedConvert('gt', (v) => v as int?),
+          gte: $checkedConvert('gte', (v) => v as int?),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedIntFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$NestedIntFilterToJson(NestedIntFilter instance) {
@@ -2299,18 +3322,29 @@ Map<String, dynamic> _$NestedIntFilterToJson(NestedIntFilter instance) {
 }
 
 NestedFloatFilter _$NestedFloatFilterFromJson(Map<String, dynamic> json) =>
-    NestedFloatFilter(
-      equals: (json['equals'] as num?)?.toDouble(),
-      $in: (json['in'] as List<dynamic>?)?.map((e) => (e as num).toDouble()),
-      notIn:
-          (json['notIn'] as List<dynamic>?)?.map((e) => (e as num).toDouble()),
-      lt: (json['lt'] as num?)?.toDouble(),
-      lte: (json['lte'] as num?)?.toDouble(),
-      gt: (json['gt'] as num?)?.toDouble(),
-      gte: (json['gte'] as num?)?.toDouble(),
-      not: json['not'] == null
-          ? null
-          : NestedFloatFilter.fromJson(json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedFloatFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedFloatFilter(
+          equals: $checkedConvert('equals', (v) => (v as num?)?.toDouble()),
+          $in: $checkedConvert('in',
+              (v) => (v as List<dynamic>?)?.map((e) => (e as num).toDouble())),
+          notIn: $checkedConvert('notIn',
+              (v) => (v as List<dynamic>?)?.map((e) => (e as num).toDouble())),
+          lt: $checkedConvert('lt', (v) => (v as num?)?.toDouble()),
+          lte: $checkedConvert('lte', (v) => (v as num?)?.toDouble()),
+          gt: $checkedConvert('gt', (v) => (v as num?)?.toDouble()),
+          gte: $checkedConvert('gte', (v) => (v as num?)?.toDouble()),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedFloatFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$NestedFloatFilterToJson(NestedFloatFilter instance) {
@@ -2335,30 +3369,53 @@ Map<String, dynamic> _$NestedFloatFilterToJson(NestedFloatFilter instance) {
 
 NestedStringWithAggregatesFilter _$NestedStringWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
-    NestedStringWithAggregatesFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      not: json['not'] == null
-          ? null
-          : NestedStringWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedStringWithAggregatesFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedStringWithAggregatesFilter(
+          equals: $checkedConvert('equals', (v) => v as String?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          lt: $checkedConvert('lt', (v) => v as String?),
+          lte: $checkedConvert('lte', (v) => v as String?),
+          gt: $checkedConvert('gt', (v) => v as String?),
+          gte: $checkedConvert('gte', (v) => v as String?),
+          contains: $checkedConvert('contains', (v) => v as String?),
+          startsWith: $checkedConvert('startsWith', (v) => v as String?),
+          endsWith: $checkedConvert('endsWith', (v) => v as String?),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedStringWithAggregatesFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : NestedIntFilter.fromJson(v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : NestedStringFilter.fromJson(v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : NestedStringFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$in': 'in',
+        r'$count': '_count',
+        r'$min': '_min',
+        r'$max': '_max'
+      },
     );
 
 Map<String, dynamic> _$NestedStringWithAggregatesFilterToJson(
@@ -2390,24 +3447,48 @@ Map<String, dynamic> _$NestedStringWithAggregatesFilterToJson(
 
 NestedDateTimeFilter _$NestedDateTimeFilterFromJson(
         Map<String, dynamic> json) =>
-    NestedDateTimeFilter(
-      equals: _$JsonConverterFromJson<String, DateTime>(
-          json['equals'], const DateTimeJsonConverter().fromJson),
-      $in: (json['in'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      lt: _$JsonConverterFromJson<String, DateTime>(
-          json['lt'], const DateTimeJsonConverter().fromJson),
-      lte: _$JsonConverterFromJson<String, DateTime>(
-          json['lte'], const DateTimeJsonConverter().fromJson),
-      gt: _$JsonConverterFromJson<String, DateTime>(
-          json['gt'], const DateTimeJsonConverter().fromJson),
-      gte: _$JsonConverterFromJson<String, DateTime>(
-          json['gte'], const DateTimeJsonConverter().fromJson),
-      not: json['not'] == null
-          ? null
-          : NestedDateTimeFilter.fromJson(json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedDateTimeFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedDateTimeFilter(
+          equals: $checkedConvert(
+              'equals',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          $in: $checkedConvert(
+              'in',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          lt: $checkedConvert(
+              'lt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          lte: $checkedConvert(
+              'lte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gt: $checkedConvert(
+              'gt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gte: $checkedConvert(
+              'gte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$NestedDateTimeFilterToJson(
@@ -2450,21 +3531,33 @@ Map<String, dynamic> _$NestedDateTimeFilterToJson(
 
 NestedStringNullableFilter _$NestedStringNullableFilterFromJson(
         Map<String, dynamic> json) =>
-    NestedStringNullableFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      not: json['not'] == null
-          ? null
-          : NestedStringNullableFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedStringNullableFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedStringNullableFilter(
+          equals: $checkedConvert('equals', (v) => v as String?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+          lt: $checkedConvert('lt', (v) => v as String?),
+          lte: $checkedConvert('lte', (v) => v as String?),
+          gt: $checkedConvert('gt', (v) => v as String?),
+          gte: $checkedConvert('gte', (v) => v as String?),
+          contains: $checkedConvert('contains', (v) => v as String?),
+          startsWith: $checkedConvert('startsWith', (v) => v as String?),
+          endsWith: $checkedConvert('endsWith', (v) => v as String?),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedStringNullableFilter.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$NestedStringNullableFilterToJson(
@@ -2493,34 +3586,69 @@ Map<String, dynamic> _$NestedStringNullableFilterToJson(
 
 NestedDateTimeWithAggregatesFilter _$NestedDateTimeWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
-    NestedDateTimeWithAggregatesFilter(
-      equals: _$JsonConverterFromJson<String, DateTime>(
-          json['equals'], const DateTimeJsonConverter().fromJson),
-      $in: (json['in'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      notIn: (json['notIn'] as List<dynamic>?)
-          ?.map((e) => const DateTimeJsonConverter().fromJson(e as String)),
-      lt: _$JsonConverterFromJson<String, DateTime>(
-          json['lt'], const DateTimeJsonConverter().fromJson),
-      lte: _$JsonConverterFromJson<String, DateTime>(
-          json['lte'], const DateTimeJsonConverter().fromJson),
-      gt: _$JsonConverterFromJson<String, DateTime>(
-          json['gt'], const DateTimeJsonConverter().fromJson),
-      gte: _$JsonConverterFromJson<String, DateTime>(
-          json['gte'], const DateTimeJsonConverter().fromJson),
-      not: json['not'] == null
-          ? null
-          : NestedDateTimeWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedDateTimeFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedDateTimeFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedDateTimeWithAggregatesFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedDateTimeWithAggregatesFilter(
+          equals: $checkedConvert(
+              'equals',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          $in: $checkedConvert(
+              'in',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          notIn: $checkedConvert(
+              'notIn',
+              (v) => (v as List<dynamic>?)?.map(
+                  (e) => const DateTimeJsonConverter().fromJson(e as String))),
+          lt: $checkedConvert(
+              'lt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          lte: $checkedConvert(
+              'lte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gt: $checkedConvert(
+              'gt',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          gte: $checkedConvert(
+              'gte',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeWithAggregatesFilter.fromJson(
+                      v as Map<String, dynamic>)),
+          $count: $checkedConvert(
+              '_count',
+              (v) => v == null
+                  ? null
+                  : NestedIntFilter.fromJson(v as Map<String, dynamic>)),
+          $min: $checkedConvert(
+              '_min',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeFilter.fromJson(v as Map<String, dynamic>)),
+          $max: $checkedConvert(
+              '_max',
+              (v) => v == null
+                  ? null
+                  : NestedDateTimeFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        r'$in': 'in',
+        r'$count': '_count',
+        r'$min': '_min',
+        r'$max': '_max'
+      },
     );
 
 Map<String, dynamic> _$NestedDateTimeWithAggregatesFilterToJson(
@@ -2567,33 +3695,56 @@ Map<String, dynamic> _$NestedDateTimeWithAggregatesFilterToJson(
 NestedStringNullableWithAggregatesFilter
     _$NestedStringNullableWithAggregatesFilterFromJson(
             Map<String, dynamic> json) =>
-        NestedStringNullableWithAggregatesFilter(
-          equals: json['equals'] as String?,
-          $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-          notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-          lt: json['lt'] as String?,
-          lte: json['lte'] as String?,
-          gt: json['gt'] as String?,
-          gte: json['gte'] as String?,
-          contains: json['contains'] as String?,
-          startsWith: json['startsWith'] as String?,
-          endsWith: json['endsWith'] as String?,
-          not: json['not'] == null
-              ? null
-              : NestedStringNullableWithAggregatesFilter.fromJson(
-                  json['not'] as Map<String, dynamic>),
-          $count: json['_count'] == null
-              ? null
-              : NestedIntNullableFilter.fromJson(
-                  json['_count'] as Map<String, dynamic>),
-          $min: json['_min'] == null
-              ? null
-              : NestedStringNullableFilter.fromJson(
-                  json['_min'] as Map<String, dynamic>),
-          $max: json['_max'] == null
-              ? null
-              : NestedStringNullableFilter.fromJson(
-                  json['_max'] as Map<String, dynamic>),
+        $checkedCreate(
+          'NestedStringNullableWithAggregatesFilter',
+          json,
+          ($checkedConvert) {
+            final val = NestedStringNullableWithAggregatesFilter(
+              equals: $checkedConvert('equals', (v) => v as String?),
+              $in: $checkedConvert(
+                  'in', (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+              notIn: $checkedConvert('notIn',
+                  (v) => (v as List<dynamic>?)?.map((e) => e as String)),
+              lt: $checkedConvert('lt', (v) => v as String?),
+              lte: $checkedConvert('lte', (v) => v as String?),
+              gt: $checkedConvert('gt', (v) => v as String?),
+              gte: $checkedConvert('gte', (v) => v as String?),
+              contains: $checkedConvert('contains', (v) => v as String?),
+              startsWith: $checkedConvert('startsWith', (v) => v as String?),
+              endsWith: $checkedConvert('endsWith', (v) => v as String?),
+              not: $checkedConvert(
+                  'not',
+                  (v) => v == null
+                      ? null
+                      : NestedStringNullableWithAggregatesFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              $count: $checkedConvert(
+                  '_count',
+                  (v) => v == null
+                      ? null
+                      : NestedIntNullableFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              $min: $checkedConvert(
+                  '_min',
+                  (v) => v == null
+                      ? null
+                      : NestedStringNullableFilter.fromJson(
+                          v as Map<String, dynamic>)),
+              $max: $checkedConvert(
+                  '_max',
+                  (v) => v == null
+                      ? null
+                      : NestedStringNullableFilter.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
+          fieldKeyMap: const {
+            r'$in': 'in',
+            r'$count': '_count',
+            r'$min': '_min',
+            r'$max': '_max'
+          },
         );
 
 Map<String, dynamic> _$NestedStringNullableWithAggregatesFilterToJson(
@@ -2625,18 +3776,30 @@ Map<String, dynamic> _$NestedStringNullableWithAggregatesFilterToJson(
 
 NestedIntNullableFilter _$NestedIntNullableFilterFromJson(
         Map<String, dynamic> json) =>
-    NestedIntNullableFilter(
-      equals: json['equals'] as int?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as int),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as int),
-      lt: json['lt'] as int?,
-      lte: json['lte'] as int?,
-      gt: json['gt'] as int?,
-      gte: json['gte'] as int?,
-      not: json['not'] == null
-          ? null
-          : NestedIntNullableFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
+    $checkedCreate(
+      'NestedIntNullableFilter',
+      json,
+      ($checkedConvert) {
+        final val = NestedIntNullableFilter(
+          equals: $checkedConvert('equals', (v) => v as int?),
+          $in: $checkedConvert(
+              'in', (v) => (v as List<dynamic>?)?.map((e) => e as int)),
+          notIn: $checkedConvert(
+              'notIn', (v) => (v as List<dynamic>?)?.map((e) => e as int)),
+          lt: $checkedConvert('lt', (v) => v as int?),
+          lte: $checkedConvert('lte', (v) => v as int?),
+          gt: $checkedConvert('gt', (v) => v as int?),
+          gte: $checkedConvert('gte', (v) => v as int?),
+          not: $checkedConvert(
+              'not',
+              (v) => v == null
+                  ? null
+                  : NestedIntNullableFilter.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$in': 'in'},
     );
 
 Map<String, dynamic> _$NestedIntNullableFilterToJson(
@@ -2662,14 +3825,27 @@ Map<String, dynamic> _$NestedIntNullableFilterToJson(
 
 PersonCreateWithoutAccountInput _$PersonCreateWithoutAccountInputFromJson(
         Map<String, dynamic> json) =>
-    PersonCreateWithoutAccountInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      gender: json['gender'] as String,
-      dateOfBirth: const DateTimeJsonConverter()
-          .fromJson(json['date_of_birth'] as String),
-      email: json['email'] as String?,
+    $checkedCreate(
+      'PersonCreateWithoutAccountInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonCreateWithoutAccountInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          firstName: $checkedConvert('first_name', (v) => v as String),
+          lastName: $checkedConvert('last_name', (v) => v as String),
+          gender: $checkedConvert('gender', (v) => v as String),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => const DateTimeJsonConverter().fromJson(v as String)),
+          email: $checkedConvert('email', (v) => v as String?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth'
+      },
     );
 
 Map<String, dynamic> _$PersonCreateWithoutAccountInputToJson(
@@ -2695,14 +3871,27 @@ Map<String, dynamic> _$PersonCreateWithoutAccountInputToJson(
 PersonUncheckedCreateWithoutAccountInput
     _$PersonUncheckedCreateWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUncheckedCreateWithoutAccountInput(
-          id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-          firstName: json['first_name'] as String,
-          lastName: json['last_name'] as String,
-          gender: json['gender'] as String,
-          dateOfBirth: const DateTimeJsonConverter()
-              .fromJson(json['date_of_birth'] as String),
-          email: json['email'] as String?,
+        $checkedCreate(
+          'PersonUncheckedCreateWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUncheckedCreateWithoutAccountInput(
+              id: $checkedConvert(
+                  'id', (v) => v == null ? null : BigInt.parse(v as String)),
+              firstName: $checkedConvert('first_name', (v) => v as String),
+              lastName: $checkedConvert('last_name', (v) => v as String),
+              gender: $checkedConvert('gender', (v) => v as String),
+              dateOfBirth: $checkedConvert('date_of_birth',
+                  (v) => const DateTimeJsonConverter().fromJson(v as String)),
+              email: $checkedConvert('email', (v) => v as String?),
+            );
+            return val;
+          },
+          fieldKeyMap: const {
+            'firstName': 'first_name',
+            'lastName': 'last_name',
+            'dateOfBirth': 'date_of_birth'
+          },
         );
 
 Map<String, dynamic> _$PersonUncheckedCreateWithoutAccountInputToJson(
@@ -2728,11 +3917,22 @@ Map<String, dynamic> _$PersonUncheckedCreateWithoutAccountInputToJson(
 PersonCreateOrConnectWithoutAccountInput
     _$PersonCreateOrConnectWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonCreateOrConnectWithoutAccountInput(
-          where: PersonWhereUniqueInput.fromJson(
-              json['where'] as Map<String, dynamic>),
-          create: PersonCreateWithoutAccountInput.fromJson(
-              json['create'] as Map<String, dynamic>),
+        $checkedCreate(
+          'PersonCreateOrConnectWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonCreateOrConnectWithoutAccountInput(
+              where: $checkedConvert(
+                  'where',
+                  (v) => PersonWhereUniqueInput.fromJson(
+                      v as Map<String, dynamic>)),
+              create: $checkedConvert(
+                  'create',
+                  (v) => PersonCreateWithoutAccountInput.fromJson(
+                      v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonCreateOrConnectWithoutAccountInputToJson(
@@ -2744,10 +3944,21 @@ Map<String, dynamic> _$PersonCreateOrConnectWithoutAccountInputToJson(
 
 PersonCreateManyAccountInputEnvelope
     _$PersonCreateManyAccountInputEnvelopeFromJson(Map<String, dynamic> json) =>
-        PersonCreateManyAccountInputEnvelope(
-          data: (json['data'] as List<dynamic>).map((e) =>
-              PersonCreateManyAccountInput.fromJson(e as Map<String, dynamic>)),
-          skipDuplicates: json['skipDuplicates'] as bool?,
+        $checkedCreate(
+          'PersonCreateManyAccountInputEnvelope',
+          json,
+          ($checkedConvert) {
+            final val = PersonCreateManyAccountInputEnvelope(
+              data: $checkedConvert(
+                  'data',
+                  (v) => (v as List<dynamic>).map((e) =>
+                      PersonCreateManyAccountInput.fromJson(
+                          e as Map<String, dynamic>))),
+              skipDuplicates:
+                  $checkedConvert('skipDuplicates', (v) => v as bool?),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonCreateManyAccountInputEnvelopeToJson(
@@ -2769,13 +3980,26 @@ Map<String, dynamic> _$PersonCreateManyAccountInputEnvelopeToJson(
 PersonUpsertWithWhereUniqueWithoutAccountInput
     _$PersonUpsertWithWhereUniqueWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUpsertWithWhereUniqueWithoutAccountInput(
-          where: PersonWhereUniqueInput.fromJson(
-              json['where'] as Map<String, dynamic>),
-          update: PersonUpdateWithoutAccountInput.fromJson(
-              json['update'] as Map<String, dynamic>),
-          create: PersonCreateWithoutAccountInput.fromJson(
-              json['create'] as Map<String, dynamic>),
+        $checkedCreate(
+          'PersonUpsertWithWhereUniqueWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUpsertWithWhereUniqueWithoutAccountInput(
+              where: $checkedConvert(
+                  'where',
+                  (v) => PersonWhereUniqueInput.fromJson(
+                      v as Map<String, dynamic>)),
+              update: $checkedConvert(
+                  'update',
+                  (v) => PersonUpdateWithoutAccountInput.fromJson(
+                      v as Map<String, dynamic>)),
+              create: $checkedConvert(
+                  'create',
+                  (v) => PersonCreateWithoutAccountInput.fromJson(
+                      v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonUpsertWithWhereUniqueWithoutAccountInputToJson(
@@ -2789,11 +4013,22 @@ Map<String, dynamic> _$PersonUpsertWithWhereUniqueWithoutAccountInputToJson(
 PersonUpdateWithWhereUniqueWithoutAccountInput
     _$PersonUpdateWithWhereUniqueWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUpdateWithWhereUniqueWithoutAccountInput(
-          where: PersonWhereUniqueInput.fromJson(
-              json['where'] as Map<String, dynamic>),
-          data: PersonUpdateWithoutAccountInput.fromJson(
-              json['data'] as Map<String, dynamic>),
+        $checkedCreate(
+          'PersonUpdateWithWhereUniqueWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUpdateWithWhereUniqueWithoutAccountInput(
+              where: $checkedConvert(
+                  'where',
+                  (v) => PersonWhereUniqueInput.fromJson(
+                      v as Map<String, dynamic>)),
+              data: $checkedConvert(
+                  'data',
+                  (v) => PersonUpdateWithoutAccountInput.fromJson(
+                      v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonUpdateWithWhereUniqueWithoutAccountInputToJson(
@@ -2806,11 +4041,22 @@ Map<String, dynamic> _$PersonUpdateWithWhereUniqueWithoutAccountInputToJson(
 PersonUpdateManyWithWhereWithoutAccountInput
     _$PersonUpdateManyWithWhereWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUpdateManyWithWhereWithoutAccountInput(
-          where: PersonScalarWhereInput.fromJson(
-              json['where'] as Map<String, dynamic>),
-          data: PersonUpdateManyMutationInput.fromJson(
-              json['data'] as Map<String, dynamic>),
+        $checkedCreate(
+          'PersonUpdateManyWithWhereWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUpdateManyWithWhereWithoutAccountInput(
+              where: $checkedConvert(
+                  'where',
+                  (v) => PersonScalarWhereInput.fromJson(
+                      v as Map<String, dynamic>)),
+              data: $checkedConvert(
+                  'data',
+                  (v) => PersonUpdateManyMutationInput.fromJson(
+                      v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$PersonUpdateManyWithWhereWithoutAccountInputToJson(
@@ -2822,36 +4068,67 @@ Map<String, dynamic> _$PersonUpdateManyWithWhereWithoutAccountInputToJson(
 
 PersonScalarWhereInput _$PersonScalarWhereInputFromJson(
         Map<String, dynamic> json) =>
-    PersonScalarWhereInput(
-      AND: (json['AND'] as List<dynamic>?)?.map(
-          (e) => PersonScalarWhereInput.fromJson(e as Map<String, dynamic>)),
-      OR: (json['OR'] as List<dynamic>?)?.map(
-          (e) => PersonScalarWhereInput.fromJson(e as Map<String, dynamic>)),
-      NOT: (json['NOT'] as List<dynamic>?)?.map(
-          (e) => PersonScalarWhereInput.fromJson(e as Map<String, dynamic>)),
-      id: json['id'] == null
-          ? null
-          : BigIntFilter.fromJson(json['id'] as Map<String, dynamic>),
-      firstName: json['first_name'] == null
-          ? null
-          : StringFilter.fromJson(json['first_name'] as Map<String, dynamic>),
-      lastName: json['last_name'] == null
-          ? null
-          : StringFilter.fromJson(json['last_name'] as Map<String, dynamic>),
-      gender: json['gender'] == null
-          ? null
-          : StringFilter.fromJson(json['gender'] as Map<String, dynamic>),
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTimeFilter.fromJson(
-              json['date_of_birth'] as Map<String, dynamic>),
-      email: json['email'] == null
-          ? null
-          : StringNullableFilter.fromJson(
-              json['email'] as Map<String, dynamic>),
-      accountId: json['account_id'] == null
-          ? null
-          : BigIntFilter.fromJson(json['account_id'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonScalarWhereInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonScalarWhereInput(
+          AND: $checkedConvert(
+              'AND',
+              (v) => (v as List<dynamic>?)?.map((e) =>
+                  PersonScalarWhereInput.fromJson(e as Map<String, dynamic>))),
+          OR: $checkedConvert(
+              'OR',
+              (v) => (v as List<dynamic>?)?.map((e) =>
+                  PersonScalarWhereInput.fromJson(e as Map<String, dynamic>))),
+          NOT: $checkedConvert(
+              'NOT',
+              (v) => (v as List<dynamic>?)?.map((e) =>
+                  PersonScalarWhereInput.fromJson(e as Map<String, dynamic>))),
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFilter.fromJson(v as Map<String, dynamic>)),
+          firstName: $checkedConvert(
+              'first_name',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          lastName: $checkedConvert(
+              'last_name',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          gender: $checkedConvert(
+              'gender',
+              (v) => v == null
+                  ? null
+                  : StringFilter.fromJson(v as Map<String, dynamic>)),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => v == null
+                  ? null
+                  : DateTimeFilter.fromJson(v as Map<String, dynamic>)),
+          email: $checkedConvert(
+              'email',
+              (v) => v == null
+                  ? null
+                  : StringNullableFilter.fromJson(v as Map<String, dynamic>)),
+          accountId: $checkedConvert(
+              'account_id',
+              (v) => v == null
+                  ? null
+                  : BigIntFilter.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonScalarWhereInputToJson(
@@ -2879,10 +4156,18 @@ Map<String, dynamic> _$PersonScalarWhereInputToJson(
 
 AccountCreateWithoutPersonInput _$AccountCreateWithoutPersonInputFromJson(
         Map<String, dynamic> json) =>
-    AccountCreateWithoutPersonInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      username: json['username'] as String,
-      password: json['password'] as String,
+    $checkedCreate(
+      'AccountCreateWithoutPersonInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountCreateWithoutPersonInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          username: $checkedConvert('username', (v) => v as String),
+          password: $checkedConvert('password', (v) => v as String),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountCreateWithoutPersonInputToJson(
@@ -2904,10 +4189,18 @@ Map<String, dynamic> _$AccountCreateWithoutPersonInputToJson(
 AccountUncheckedCreateWithoutPersonInput
     _$AccountUncheckedCreateWithoutPersonInputFromJson(
             Map<String, dynamic> json) =>
-        AccountUncheckedCreateWithoutPersonInput(
-          id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-          username: json['username'] as String,
-          password: json['password'] as String,
+        $checkedCreate(
+          'AccountUncheckedCreateWithoutPersonInput',
+          json,
+          ($checkedConvert) {
+            final val = AccountUncheckedCreateWithoutPersonInput(
+              id: $checkedConvert(
+                  'id', (v) => v == null ? null : BigInt.parse(v as String)),
+              username: $checkedConvert('username', (v) => v as String),
+              password: $checkedConvert('password', (v) => v as String),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$AccountUncheckedCreateWithoutPersonInputToJson(
@@ -2929,11 +4222,22 @@ Map<String, dynamic> _$AccountUncheckedCreateWithoutPersonInputToJson(
 AccountCreateOrConnectWithoutPersonInput
     _$AccountCreateOrConnectWithoutPersonInputFromJson(
             Map<String, dynamic> json) =>
-        AccountCreateOrConnectWithoutPersonInput(
-          where: AccountWhereUniqueInput.fromJson(
-              json['where'] as Map<String, dynamic>),
-          create: AccountCreateWithoutPersonInput.fromJson(
-              json['create'] as Map<String, dynamic>),
+        $checkedCreate(
+          'AccountCreateOrConnectWithoutPersonInput',
+          json,
+          ($checkedConvert) {
+            final val = AccountCreateOrConnectWithoutPersonInput(
+              where: $checkedConvert(
+                  'where',
+                  (v) => AccountWhereUniqueInput.fromJson(
+                      v as Map<String, dynamic>)),
+              create: $checkedConvert(
+                  'create',
+                  (v) => AccountCreateWithoutPersonInput.fromJson(
+                      v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$AccountCreateOrConnectWithoutPersonInputToJson(
@@ -2945,11 +4249,22 @@ Map<String, dynamic> _$AccountCreateOrConnectWithoutPersonInputToJson(
 
 AccountUpsertWithoutPersonInput _$AccountUpsertWithoutPersonInputFromJson(
         Map<String, dynamic> json) =>
-    AccountUpsertWithoutPersonInput(
-      update: AccountUpdateWithoutPersonInput.fromJson(
-          json['update'] as Map<String, dynamic>),
-      create: AccountCreateWithoutPersonInput.fromJson(
-          json['create'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountUpsertWithoutPersonInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountUpsertWithoutPersonInput(
+          update: $checkedConvert(
+              'update',
+              (v) => AccountUpdateWithoutPersonInput.fromJson(
+                  v as Map<String, dynamic>)),
+          create: $checkedConvert(
+              'create',
+              (v) => AccountCreateWithoutPersonInput.fromJson(
+                  v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountUpsertWithoutPersonInputToJson(
@@ -2961,19 +4276,32 @@ Map<String, dynamic> _$AccountUpsertWithoutPersonInputToJson(
 
 AccountUpdateWithoutPersonInput _$AccountUpdateWithoutPersonInputFromJson(
         Map<String, dynamic> json) =>
-    AccountUpdateWithoutPersonInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      username: json['username'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['username'] as Map<String, dynamic>),
-      password: json['password'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['password'] as Map<String, dynamic>),
+    $checkedCreate(
+      'AccountUpdateWithoutPersonInput',
+      json,
+      ($checkedConvert) {
+        final val = AccountUpdateWithoutPersonInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          username: $checkedConvert(
+              'username',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          password: $checkedConvert(
+              'password',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountUpdateWithoutPersonInputToJson(
@@ -2995,19 +4323,32 @@ Map<String, dynamic> _$AccountUpdateWithoutPersonInputToJson(
 AccountUncheckedUpdateWithoutPersonInput
     _$AccountUncheckedUpdateWithoutPersonInputFromJson(
             Map<String, dynamic> json) =>
-        AccountUncheckedUpdateWithoutPersonInput(
-          id: json['id'] == null
-              ? null
-              : BigIntFieldUpdateOperationsInput.fromJson(
-                  json['id'] as Map<String, dynamic>),
-          username: json['username'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['username'] as Map<String, dynamic>),
-          password: json['password'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['password'] as Map<String, dynamic>),
+        $checkedCreate(
+          'AccountUncheckedUpdateWithoutPersonInput',
+          json,
+          ($checkedConvert) {
+            final val = AccountUncheckedUpdateWithoutPersonInput(
+              id: $checkedConvert(
+                  'id',
+                  (v) => v == null
+                      ? null
+                      : BigIntFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              username: $checkedConvert(
+                  'username',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              password: $checkedConvert(
+                  'password',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
         );
 
 Map<String, dynamic> _$AccountUncheckedUpdateWithoutPersonInputToJson(
@@ -3028,14 +4369,27 @@ Map<String, dynamic> _$AccountUncheckedUpdateWithoutPersonInputToJson(
 
 PersonCreateManyAccountInput _$PersonCreateManyAccountInputFromJson(
         Map<String, dynamic> json) =>
-    PersonCreateManyAccountInput(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      gender: json['gender'] as String,
-      dateOfBirth: const DateTimeJsonConverter()
-          .fromJson(json['date_of_birth'] as String),
-      email: json['email'] as String?,
+    $checkedCreate(
+      'PersonCreateManyAccountInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonCreateManyAccountInput(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          firstName: $checkedConvert('first_name', (v) => v as String),
+          lastName: $checkedConvert('last_name', (v) => v as String),
+          gender: $checkedConvert('gender', (v) => v as String),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => const DateTimeJsonConverter().fromJson(v as String)),
+          email: $checkedConvert('email', (v) => v as String?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth'
+      },
     );
 
 Map<String, dynamic> _$PersonCreateManyAccountInputToJson(
@@ -3060,31 +4414,55 @@ Map<String, dynamic> _$PersonCreateManyAccountInputToJson(
 
 PersonUpdateWithoutAccountInput _$PersonUpdateWithoutAccountInputFromJson(
         Map<String, dynamic> json) =>
-    PersonUpdateWithoutAccountInput(
-      id: json['id'] == null
-          ? null
-          : BigIntFieldUpdateOperationsInput.fromJson(
-              json['id'] as Map<String, dynamic>),
-      firstName: json['first_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['first_name'] as Map<String, dynamic>),
-      lastName: json['last_name'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['last_name'] as Map<String, dynamic>),
-      gender: json['gender'] == null
-          ? null
-          : StringFieldUpdateOperationsInput.fromJson(
-              json['gender'] as Map<String, dynamic>),
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTimeFieldUpdateOperationsInput.fromJson(
-              json['date_of_birth'] as Map<String, dynamic>),
-      email: json['email'] == null
-          ? null
-          : NullableStringFieldUpdateOperationsInput.fromJson(
-              json['email'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PersonUpdateWithoutAccountInput',
+      json,
+      ($checkedConvert) {
+        final val = PersonUpdateWithoutAccountInput(
+          id: $checkedConvert(
+              'id',
+              (v) => v == null
+                  ? null
+                  : BigIntFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          firstName: $checkedConvert(
+              'first_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          lastName: $checkedConvert(
+              'last_name',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          gender: $checkedConvert(
+              'gender',
+              (v) => v == null
+                  ? null
+                  : StringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => v == null
+                  ? null
+                  : DateTimeFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+          email: $checkedConvert(
+              'email',
+              (v) => v == null
+                  ? null
+                  : NullableStringFieldUpdateOperationsInput.fromJson(
+                      v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth'
+      },
     );
 
 Map<String, dynamic> _$PersonUpdateWithoutAccountInputToJson(
@@ -3109,31 +4487,55 @@ Map<String, dynamic> _$PersonUpdateWithoutAccountInputToJson(
 PersonUncheckedUpdateWithoutAccountInput
     _$PersonUncheckedUpdateWithoutAccountInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUncheckedUpdateWithoutAccountInput(
-          id: json['id'] == null
-              ? null
-              : BigIntFieldUpdateOperationsInput.fromJson(
-                  json['id'] as Map<String, dynamic>),
-          firstName: json['first_name'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['first_name'] as Map<String, dynamic>),
-          lastName: json['last_name'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['last_name'] as Map<String, dynamic>),
-          gender: json['gender'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['gender'] as Map<String, dynamic>),
-          dateOfBirth: json['date_of_birth'] == null
-              ? null
-              : DateTimeFieldUpdateOperationsInput.fromJson(
-                  json['date_of_birth'] as Map<String, dynamic>),
-          email: json['email'] == null
-              ? null
-              : NullableStringFieldUpdateOperationsInput.fromJson(
-                  json['email'] as Map<String, dynamic>),
+        $checkedCreate(
+          'PersonUncheckedUpdateWithoutAccountInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUncheckedUpdateWithoutAccountInput(
+              id: $checkedConvert(
+                  'id',
+                  (v) => v == null
+                      ? null
+                      : BigIntFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              firstName: $checkedConvert(
+                  'first_name',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              lastName: $checkedConvert(
+                  'last_name',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              gender: $checkedConvert(
+                  'gender',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              dateOfBirth: $checkedConvert(
+                  'date_of_birth',
+                  (v) => v == null
+                      ? null
+                      : DateTimeFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              email: $checkedConvert(
+                  'email',
+                  (v) => v == null
+                      ? null
+                      : NullableStringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
+          fieldKeyMap: const {
+            'firstName': 'first_name',
+            'lastName': 'last_name',
+            'dateOfBirth': 'date_of_birth'
+          },
         );
 
 Map<String, dynamic> _$PersonUncheckedUpdateWithoutAccountInputToJson(
@@ -3158,31 +4560,55 @@ Map<String, dynamic> _$PersonUncheckedUpdateWithoutAccountInputToJson(
 PersonUncheckedUpdateManyWithoutPersonInput
     _$PersonUncheckedUpdateManyWithoutPersonInputFromJson(
             Map<String, dynamic> json) =>
-        PersonUncheckedUpdateManyWithoutPersonInput(
-          id: json['id'] == null
-              ? null
-              : BigIntFieldUpdateOperationsInput.fromJson(
-                  json['id'] as Map<String, dynamic>),
-          firstName: json['first_name'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['first_name'] as Map<String, dynamic>),
-          lastName: json['last_name'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['last_name'] as Map<String, dynamic>),
-          gender: json['gender'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['gender'] as Map<String, dynamic>),
-          dateOfBirth: json['date_of_birth'] == null
-              ? null
-              : DateTimeFieldUpdateOperationsInput.fromJson(
-                  json['date_of_birth'] as Map<String, dynamic>),
-          email: json['email'] == null
-              ? null
-              : NullableStringFieldUpdateOperationsInput.fromJson(
-                  json['email'] as Map<String, dynamic>),
+        $checkedCreate(
+          'PersonUncheckedUpdateManyWithoutPersonInput',
+          json,
+          ($checkedConvert) {
+            final val = PersonUncheckedUpdateManyWithoutPersonInput(
+              id: $checkedConvert(
+                  'id',
+                  (v) => v == null
+                      ? null
+                      : BigIntFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              firstName: $checkedConvert(
+                  'first_name',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              lastName: $checkedConvert(
+                  'last_name',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              gender: $checkedConvert(
+                  'gender',
+                  (v) => v == null
+                      ? null
+                      : StringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              dateOfBirth: $checkedConvert(
+                  'date_of_birth',
+                  (v) => v == null
+                      ? null
+                      : DateTimeFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+              email: $checkedConvert(
+                  'email',
+                  (v) => v == null
+                      ? null
+                      : NullableStringFieldUpdateOperationsInput.fromJson(
+                          v as Map<String, dynamic>)),
+            );
+            return val;
+          },
+          fieldKeyMap: const {
+            'firstName': 'first_name',
+            'lastName': 'last_name',
+            'dateOfBirth': 'date_of_birth'
+          },
         );
 
 Map<String, dynamic> _$PersonUncheckedUpdateManyWithoutPersonInputToJson(
@@ -3204,10 +4630,17 @@ Map<String, dynamic> _$PersonUncheckedUpdateManyWithoutPersonInputToJson(
   return val;
 }
 
-Account _$AccountFromJson(Map<String, dynamic> json) => Account(
-      id: BigInt.parse(json['id'] as String),
-      username: json['username'] as String,
-      password: json['password'] as String,
+Account _$AccountFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Account',
+      json,
+      ($checkedConvert) {
+        final val = Account(
+          id: $checkedConvert('id', (v) => BigInt.parse(v as String)),
+          username: $checkedConvert('username', (v) => v as String),
+          password: $checkedConvert('password', (v) => v as String),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountToJson(Account instance) => <String, dynamic>{
@@ -3216,15 +4649,29 @@ Map<String, dynamic> _$AccountToJson(Account instance) => <String, dynamic>{
       'password': instance.password,
     };
 
-Person _$PersonFromJson(Map<String, dynamic> json) => Person(
-      id: BigInt.parse(json['id'] as String),
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      gender: json['gender'] as String,
-      dateOfBirth: const DateTimeJsonConverter()
-          .fromJson(json['date_of_birth'] as String),
-      email: json['email'] as String?,
-      accountId: BigInt.parse(json['account_id'] as String),
+Person _$PersonFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Person',
+      json,
+      ($checkedConvert) {
+        final val = Person(
+          id: $checkedConvert('id', (v) => BigInt.parse(v as String)),
+          firstName: $checkedConvert('first_name', (v) => v as String),
+          lastName: $checkedConvert('last_name', (v) => v as String),
+          gender: $checkedConvert('gender', (v) => v as String),
+          dateOfBirth: $checkedConvert('date_of_birth',
+              (v) => const DateTimeJsonConverter().fromJson(v as String)),
+          email: $checkedConvert('email', (v) => v as String?),
+          accountId:
+              $checkedConvert('account_id', (v) => BigInt.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonToJson(Person instance) {
@@ -3249,10 +4696,18 @@ Map<String, dynamic> _$PersonToJson(Person instance) {
 
 AccountGroupByOutputType _$AccountGroupByOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    AccountGroupByOutputType(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      username: json['username'] as String?,
-      password: json['password'] as String?,
+    $checkedCreate(
+      'AccountGroupByOutputType',
+      json,
+      ($checkedConvert) {
+        final val = AccountGroupByOutputType(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          username: $checkedConvert('username', (v) => v as String?),
+          password: $checkedConvert('password', (v) => v as String?),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AccountGroupByOutputTypeToJson(
@@ -3273,17 +4728,32 @@ Map<String, dynamic> _$AccountGroupByOutputTypeToJson(
 
 PersonGroupByOutputType _$PersonGroupByOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    PersonGroupByOutputType(
-      id: json['id'] == null ? null : BigInt.parse(json['id'] as String),
-      firstName: json['first_name'] as String?,
-      lastName: json['last_name'] as String?,
-      gender: json['gender'] as String?,
-      dateOfBirth: _$JsonConverterFromJson<String, DateTime>(
-          json['date_of_birth'], const DateTimeJsonConverter().fromJson),
-      email: json['email'] as String?,
-      accountId: json['account_id'] == null
-          ? null
-          : BigInt.parse(json['account_id'] as String),
+    $checkedCreate(
+      'PersonGroupByOutputType',
+      json,
+      ($checkedConvert) {
+        final val = PersonGroupByOutputType(
+          id: $checkedConvert(
+              'id', (v) => v == null ? null : BigInt.parse(v as String)),
+          firstName: $checkedConvert('first_name', (v) => v as String?),
+          lastName: $checkedConvert('last_name', (v) => v as String?),
+          gender: $checkedConvert('gender', (v) => v as String?),
+          dateOfBirth: $checkedConvert(
+              'date_of_birth',
+              (v) => _$JsonConverterFromJson<String, DateTime>(
+                  v, const DateTimeJsonConverter().fromJson)),
+          email: $checkedConvert('email', (v) => v as String?),
+          accountId: $checkedConvert('account_id',
+              (v) => v == null ? null : BigInt.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'firstName': 'first_name',
+        'lastName': 'last_name',
+        'dateOfBirth': 'date_of_birth',
+        'accountId': 'account_id'
+      },
     );
 
 Map<String, dynamic> _$PersonGroupByOutputTypeToJson(
@@ -3310,8 +4780,15 @@ Map<String, dynamic> _$PersonGroupByOutputTypeToJson(
 }
 
 AffectedRowsOutput _$AffectedRowsOutputFromJson(Map<String, dynamic> json) =>
-    AffectedRowsOutput(
-      count: json['count'] as int?,
+    $checkedCreate(
+      'AffectedRowsOutput',
+      json,
+      ($checkedConvert) {
+        final val = AffectedRowsOutput(
+          count: $checkedConvert('count', (v) => v as int?),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$AffectedRowsOutputToJson(AffectedRowsOutput instance) {
