@@ -13,7 +13,7 @@ import 'components/utility/debounce.dart';
 
 final prisma = PrismaClient(
   stdout: [Event.error, Event.warn],
-  // event: Event.values,
+  event: Event.values,
   datasources: Datasources(db: Env.databaseUrl),
 );
 

@@ -7,21 +7,16 @@ import '../../main.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   switch (context.request.method) {
-    case HttpMethod.delete:
-      return ApiResult.methodNotAllowed();
-    case HttpMethod.get:
-      return ApiResult.methodNotAllowed();
-    case HttpMethod.head:
-      return ApiResult.methodNotAllowed();
-    case HttpMethod.options:
-      return ApiResult.methodNotAllowed();
-    case HttpMethod.patch:
-      return ApiResult.methodNotAllowed();
     case HttpMethod.post:
       return _onPostRequest(context);
+    case HttpMethod.delete:
+    case HttpMethod.get:
+    case HttpMethod.head:
+    case HttpMethod.options:
+    case HttpMethod.patch:
     case HttpMethod.put:
-      return ApiResult.methodNotAllowed();
   }
+  return ApiResult.methodNotAllowed();
 }
 
 Future<Response> _onPostRequest(RequestContext context) async {
@@ -35,7 +30,12 @@ Future<Response> _onPostRequest(RequestContext context) async {
     where: AccountWhereUniqueInput.fromJson(json),
   );
 
-  final id = response!.id.toInt();
+  final id = response?.id.toInt();
+
+  if (id == null) {
+    return ApiResult.notFound();
+  }
+
   final token = const Uuid().v4();
 
   getIt.get<UserToken>().setUserLoggedIn(MapEntry(id, 'Bearer $token'));

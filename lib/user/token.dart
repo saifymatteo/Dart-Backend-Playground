@@ -20,7 +20,7 @@ class UserToken {
   void setUserLoggedIn(MapEntry<int, String> keyAndToken) {
     _tokens.addEntries([keyAndToken]);
 
-    Timer(const Duration(minutes: 30), () {
+    Timer(const Duration(days: 1), () {
       _tokens.remove(keyAndToken.key);
       Logger.root.info('UserToken.remove: $keyAndToken');
     });
