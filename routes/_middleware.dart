@@ -1,8 +1,10 @@
-import 'package:backend_playground/exception/exception.dart';
+import 'dart:async';
+
 import 'package:backend_playground/user/user.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:orm/orm.dart';
+import 'package:logging/logging.dart';
+import 'package:stormberry/stormberry.dart';
 
 import '../components/response/api_result.dart';
 import '../components/utility/utility.dart';
@@ -10,8 +12,14 @@ import '../main.dart';
 
 Handler middleware(Handler handler) {
   return (context) async {
+    if (postgres.connection().isClosed) {
+      postgres = initDatabase();
+      await postgres.open();
+    }
+
     // Log incoming request
     getIt.get<Debounce>().logRequest(context.request);
+    postgres.connection().messages.listen(Logger.root.info);
 
     // Auth API path
     if (context.request.uri.path.contains('/account')) {
@@ -35,26 +43,20 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
   try {
     return await handler(context);
   }
-  // ! General Exception
-  on PrismaException catch (e) {
-    var code = 400;
-    Map<String, Object>? error = {'error': e.message};
-
-    if (e.message.contains('fields: (')) {
-      code = 409;
-      error = {
-        'error': 'field(s) already exists',
-        'fields': PrismaUniqueConstraintsException(
-          message: e.message,
-          engine: e.engine,
-        ).affectedFields,
-      };
-    }
-
+  // ! Postgres Exception
+  on PostgreSQLException catch (e) {
     return Response.json(
-      statusCode: code,
+      statusCode: 400,
       headers: context.request.headers,
-      body: error,
+      body: {
+        'type': 'PostgreSQLException',
+        'error': e.message,
+        if (e.stackTrace != null) 'stackTrace': e.stackTrace,
+        if (e.detail != null) 'detail': e.detail,
+        if (e.hint != null) 'hint': e.hint,
+        if (e.trace != null) 'trace': e.trace,
+        if (e.code != null) 'code': e.code,
+      },
     );
   }
   // ! Json Exception
@@ -62,7 +64,10 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
     return Response.json(
       statusCode: 400,
       headers: context.request.headers,
-      body: {'error': 'missing field(s) ${e.key}'},
+      body: {
+        'type': 'CheckedFromJsonException',
+        'error': 'missing field(s) ${e.key}',
+      },
     );
   }
   // ! Unknown Exception
@@ -70,7 +75,11 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
     return Response.json(
       statusCode: 500,
       headers: context.request.headers,
-      body: {'error': e.toString(), 'stacktrace': s.toString()},
+      body: {
+        'type': 'Unknown',
+        'error': e.toString(),
+        'stacktrace': s.toString(),
+      },
     );
   }
 }

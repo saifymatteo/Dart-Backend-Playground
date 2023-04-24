@@ -1,4 +1,4 @@
-import 'package:backend_playground/generated/prisma_client.dart';
+import 'package:backend_playground/models/models.dart';
 import 'package:dart_frog/dart_frog.dart';
 import '../../components/response/response.dart';
 import '../../main.dart';
@@ -24,9 +24,18 @@ Future<Response> _onPostRequest(RequestContext context) async {
     return ApiResult.badRequest();
   }
 
-  final response = await prisma.account.create(
-    data: AccountCreateInput.fromJson(json),
+  final request = AccountModel.fromJson(json);
+
+  final insert = await postgres.accountSchemas.insertOne(
+    request.toSchemaInsertRequest(request),
   );
 
-  return Response.json(body: response);
+  final response = await postgres.accountSchemas.queryAccountSchema(insert);
+  if (response == null) {
+    return ApiResult.badGateway();
+  }
+
+  return Response.json(
+    body: AccountModel.fromSchema(response),
+  );
 }

@@ -1,6 +1,7 @@
-import 'package:backend_playground/generated/prisma_client.dart';
+import 'package:backend_playground/models/account/account.dart';
 import 'package:backend_playground/user/user.dart';
 import 'package:dart_frog/dart_frog.dart';
+import 'package:stormberry/stormberry.dart';
 import 'package:uuid/uuid.dart';
 import '../../components/response/response.dart';
 import '../../main.dart';
@@ -26,16 +27,15 @@ Future<Response> _onPostRequest(RequestContext context) async {
     return ApiResult.badRequest();
   }
 
-  final response = await prisma.account.findUnique(
-    where: AccountWhereUniqueInput.fromJson(json),
+  final response = await postgres.accountSchemas.queryAccountSchemas(
+    QueryParams(where: "username = '${json['username']}'"),
   );
-
-  final id = response?.id.toInt();
-
-  if (id == null) {
+  if (response.isEmpty) {
     return ApiResult.notFound();
   }
 
+  // With WHERE clause, we should get only single row
+  final id = response.first.id;
   final token = const Uuid().v4();
 
   getIt.get<UserToken>().setUserLoggedIn(MapEntry(id, 'Bearer $token'));

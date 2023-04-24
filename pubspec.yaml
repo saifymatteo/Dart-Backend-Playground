@@ -7,12 +7,13 @@ environment:
   sdk: '>=2.19.0 <3.0.0'
 
 dependencies:
+  collection: ^1.17.1
   dart_frog: ^0.3.6
   envied: ^0.3.0
   get_it: ^7.2.0
   json_annotation: ^4.8.0
   logging: ^1.1.1
-  orm: ^3.3.0
+  stormberry: ^0.13.0
   uuid: ^3.0.7
 
 dev_dependencies:

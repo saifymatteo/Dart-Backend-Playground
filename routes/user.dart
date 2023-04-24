@@ -1,4 +1,4 @@
-import 'package:backend_playground/generated/prisma_client.dart';
+import 'package:backend_playground/models/models.dart';
 import 'package:backend_playground/user/token.dart';
 import 'package:dart_frog/dart_frog.dart';
 import '../components/response/response.dart';
@@ -25,25 +25,31 @@ Future<Response> _onGetRequest(RequestContext context) async {
   if (query.isNotEmpty) {
     if (query.containsKey('id')) {
       final id = int.tryParse(query['id'] ?? '');
+      if (id == null) {
+        return ApiResult.badRequest();
+      }
 
-      if (id == null) return ApiResult.badRequest();
-
-      final response = await prisma.person.findFirst(
-        where: PersonWhereInput(id: BigIntFilter(equals: BigInt.from(id))),
-      );
-
+      final response = await postgres.personSchemas.queryPersonSchema(id);
       if (response == null) {
         return ApiResult.notFound();
       }
 
-      return Response.json(body: response.toJson());
+      final data = PersonModel.fromSchema(response).toJson()..remove('account');
+
+      return Response.json(body: data);
     }
+
     return ApiResult.badRequest();
   }
 
-  final response = await prisma.person.findMany();
+  final response = await postgres.personSchemas.queryPersonSchemas();
 
-  return ApiResult.iterableBody(data: response);
+  return Response.json(
+    body: [
+      for (final i in response)
+        PersonModel.fromSchema(i).toJson()..remove('account'),
+    ],
+  );
 }
 
 Future<Response> _onPostRequest(RequestContext context) async {
@@ -53,18 +59,25 @@ Future<Response> _onPostRequest(RequestContext context) async {
     return ApiResult.badRequest();
   }
 
+  final request = PersonModel.fromJson(json);
   final token = context.request.headers['Authorization'];
   final userId = getIt<UserToken>().getUserId(token);
-  final user = AccountCreateNestedOneWithoutPersonInput(
-    connect: AccountWhereUniqueInput(id: BigInt.from(userId)),
+  if (userId == null) {
+    return ApiResult.notAuthorized();
+  }
+
+  final insert = await postgres.personSchemas.insertOne(
+    request.toSchemaInsertRequest(
+      request.copyWith(account: AccountModel(id: userId)),
+    ),
   );
 
-  final response = await prisma.person.create(
-    data: PersonCreateInput.fromJson({
-      for (final i in json.entries) i.key: i.value,
-      'account': user.toJson(),
-    }),
-  );
+  final response = await postgres.personSchemas.queryPersonSchema(insert);
+  if (response == null) {
+    return ApiResult.badGateway();
+  }
 
-  return Response.json(body: response);
+  final data = PersonModel.fromSchema(response).toJson()..remove('account');
+
+  return Response.json(body: data);
 }

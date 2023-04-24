@@ -16,6 +16,12 @@ abstract class ApiResult {
         headers: header ?? {},
       );
 
+  static Response badGateway({Map<String, Object>? header}) => Response.json(
+        statusCode: 502,
+        body: {'error': 'Bad Gateway'},
+        headers: header ?? {},
+      );
+
   static Response badRequest({Map<String, Object>? header}) => Response.json(
         statusCode: 400,
         body: {'error': 'Bad request'},
@@ -29,6 +35,7 @@ abstract class ApiResult {
         headers: header ?? {},
       );
 
+  @Deprecated('used only in prisma due to response body')
   static Response iterableBody({
     required Iterable<Object?> data,
     Map<String, Object>? header,

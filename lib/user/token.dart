@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:logging/logging.dart';
 
 /// Main class for managing all users' tokens
@@ -10,8 +11,9 @@ class UserToken {
   Map<int, String> get tokens => _tokens;
 
   /// Iterate through all tokens get the current user id
-  int getUserId(String? token) =>
-      _tokens.entries.firstWhere((element) => element.value == token).key;
+  int? getUserId(String? token) => _tokens.entries
+      .firstWhereOrNull((element) => element.value == token)
+      ?.key;
 
   /// Check if user is logged in
   bool isUserLoggedIn(String? token) => _tokens.containsValue(token);
