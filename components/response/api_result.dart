@@ -35,7 +35,7 @@ abstract class ApiResult {
         headers: header ?? {},
       );
 
-  @Deprecated('used only in prisma due to response body')
+  @Deprecated('used only in prisma due to Response body')
   static Response iterableBody({
     required Iterable<Object?> data,
     Map<String, Object>? header,

@@ -1,9 +1,8 @@
-import 'package:backend_playground/models/account/account.dart';
-import 'package:backend_playground/user/user.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:stormberry/stormberry.dart';
 import 'package:uuid/uuid.dart';
-import '../../components/response/response.dart';
+
+import '../../components/components.dart';
 import '../../main.dart';
 
 Future<Response> onRequest(RequestContext context) async {
@@ -28,6 +27,7 @@ Future<Response> _onPostRequest(RequestContext context) async {
   }
 
   final response = await postgres.accountSchemas.queryAccountSchemas(
+    // WHERE clause for account.username only
     QueryParams(where: "username = '${json['username']}'"),
   );
   if (response.isEmpty) {

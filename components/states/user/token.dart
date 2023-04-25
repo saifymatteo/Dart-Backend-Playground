@@ -10,9 +10,9 @@ class UserToken {
   /// Get all tokens
   Map<int, String> get tokens => _tokens;
 
-  /// Iterate through all tokens get the current user id
-  int? getUserId(String? token) => _tokens.entries
-      .firstWhereOrNull((element) => element.value == token)
+  /// Iterate [_tokens] to get current user id from provided [header]
+  int? getUserId(Map<String, String> header) => _tokens.entries
+      .firstWhereOrNull((e) => e.value == header['Authorization'])
       ?.key;
 
   /// Check if user is logged in

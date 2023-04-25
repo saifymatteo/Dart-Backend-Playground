@@ -12,9 +12,6 @@ build/
 # Test related files
 coverage/
 
-# Prisma
-node_modules/
-
 # ENV
 .env
-lib/env/env.g.dart
+components/env/env.g.dart

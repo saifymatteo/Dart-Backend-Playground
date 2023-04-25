@@ -1,7 +1,6 @@
-import 'package:backend_playground/models/models.dart';
-import 'package:backend_playground/user/token.dart';
 import 'package:dart_frog/dart_frog.dart';
-import '../components/response/response.dart';
+
+import '../components/components.dart';
 import '../main.dart';
 
 Future<Response> onRequest(RequestContext context) async {
@@ -14,6 +13,7 @@ Future<Response> onRequest(RequestContext context) async {
     case HttpMethod.head:
     case HttpMethod.options:
     case HttpMethod.patch:
+      return _onPatchRequest(context);
     case HttpMethod.put:
   }
   return ApiResult.methodNotAllowed();
@@ -34,6 +34,7 @@ Future<Response> _onGetRequest(RequestContext context) async {
         return ApiResult.notFound();
       }
 
+      // Remove [AccountModel] value
       final data = PersonModel.fromSchema(response).toJson()..remove('account');
 
       return Response.json(body: data);
@@ -47,6 +48,7 @@ Future<Response> _onGetRequest(RequestContext context) async {
   return Response.json(
     body: [
       for (final i in response)
+        // Remove [AccountModel] value
         PersonModel.fromSchema(i).toJson()..remove('account'),
     ],
   );
@@ -60,14 +62,14 @@ Future<Response> _onPostRequest(RequestContext context) async {
   }
 
   final request = PersonModel.fromJson(json);
-  final token = context.request.headers['Authorization'];
-  final userId = getIt<UserToken>().getUserId(token);
+  final userId = getIt<UserToken>().getUserId(context.request.headers);
   if (userId == null) {
     return ApiResult.notAuthorized();
   }
 
   final insert = await postgres.personSchemas.insertOne(
     request.toSchemaInsertRequest(
+      // Add [AccountModel] for account.id
       request.copyWith(account: AccountModel(id: userId)),
     ),
   );
@@ -77,6 +79,41 @@ Future<Response> _onPostRequest(RequestContext context) async {
     return ApiResult.badGateway();
   }
 
+  // Remove [AccountModel] value
+  final data = PersonModel.fromSchema(response).toJson()..remove('account');
+
+  return Response.json(body: data);
+}
+
+Future<Response> _onPatchRequest(RequestContext context) async {
+  final json = await context.request.json() as Map<String, dynamic>? ?? {};
+  final query = context.request.uri.queryParameters;
+
+  if (json.isEmpty || query.isEmpty || !query.containsKey('id')) {
+    return ApiResult.badRequest();
+  }
+
+  final id = int.tryParse(query['id'] ?? '');
+  if (id == null) {
+    return ApiResult.badRequest();
+  }
+
+  final request = PersonModel.fromJson(json);
+  final userId = getIt<UserToken>().getUserId(context.request.headers);
+  if (userId == null) {
+    return ApiResult.notAuthorized();
+  }
+
+  await postgres.personSchemas
+      .updateOne(request.toSchemaUpdateRequest(request.copyWith(id: id)));
+
+  final response = await postgres.personSchemas.queryPersonSchema(id);
+  if (response == null) {
+    // Not found, provided [id] is not found
+    return ApiResult.notFound();
+  }
+
+  // Remove [AccountModel] value
   final data = PersonModel.fromSchema(response).toJson()..remove('account');
 
   return Response.json(body: data);

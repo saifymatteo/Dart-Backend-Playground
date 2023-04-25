@@ -1,27 +1,18 @@
 import 'dart:async';
 
-import 'package:backend_playground/user/user.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:logging/logging.dart';
 import 'package:stormberry/stormberry.dart';
 
-import '../components/response/api_result.dart';
-import '../components/utility/utility.dart';
+import '../components/components.dart';
 import '../main.dart';
 
 Handler middleware(Handler handler) {
   return (context) async {
-    if (postgres.connection().isClosed) {
-      postgres = initDatabase();
-      await postgres.open();
-    }
-
     // Log incoming request
     getIt.get<Debounce>().logRequest(context.request);
-    postgres.connection().messages.listen(Logger.root.info);
 
-    // Auth API path
+    // Auth API path require no authentication
     if (context.request.uri.path.contains('/account')) {
       return _handleRequest(handler, context);
     }
@@ -49,8 +40,8 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
       statusCode: 400,
       headers: context.request.headers,
       body: {
-        'type': 'PostgreSQLException',
-        'error': e.message,
+        'exception': 'PostgreSQLException',
+        'message': e.message,
         if (e.stackTrace != null) 'stackTrace': e.stackTrace,
         if (e.detail != null) 'detail': e.detail,
         if (e.hint != null) 'hint': e.hint,
@@ -65,8 +56,8 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
       statusCode: 400,
       headers: context.request.headers,
       body: {
-        'type': 'CheckedFromJsonException',
-        'error': 'missing field(s) ${e.key}',
+        'exception': 'CheckedFromJsonException',
+        'message': 'missing field(s) ${e.key}',
       },
     );
   }
@@ -76,8 +67,8 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
       statusCode: 500,
       headers: context.request.headers,
       body: {
-        'type': 'Unknown',
-        'error': e.toString(),
+        'exception': 'Unknown',
+        'message': e.toString(),
         'stacktrace': s.toString(),
       },
     );

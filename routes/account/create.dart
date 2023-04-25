@@ -1,6 +1,6 @@
-import 'package:backend_playground/models/models.dart';
 import 'package:dart_frog/dart_frog.dart';
-import '../../components/response/response.dart';
+
+import '../../components/components.dart';
 import '../../main.dart';
 
 Future<Response> onRequest(RequestContext context) async {

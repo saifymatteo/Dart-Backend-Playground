@@ -40,18 +40,31 @@ class AccountModel {
   factory AccountModel.fromJson(Map<String, dynamic> json) =>
       _$AccountModelFromJson(json);
 
-  AccountSchemaInsertRequest toSchemaInsertRequest(AccountModel model) =>
-      AccountSchemaInsertRequest(
-        username: model.username!,
-        password: model.password!,
-      );
+  AccountSchemaInsertRequest toSchemaInsertRequest(AccountModel model) {
+    if (username == null) {
+      throw ArgumentError.value(username, 'username');
+    }
+    if (password == null) {
+      throw ArgumentError.value(password, 'password');
+    }
 
-  AccountSchemaUpdateRequest toSchemaUpdateRequest(AccountModel model) =>
-      AccountSchemaUpdateRequest(
-        id: model.id!,
-        username: model.username,
-        password: model.password,
-      );
+    return AccountSchemaInsertRequest(
+      username: model.username!,
+      password: model.password!,
+    );
+  }
+
+  AccountSchemaUpdateRequest toSchemaUpdateRequest(AccountModel model) {
+    if (model.id == null) {
+      throw ArgumentError.value(model.id, 'model.id');
+    }
+
+    return AccountSchemaUpdateRequest(
+      id: model.id!,
+      username: model.username,
+      password: model.password,
+    );
+  }
 
   Map<String, dynamic> toJson() => _$AccountModelToJson(this);
 

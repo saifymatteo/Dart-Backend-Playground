@@ -1,8 +1,7 @@
-// ignore_for_file: public_member_api_docs
-
-import 'package:backend_playground/models/account/account.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:stormberry/stormberry.dart';
+
+import '../../components.dart';
 
 part 'person.schema.dart';
 
@@ -61,26 +60,51 @@ class PersonModel {
   factory PersonModel.fromJson(Map<String, dynamic> json) =>
       _$PersonModelFromJson(json);
 
-  PersonSchemaInsertRequest toSchemaInsertRequest(PersonModel model) =>
-      PersonSchemaInsertRequest(
-        firstName: model.firstName!,
-        lastName: model.lastName!,
-        gender: model.gender!,
-        dateOfBirth: model.dateOfBirth!,
-        email: model.email,
-        accountId: model.account!.id!,
-      );
+  PersonSchemaInsertRequest toSchemaInsertRequest(PersonModel model) {
+    if (model.firstName == null) {
+      throw ArgumentError.value(model.firstName, 'first_name');
+    }
+    if (model.lastName == null) {
+      throw ArgumentError.value(model.lastName, 'last_name');
+    }
+    if (model.gender == null) {
+      throw ArgumentError.value(model.gender, 'gender');
+    }
+    if (model.dateOfBirth == null) {
+      throw ArgumentError.value(model.dateOfBirth, 'date_of_birth');
+    }
+    if (model.account == null) {
+      throw ArgumentError.value(model.account, 'account');
+    }
+    if (model.account?.id == null) {
+      throw ArgumentError.value(model.account?.id, 'account.id');
+    }
 
-  PersonSchemaUpdateRequest toSchemaUpdateRequest(PersonModel model) =>
-      PersonSchemaUpdateRequest(
-        id: model.id!,
-        firstName: model.firstName,
-        lastName: model.lastName,
-        gender: model.gender,
-        dateOfBirth: model.dateOfBirth,
-        email: model.email,
-        accountId: model.account?.id,
-      );
+    return PersonSchemaInsertRequest(
+      firstName: model.firstName!,
+      lastName: model.lastName!,
+      gender: model.gender!,
+      dateOfBirth: model.dateOfBirth!,
+      email: model.email,
+      accountId: model.account!.id!,
+    );
+  }
+
+  PersonSchemaUpdateRequest toSchemaUpdateRequest(PersonModel model) {
+    if (model.id == null) {
+      throw ArgumentError.value(model.id, 'id');
+    }
+
+    return PersonSchemaUpdateRequest(
+      id: model.id!,
+      firstName: model.firstName,
+      lastName: model.lastName,
+      gender: model.gender,
+      dateOfBirth: model.dateOfBirth,
+      email: model.email,
+      accountId: model.account?.id,
+    );
+  }
 
   Map<String, dynamic> toJson() => _$PersonModelToJson(this);
 

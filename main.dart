@@ -1,32 +1,33 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:backend_playground/env/env.dart';
-import 'package:backend_playground/user/user.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
 import 'package:stormberry/stormberry.dart';
 
-import 'components/utility/debounce.dart';
+import 'components/components.dart';
 
+/// Global service accessor
 final getIt = GetIt.instance;
-
-/// Constant [Database] object
-Database initDatabase() => Database(
-  debugPrint: true,
-  host: Env.databaseHost,
-  port: int.parse(Env.databasePort),
-  database: Env.databaseName,
-  user: Env.databaseUsername,
-  password: Env.databasePassword,
-);
 
 /// Object to refer when using [Database].
 /// Need to reassign in case of disconnection
-Database postgres = initDatabase();
+late Database postgres;
 
-Future<HttpServer> run(Handler handler, InternetAddress ip, int port) async {
+/// Constant [Database] object
+Database initDatabase() => Database(
+      debugPrint: true,
+      host: Env.databaseHost,
+      port: int.parse(Env.databasePort),
+      database: Env.databaseName,
+      user: Env.databaseUsername,
+      password: Env.databasePassword,
+    );
+
+/// Server initialization
+Future<void> init(InternetAddress ip, int port) async {
+  postgres = initDatabase();
   await postgres.open();
 
   // Logger registration
@@ -37,12 +38,18 @@ Future<HttpServer> run(Handler handler, InternetAddress ip, int port) async {
   });
 
   // Provider registration
-  if (!getIt.isRegistered<Debounce>()) {
-    getIt.registerSingleton<Debounce>(Debounce());
-  }
-  if (!getIt.isRegistered<UserToken>()) {
-    getIt.registerSingleton<UserToken>(UserToken());
+  getIt
+    ..registerSingleton<Debounce>(Debounce())
+    ..registerSingleton<UserToken>(UserToken());
+}
+
+/// Server first entrypoint for every request
+Future<HttpServer> run(Handler handler, InternetAddress ip, int port) async {
+  // Check for database connection and reassign if needed
+  if (postgres.connection().isClosed) {
+    postgres = initDatabase();
+    await postgres.open();
   }
 
-  return serve(handler, ip, port);
+  return serve(handler, ip, port, poweredByHeader: null);
 }
