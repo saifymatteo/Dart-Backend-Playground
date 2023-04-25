@@ -14,4 +14,4 @@ coverage/
 
 # ENV
 .env
-components/env/env.g.dart
+lib/env/env.g.dart

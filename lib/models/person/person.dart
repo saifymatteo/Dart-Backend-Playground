@@ -1,7 +1,6 @@
+import 'package:backend_playground/models/account/account.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:stormberry/stormberry.dart';
-
-import '../../components.dart';
 
 part 'person.schema.dart';
 
