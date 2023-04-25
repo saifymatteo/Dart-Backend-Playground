@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package backend;
+
+import "models/account.proto";
+import "google/protobuf/timestamp.proto";
+
+message Person {
+  int32 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string gender = 4;
+  google.protobuf.Timestamp dateOfBirth = 5;
+  string email = 6;
+  Account account = 7;
+}

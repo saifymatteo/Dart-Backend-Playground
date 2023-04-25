@@ -10,9 +10,10 @@ dependencies:
   collection: ^1.17.1
   dart_frog: ^0.3.6
   envied: ^0.3.0
-  get_it: ^7.2.0
+  get_it: ^7.3.0
   json_annotation: ^4.8.0
   logging: ^1.1.1
+  protobuf: ^2.1.0
   stormberry: ^0.13.0
   uuid: ^3.0.7
 

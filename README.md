@@ -4,12 +4,12 @@
 [![License: MIT][license_badge]][license_link]
 [![Powered by Dart Frog](https://img.shields.io/endpoint?url=https://tinyurl.com/dartfrog-badge)](https://dartfrog.vgv.dev)
 
-A playground backend for `dart_frog` package
+A playground backend for `protobuf`
 
 ### Tech Stack
 1. Postgresql 
-2. Dart Frog
-3. Prisma (for connecting to Postgresql)
+2. Protobuf
+3. Stormberry
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT

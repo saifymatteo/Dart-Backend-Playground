@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package backend;
+
+import "models/account.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+service AccountService {
+  rpc GetAccount(GetAccountRequest) returns (Account) {}
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
+  rpc UpdateAccount(UpdateAccountRequest) returns (Account) {}
+  rpc DeleteAccount(DeleteAccountRequest) returns (google.protobuf.Empty) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+}
+
+message GetAccountRequest {
+  int32 id = 1;
+}
+
+message CreateAccountRequest {
+  Account account = 1;
+}
+
+message CreateAccountResponse {
+  Account account = 1;
+  string token = 2;
+}
+
+message UpdateAccountRequest {
+  Account account = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteAccountRequest {
+  int32 id = 1;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
