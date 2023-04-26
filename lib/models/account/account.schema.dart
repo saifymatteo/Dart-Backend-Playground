@@ -24,7 +24,8 @@ class _AccountSchemaRepository extends BaseRepository
         RepositoryUpdateMixin<AccountSchemaUpdateRequest>,
         RepositoryDeleteMixin<int>
     implements AccountSchemaRepository {
-  _AccountSchemaRepository(super.db) : super(tableName: 'account', keyName: 'id');
+  _AccountSchemaRepository(super.db)
+      : super(tableName: 'account', keyName: 'id');
 
   @override
   Future<AccountSchemaView?> queryAccountSchema(int id) {
@@ -46,7 +47,9 @@ class _AccountSchemaRepository extends BaseRepository
       'RETURNING "id"',
       values.values,
     );
-    var result = rows.map<int>((r) => TextEncoder.i.decode(r.toColumnMap()['id'])).toList();
+    var result = rows
+        .map<int>((r) => TextEncoder.i.decode(r.toColumnMap()['id']))
+        .toList();
 
     return result;
   }
@@ -88,7 +91,8 @@ class AccountSchemaUpdateRequest {
   final String? password;
 }
 
-class AccountSchemaViewQueryable extends KeyedViewQueryable<AccountSchemaView, int> {
+class AccountSchemaViewQueryable
+    extends KeyedViewQueryable<AccountSchemaView, int> {
   @override
   String get keyName => 'id';
 
@@ -104,7 +108,9 @@ class AccountSchemaViewQueryable extends KeyedViewQueryable<AccountSchemaView, i
 
   @override
   AccountSchemaView decode(TypedMap map) => AccountSchemaView(
-      id: map.get('id'), username: map.get('username'), password: map.get('password'));
+      id: map.get('id'),
+      username: map.get('username'),
+      password: map.get('password'));
 }
 
 class AccountSchemaView {

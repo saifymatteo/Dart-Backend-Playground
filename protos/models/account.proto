@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package backend;
 
-message Account {
+message AccountGrpc {
   int32 id = 1;
   string username = 2;
   string password = 3;

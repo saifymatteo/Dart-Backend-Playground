@@ -3,7 +3,7 @@ import 'package:backend_playground/response/response.dart';
 import 'package:backend_playground/states/states.dart';
 import 'package:dart_frog/dart_frog.dart';
 
-import '../main.dart';
+import '../bin/main.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   switch (context.request.method) {

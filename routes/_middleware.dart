@@ -7,7 +7,7 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:stormberry/stormberry.dart';
 
-import '../main.dart';
+import '../bin/main.dart';
 
 Handler middleware(Handler handler) {
   return (context) async {

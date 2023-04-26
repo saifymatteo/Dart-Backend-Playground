@@ -5,7 +5,7 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
-import '../../main.dart';
+import '../../bin/main.dart';
 import '../../routes/user.dart' as route;
 import '../base_uri.dart';
 

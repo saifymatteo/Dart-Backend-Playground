@@ -5,7 +5,7 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:stormberry/stormberry.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../main.dart';
+import '../../bin/main.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   switch (context.request.method) {

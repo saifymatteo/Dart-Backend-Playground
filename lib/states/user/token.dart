@@ -10,13 +10,16 @@ class UserToken {
   /// Get all tokens
   Map<int, String> get tokens => _tokens;
 
-  /// Iterate [_tokens] to get current user id from provided [header]
-  int? getUserId(Map<String, String> header) => _tokens.entries
-      .firstWhereOrNull((e) => e.value == header['Authorization'])
+  /// Iterate [_tokens] to get current user id from provided [metadata]
+  int? getUserId(Map<String, String> metadata) => _tokens.entries
+      .firstWhereOrNull(
+        (e) => e.value == metadata['authorization']?.replaceAll('Bearer ', ''),
+      )
       ?.key;
 
   /// Check if user is logged in
-  bool isUserLoggedIn(String? token) => _tokens.containsValue(token);
+  bool isUserLoggedIn(String? token) =>
+      _tokens.containsValue(token?.replaceAll('Bearer ', ''));
 
   /// Add user to logged in list and attempt to remove it after 30 minutes
   void setUserLoggedIn(MapEntry<int, String> keyAndToken) {

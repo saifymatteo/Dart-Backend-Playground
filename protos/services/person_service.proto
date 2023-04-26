@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package backend;
+
+import "models/person.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+service PersonGrpcService {
+  rpc GetPerson(GetPersonRequest) returns (PersonGrpc) {}
+  rpc ListPerson(ListPersonRequest) returns (ListPersonResponse) {}
+  rpc CreatePerson(PersonGrpc) returns (PersonGrpc) {}
+  rpc UpdatePerson(UpdatePersonRequest) returns (PersonGrpc) {}
+  rpc DeletePerson(DeletePersonRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetPersonRequest {
+  int32 id = 1;
+}
+
+message ListPersonRequest {
+  int32 per_page = 1;
+}
+
+message ListPersonResponse {
+  int32 current_page = 1;
+  int32 total_pages = 2;
+  repeated PersonGrpc persons = 3;
+}
+
+message UpdatePersonRequest {
+  PersonGrpc person = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeletePersonRequest {
+  int32 id = 1;
+}
