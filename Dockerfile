@@ -1,5 +1,6 @@
 # Official Dart image: https://hub.docker.com/_/dart
 # Specify the Dart SDK base image version using dart:<version> (ex: dart:2.17)
+#FROM --platform=linux/arm64 python:3.7-alpine
 FROM dart:stable AS build
 
 # Set working directory
@@ -21,6 +22,9 @@ RUN dart compile exe bin/server.dart -o bin/server
 FROM scratch
 COPY --from=build /runtime/ /
 COPY --from=build /app/bin/server /app/bin/
+
+# Expose port
+EXPOSE 8080
 
 # Start server.
 CMD ["/app/bin/server"]

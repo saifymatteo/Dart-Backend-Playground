@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:backend_playground/components/components.dart';
+import 'package:backend_playground/env/env.dart';
+import 'package:backend_playground/states/states.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
 import 'package:stormberry/stormberry.dart';
-
-import 'components/components.dart';
 
 /// Global service accessor
 final getIt = GetIt.instance;
@@ -51,5 +52,8 @@ Future<HttpServer> run(Handler handler, InternetAddress ip, int port) async {
     await postgres.open();
   }
 
-  return serve(handler, ip, port, poweredByHeader: null);
+  final address = InternetAddress('0.0.0.0');
+  const port = 80;
+
+  return serve(handler, address, port, poweredByHeader: null);
 }
