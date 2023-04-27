@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/env/env.dart';
 import 'package:backend_playground/interceptors/interceptors.dart';
-import 'package:backend_playground/models/account/account.dart';
 import 'package:backend_playground/models/models.dart';
 import 'package:backend_playground/services/services.dart';
 import 'package:backend_playground/states/states.dart';
