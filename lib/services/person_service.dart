@@ -24,8 +24,6 @@ class PersonGrpcService extends PersonGrpcServiceBase {
 
     final userId =
         GetIt.instance.get<UserToken>().getUserId(call.clientMetadata ?? {});
-    Logger.root.finest('TEST: metadata ${call.clientMetadata}');
-    Logger.root.finest('TEST: userId $userId');
     if (userId == null) {
       throw GrpcError.unauthenticated('User ID not valid');
     }

@@ -22,5 +22,8 @@ FROM scratch
 COPY --from=build /runtime/ /
 COPY --from=build /app/bin/main /app/bin/
 
+# Export Port 8080
+EXPOSE 8080
+
 # Start server.
 CMD ["/app/bin/main"]
