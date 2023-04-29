@@ -13,11 +13,14 @@ import 'package:stormberry/stormberry.dart';
 /// Constant [Database] object
 Database initDatabase() => Database(
       debugPrint: true,
-      host: Env.dbHostAddress,
+      // host: Env.dbHostAddress,
+      host: '/cloudsql/dart-frog-playground:asia-southeast1:test/.s.PGSQL.5432',
       port: int.parse(Env.dbPort),
       database: Env.dbName,
       user: Env.dbUsername,
       password: Env.dbPassword,
+      useSSL: false,
+      isUnixSocket: true,
     );
 
 /// Server initialization

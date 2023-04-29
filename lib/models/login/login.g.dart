@@ -13,6 +13,8 @@ LoginModel _$LoginModelFromJson(Map<String, dynamic> json) => $checkedCreate(
         final val = LoginModel(
           id: $checkedConvert('id', (v) => v as int?),
           token: $checkedConvert('token', (v) => v as String?),
+          createdAt: $checkedConvert('createdAt',
+              (v) => v == null ? null : DateTime.parse(v as String)),
           account: $checkedConvert(
               'account',
               (v) => v == null
@@ -27,5 +29,6 @@ Map<String, dynamic> _$LoginModelToJson(LoginModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'token': instance.token,
+      'createdAt': instance.createdAt?.toIso8601String(),
       'account': instance.account,
     };

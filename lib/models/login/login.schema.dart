@@ -41,8 +41,8 @@ class _LoginSchemaRepository extends BaseRepository
     if (requests.isEmpty) return [];
     var values = QueryValues();
     var rows = await db.query(
-      'INSERT INTO "login" ( "token", "account_id" )\n'
-      'VALUES ${requests.map((r) => '( ${values.add(r.token)}:text, ${values.add(r.accountId)}:int8 )').join(', ')}\n'
+      'INSERT INTO "login" ( "token", "created_at", "account_id" )\n'
+      'VALUES ${requests.map((r) => '( ${values.add(r.token)}:text, ${values.add(r.createdAt)}:timestamp, ${values.add(r.accountId)}:int8 )').join(', ')}\n'
       'RETURNING "id"',
       values.values,
     );
@@ -57,9 +57,9 @@ class _LoginSchemaRepository extends BaseRepository
     var values = QueryValues();
     await db.query(
       'UPDATE "login"\n'
-      'SET "token" = COALESCE(UPDATED."token", "login"."token"), "account_id" = COALESCE(UPDATED."account_id", "login"."account_id")\n'
-      'FROM ( VALUES ${requests.map((r) => '( ${values.add(r.id)}:int8::int8, ${values.add(r.token)}:text::text, ${values.add(r.accountId)}:int8::int8 )').join(', ')} )\n'
-      'AS UPDATED("id", "token", "account_id")\n'
+      'SET "token" = COALESCE(UPDATED."token", "login"."token"), "created_at" = COALESCE(UPDATED."created_at", "login"."created_at"), "account_id" = COALESCE(UPDATED."account_id", "login"."account_id")\n'
+      'FROM ( VALUES ${requests.map((r) => '( ${values.add(r.id)}:int8::int8, ${values.add(r.token)}:text::text, ${values.add(r.createdAt)}:timestamp::timestamp, ${values.add(r.accountId)}:int8::int8 )').join(', ')} )\n'
+      'AS UPDATED("id", "token", "created_at", "account_id")\n'
       'WHERE "login"."id" = UPDATED."id"',
       values.values,
     );
@@ -69,10 +69,12 @@ class _LoginSchemaRepository extends BaseRepository
 class LoginSchemaInsertRequest {
   LoginSchemaInsertRequest({
     required this.token,
+    required this.createdAt,
     required this.accountId,
   });
 
   final String token;
+  final DateTime createdAt;
   final int accountId;
 }
 
@@ -80,11 +82,13 @@ class LoginSchemaUpdateRequest {
   LoginSchemaUpdateRequest({
     required this.id,
     this.token,
+    this.createdAt,
     this.accountId,
   });
 
   final int id;
   final String? token;
+  final DateTime? createdAt;
   final int? accountId;
 }
 
@@ -108,6 +112,7 @@ class LoginSchemaViewQueryable extends KeyedViewQueryable<LoginSchemaView, int> 
   LoginSchemaView decode(TypedMap map) => LoginSchemaView(
       id: map.get('id'),
       token: map.get('token'),
+      createdAt: map.get('created_at'),
       account: map.get('account', AccountSchemaViewQueryable().decoder));
 }
 
@@ -115,10 +120,12 @@ class LoginSchemaView {
   LoginSchemaView({
     required this.id,
     required this.token,
+    required this.createdAt,
     required this.account,
   });
 
   final int id;
   final String token;
+  final DateTime createdAt;
   final AccountSchemaView account;
 }

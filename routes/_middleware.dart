@@ -15,16 +15,7 @@ Handler middleware(Handler handler) {
 
     // Auth API path require no authentication
     if (context.request.uri.path.contains('/account')) {
-      return _handleRequest(handler, context)
-          .catchError((Object e, StackTrace s) {
-        return Response.json(
-          body: {
-            'exception': 'Async Exception/Account',
-            'message': e.toString(),
-            'stacktrace': s.toString(),
-          },
-        );
-      });
+      return _handleRequest(handler, context);
     }
 
     // Get authorization
@@ -37,16 +28,7 @@ Handler middleware(Handler handler) {
       return ApiResult.notAuthorized();
     }
 
-    return _handleRequest(handler, context)
-        .catchError((Object e, StackTrace s) {
-      return Response.json(
-        body: {
-          'exception': 'Async Exception',
-          'message': e.toString(),
-          'stacktrace': s.toString(),
-        },
-      );
-    });
+    return _handleRequest(handler, context);
   };
 }
 
@@ -63,10 +45,10 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
         'exception': 'PostgreSQLException',
         'message': e.message,
         if (e.stackTrace != null) 'stackTrace': e.stackTrace,
-        if (e.detail != null) 'detail': e.detail,
-        if (e.hint != null) 'hint': e.hint,
-        if (e.trace != null) 'trace': e.trace,
-        if (e.code != null) 'code': e.code,
+        if (!e.detail.isNullOrWhiteSpace) 'detail': e.detail,
+        if (!e.hint.isNullOrWhiteSpace) 'hint': e.hint,
+        if (!e.trace.isNullOrWhiteSpace) 'trace': e.trace,
+        if (!e.code.isNullOrWhiteSpace) 'code': e.code,
       },
     );
   }

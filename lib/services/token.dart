@@ -40,7 +40,11 @@ class TokenService {
   Future<void> setUserLoggedIn(int accountId) async {
     final token = _uuid.v4();
     await _repository.insertOne(
-      LoginSchemaInsertRequest(token: token, accountId: accountId),
+      LoginSchemaInsertRequest(
+        token: token,
+        accountId: accountId,
+        createdAt: DateTime.now(),
+      ),
     );
     Logger.root.info('User $accountId logged in: $token');
   }

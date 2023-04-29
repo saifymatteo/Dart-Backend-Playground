@@ -21,6 +21,8 @@ abstract class LoginSchema {
 
   String get token;
 
+  DateTime get createdAt;
+
   AccountSchema get account;
 }
 
@@ -29,12 +31,14 @@ class LoginModel {
   const LoginModel({
     this.id,
     this.token,
+    this.createdAt,
     this.account,
   });
 
   factory LoginModel.fromSchema(LoginSchemaView schema) => LoginModel(
         id: schema.id,
         token: schema.token,
+        createdAt: schema.createdAt,
         account: AccountModel(
           id: schema.account.id,
           username: schema.account.username,
@@ -49,6 +53,9 @@ class LoginModel {
     if (token == null) {
       throw ArgumentError.value(token, 'token');
     }
+    if (createdAt == null) {
+      throw ArgumentError.value(createdAt, 'createdAt');
+    }
     if (account == null) {
       throw ArgumentError.value(account, 'account');
     }
@@ -58,6 +65,7 @@ class LoginModel {
 
     return LoginSchemaInsertRequest(
       token: model.token!,
+      createdAt: model.createdAt!,
       accountId: model.account!.id!,
     );
   }
@@ -73,6 +81,7 @@ class LoginModel {
     return LoginSchemaUpdateRequest(
       id: model.id!,
       token: model.token,
+      createdAt: model.createdAt,
       accountId: model.account!.id,
     );
   }
@@ -85,17 +94,22 @@ class LoginModel {
   @JsonKey(name: 'token')
   final String? token;
 
+  @JsonKey(name: 'createdAt')
+  final DateTime? createdAt;
+
   @JsonKey(name: 'account')
   final AccountModel? account;
 
   LoginModel copyWith({
     int? id,
     String? token,
+    DateTime? createdAt,
     AccountModel? account,
   }) {
     return LoginModel(
       id: id ?? this.id,
       token: token ?? this.token,
+      createdAt: createdAt ?? this.createdAt,
       account: account ?? this.account,
     );
   }

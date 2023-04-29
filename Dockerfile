@@ -25,6 +25,7 @@ COPY --from=build /app/bin/server /app/bin/
 
 # Expose port
 EXPOSE 8080
+EXPOSE 5432
 
 # Start server.
 CMD ["/app/bin/server"]

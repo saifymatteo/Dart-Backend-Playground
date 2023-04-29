@@ -47,7 +47,11 @@ Future<Response> _onPostRequest(RequestContext context) async {
 
   // Insert token to Database
   await GetIt.I.get<Database>().loginSchemas.insertOne(
-        LoginSchemaInsertRequest(token: token, accountId: id),
+        LoginSchemaInsertRequest(
+          token: token,
+          accountId: id,
+          createdAt: DateTime.now(),
+        ),
       );
 
   return Response.json(
