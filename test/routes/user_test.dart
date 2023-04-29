@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:backend_playground/models/models.dart';
 import 'package:dart_frog/dart_frog.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:stormberry/stormberry.dart';
 import 'package:test/test.dart';
 
-import '../../main.dart';
 import '../../routes/user.dart' as route;
 import '../base_uri.dart';
 
@@ -19,7 +20,8 @@ void main() {
       when(() => context.request).thenReturn(request);
 
       final response = await route.onRequest(context);
-      final persons = await postgres.personSchemas.queryPersonSchemas();
+      final persons =
+          await GetIt.I.get<Database>().personSchemas.queryPersonSchemas();
 
       expect(response.statusCode, equals(HttpStatus.ok));
 
@@ -46,7 +48,8 @@ void main() {
       expect(response.statusCode, equals(HttpStatus.ok));
 
       final json = await response.json() as Map<String, dynamic>? ?? {};
-      final data = await postgres.personSchemas.queryPersonSchema(id);
+      final data =
+          await GetIt.I.get<Database>().personSchemas.queryPersonSchema(id);
       if (data == null) {
         markTestSkipped('missing data');
       }

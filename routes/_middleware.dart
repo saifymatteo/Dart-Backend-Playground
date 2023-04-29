@@ -2,33 +2,51 @@ import 'dart:async';
 
 import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/response/response.dart';
-import 'package:backend_playground/states/states.dart';
+import 'package:backend_playground/services/services.dart';
 import 'package:dart_frog/dart_frog.dart';
+import 'package:get_it/get_it.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:stormberry/stormberry.dart';
-
-import '../main.dart';
 
 Handler middleware(Handler handler) {
   return (context) async {
     // Log incoming request
-    getIt.get<Debounce>().logRequest(context.request);
+    GetIt.instance.get<Debounce>().logRequest(context.request);
 
     // Auth API path require no authentication
     if (context.request.uri.path.contains('/account')) {
-      return _handleRequest(handler, context);
+      return _handleRequest(handler, context)
+          .catchError((Object e, StackTrace s) {
+        return Response.json(
+          body: {
+            'exception': 'Async Exception/Account',
+            'message': e.toString(),
+            'stacktrace': s.toString(),
+          },
+        );
+      });
     }
 
     // Get authorization
     final authorization = context.request.headers['Authorization'];
-    final isUserLoggedIn = getIt.get<UserToken>().isUserLoggedIn(authorization);
+    final isUserLoggedIn =
+        await GetIt.instance.get<TokenService>().isUserLoggedIn(authorization);
 
     // Execute code before request is handled.
     if (!isUserLoggedIn) {
       return ApiResult.notAuthorized();
     }
 
-    return _handleRequest(handler, context);
+    return _handleRequest(handler, context)
+        .catchError((Object e, StackTrace s) {
+      return Response.json(
+        body: {
+          'exception': 'Async Exception',
+          'message': e.toString(),
+          'stacktrace': s.toString(),
+        },
+      );
+    });
   };
 }
 
@@ -62,6 +80,8 @@ Future<Response> _handleRequest(Handler handler, RequestContext context) async {
         'message': 'missing field(s) ${e.key}',
       },
     );
+  } on TimeoutException {
+    rethrow;
   }
   // ! Unknown Exception
   catch (e, s) {

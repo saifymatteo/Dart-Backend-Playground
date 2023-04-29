@@ -3,57 +3,53 @@ import 'dart:io';
 
 import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/env/env.dart';
-import 'package:backend_playground/states/states.dart';
+import 'package:backend_playground/models/models.dart';
+import 'package:backend_playground/services/services.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
 import 'package:stormberry/stormberry.dart';
 
-/// Global service accessor
-final getIt = GetIt.instance;
-
-/// Object to refer when using [Database].
-/// Need to reassign in case of disconnection
-late Database postgres;
-
 /// Constant [Database] object
 Database initDatabase() => Database(
       debugPrint: true,
-      host: Env.databaseHost,
-      port: int.parse(Env.databasePort),
-      database: Env.databaseName,
-      user: Env.databaseUsername,
-      password: Env.databasePassword,
+      host: Env.dbHostAddress,
+      port: int.parse(Env.dbPort),
+      database: Env.dbName,
+      user: Env.dbUsername,
+      password: Env.dbPassword,
     );
 
 /// Server initialization
 Future<void> init(InternetAddress ip, int port) async {
-  postgres = initDatabase();
-  await postgres.open();
-
   // Logger registration
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((event) async {
+  Logger.root.onRecord.listen((event) {
     // ignore: avoid_print
     print('${event.time}: ${event.level.name}: ${event.message}');
   });
 
   // Provider registration
-  getIt
+  GetIt.instance
+    ..registerSingleton<Database>(initDatabase())
     ..registerSingleton<Debounce>(Debounce())
-    ..registerSingleton<UserToken>(UserToken());
+    ..registerSingleton<TokenService>(
+      TokenService(repository: GetIt.instance.get<Database>().loginSchemas),
+    );
 }
 
 /// Server first entrypoint for every request
 Future<HttpServer> run(Handler handler, InternetAddress ip, int port) async {
   // Check for database connection and reassign if needed
-  if (postgres.connection().isClosed) {
-    postgres = initDatabase();
-    await postgres.open();
+  final db = GetIt.instance.get<Database>();
+  if (db.connection().isClosed) {
+    GetIt.instance
+      ..unregister<Database>()
+      ..registerSingleton<Database>(initDatabase());
   }
 
   final address = InternetAddress('0.0.0.0');
-  const port = 80;
+  const port = 8080;
 
   return serve(handler, address, port, poweredByHeader: null);
 }

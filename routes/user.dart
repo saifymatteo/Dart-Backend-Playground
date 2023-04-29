@@ -1,9 +1,9 @@
 import 'package:backend_playground/models/models.dart';
 import 'package:backend_playground/response/response.dart';
-import 'package:backend_playground/states/states.dart';
+import 'package:backend_playground/services/services.dart';
 import 'package:dart_frog/dart_frog.dart';
-
-import '../main.dart';
+import 'package:get_it/get_it.dart';
+import 'package:stormberry/stormberry.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   switch (context.request.method) {
@@ -31,7 +31,8 @@ Future<Response> _onGetRequest(RequestContext context) async {
         return ApiResult.badRequest();
       }
 
-      final response = await postgres.personSchemas.queryPersonSchema(id);
+      final response =
+          await GetIt.I.get<Database>().personSchemas.queryPersonSchema(id);
       if (response == null) {
         return ApiResult.notFound();
       }
@@ -45,7 +46,8 @@ Future<Response> _onGetRequest(RequestContext context) async {
     return ApiResult.badRequest();
   }
 
-  final response = await postgres.personSchemas.queryPersonSchemas();
+  final response =
+      await GetIt.I.get<Database>().personSchemas.queryPersonSchemas();
 
   return Response.json(
     body: [
@@ -64,19 +66,21 @@ Future<Response> _onPostRequest(RequestContext context) async {
   }
 
   final request = PersonModel.fromJson(json);
-  final userId = getIt<UserToken>().getUserId(context.request.headers);
+  final userId =
+      await GetIt.instance<TokenService>().getUserId(context.request.headers);
   if (userId == null) {
     return ApiResult.notAuthorized();
   }
 
-  final insert = await postgres.personSchemas.insertOne(
-    request.toSchemaInsertRequest(
-      // Add [AccountModel] for account.id
-      request.copyWith(account: AccountModel(id: userId)),
-    ),
-  );
+  final insert = await GetIt.I.get<Database>().personSchemas.insertOne(
+        request.toSchemaInsertRequest(
+          // Add [AccountModel] for account.id
+          request.copyWith(account: AccountModel(id: userId)),
+        ),
+      );
 
-  final response = await postgres.personSchemas.queryPersonSchema(insert);
+  final response =
+      await GetIt.I.get<Database>().personSchemas.queryPersonSchema(insert);
   if (response == null) {
     return ApiResult.badGateway();
   }
@@ -101,15 +105,19 @@ Future<Response> _onPatchRequest(RequestContext context) async {
   }
 
   final request = PersonModel.fromJson(json);
-  final userId = getIt<UserToken>().getUserId(context.request.headers);
+  final userId =
+      await GetIt.instance<TokenService>().getUserId(context.request.headers);
   if (userId == null) {
     return ApiResult.notAuthorized();
   }
 
-  await postgres.personSchemas
+  await GetIt.I
+      .get<Database>()
+      .personSchemas
       .updateOne(request.toSchemaUpdateRequest(request.copyWith(id: id)));
 
-  final response = await postgres.personSchemas.queryPersonSchema(id);
+  final response =
+      await GetIt.I.get<Database>().personSchemas.queryPersonSchema(id);
   if (response == null) {
     // Not found, provided [id] is not found
     return ApiResult.notFound();
