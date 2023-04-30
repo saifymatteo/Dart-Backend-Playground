@@ -6,20 +6,23 @@ import 'package:backend_playground/services/services.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:get_it/get_it.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:logging/logging.dart';
 import 'package:stormberry/stormberry.dart';
 
 Handler middleware(Handler handler) {
   return (context) async {
+    final request = context.request;
+//
     // Log incoming request
-    GetIt.instance.get<Debounce>().logRequest(context.request);
+    Logger.root.info('${request.method.value}: ${request.uri.path}');
 
     // Auth API path require no authentication
-    if (context.request.uri.path.contains('/account')) {
+    if (request.uri.path.contains('/account')) {
       return _handleRequest(handler, context);
     }
 
     // Get authorization
-    final token = context.request.headers['Authorization'];
+    final token = request.headers['Authorization'];
     final isUserLoggedIn =
         await GetIt.instance.get<TokenService>().isUserLoggedIn(token);
 

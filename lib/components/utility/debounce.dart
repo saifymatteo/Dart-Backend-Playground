@@ -1,22 +1,10 @@
 import 'dart:async';
 
-import 'package:dart_frog/dart_frog.dart';
-import 'package:logging/logging.dart';
-
-const _requestKey = 'request';
-
+/// Debounce class to manage [Timer] and create new [debounce]
 class Debounce {
   final Map<String, Timer> _timers = {};
 
-  void logRequest(Request request) => debounce(
-        timerKey: _requestKey,
-        callback: () {
-          Logger.root.info(
-            '${request.method.value}: ${request.uri.path}',
-          );
-        },
-      );
-
+  /// Create new [debounce]
   void debounce({
     required String timerKey,
     required void Function() callback,
