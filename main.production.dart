@@ -7,7 +7,7 @@ import 'main.shared.dart';
 
 /// Server initialization
 Future<void> init(InternetAddress ip, int port) async {
-  initialiseDependency(database: DevelopmentDatabase());
+  initialiseDependency(database: ProductionDatabase());
 }
 
 /// Server first entrypoint for every request

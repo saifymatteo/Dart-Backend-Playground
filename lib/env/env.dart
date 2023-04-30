@@ -7,6 +7,9 @@ abstract class Env {
   @EnviedField(varName: 'DB_HOST_ADDRESS')
   static final dbHostAddress = _Env.dbHostAddress;
 
+  @EnviedField(varName: 'DB_HOST_UNIX_INSTANCE')
+  static final dbHostUnixInstance = _Env.dbHostUnixInstance;
+
   @EnviedField(varName: 'DB_PORT')
   static final dbPort = _Env.dbPort;
 

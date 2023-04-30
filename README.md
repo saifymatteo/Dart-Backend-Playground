@@ -9,7 +9,7 @@ A playground backend for `dart_frog` package
 ### Tech Stack
 1. Postgresql 
 2. Dart Frog
-3. Prisma (for connecting to Postgresql)
+3. Stormberry ORM
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT

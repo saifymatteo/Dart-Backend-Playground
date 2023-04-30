@@ -21,6 +21,8 @@ abstract class AccountSchema {
   String get username;
 
   String get password;
+
+  DateTime get createdAt;
 }
 
 @JsonSerializable()
@@ -29,12 +31,14 @@ class AccountModel {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountModel.fromSchema(AccountSchemaView schema) => AccountModel(
         id: schema.id,
         username: schema.username,
         password: schema.password,
+        createdAt: schema.createdAt,
       );
 
   factory AccountModel.fromJson(Map<String, dynamic> json) =>
@@ -51,6 +55,7 @@ class AccountModel {
     return AccountSchemaInsertRequest(
       username: model.username!,
       password: model.password!,
+      createdAt: DateTime.now(),
     );
   }
 
@@ -63,6 +68,7 @@ class AccountModel {
       id: model.id!,
       username: model.username,
       password: model.password,
+      createdAt: model.createdAt,
     );
   }
 
@@ -77,15 +83,20 @@ class AccountModel {
   @JsonKey(name: 'password')
   final String? password;
 
+  @JsonKey(name: 'createdAt')
+  final DateTime? createdAt;
+
   AccountModel copyWith({
     int? id,
     String? username,
     String? password,
+    DateTime? createdAt,
   }) {
     return AccountModel(
       id: id ?? this.id,
       username: username ?? this.username,
       password: password ?? this.password,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 }

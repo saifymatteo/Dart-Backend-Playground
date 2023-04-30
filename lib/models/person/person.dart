@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:backend_playground/models/models.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:stormberry/stormberry.dart';

@@ -41,8 +41,8 @@ class _AccountSchemaRepository extends BaseRepository
     if (requests.isEmpty) return [];
     var values = QueryValues();
     var rows = await db.query(
-      'INSERT INTO "account" ( "username", "password" )\n'
-      'VALUES ${requests.map((r) => '( ${values.add(r.username)}:text, ${values.add(r.password)}:text )').join(', ')}\n'
+      'INSERT INTO "account" ( "username", "password", "created_at" )\n'
+      'VALUES ${requests.map((r) => '( ${values.add(r.username)}:text, ${values.add(r.password)}:text, ${values.add(r.createdAt)}:timestamp )').join(', ')}\n'
       'RETURNING "id"',
       values.values,
     );
@@ -57,9 +57,9 @@ class _AccountSchemaRepository extends BaseRepository
     var values = QueryValues();
     await db.query(
       'UPDATE "account"\n'
-      'SET "username" = COALESCE(UPDATED."username", "account"."username"), "password" = COALESCE(UPDATED."password", "account"."password")\n'
-      'FROM ( VALUES ${requests.map((r) => '( ${values.add(r.id)}:int8::int8, ${values.add(r.username)}:text::text, ${values.add(r.password)}:text::text )').join(', ')} )\n'
-      'AS UPDATED("id", "username", "password")\n'
+      'SET "username" = COALESCE(UPDATED."username", "account"."username"), "password" = COALESCE(UPDATED."password", "account"."password"), "created_at" = COALESCE(UPDATED."created_at", "account"."created_at")\n'
+      'FROM ( VALUES ${requests.map((r) => '( ${values.add(r.id)}:int8::int8, ${values.add(r.username)}:text::text, ${values.add(r.password)}:text::text, ${values.add(r.createdAt)}:timestamp::timestamp )').join(', ')} )\n'
+      'AS UPDATED("id", "username", "password", "created_at")\n'
       'WHERE "account"."id" = UPDATED."id"',
       values.values,
     );
@@ -70,10 +70,12 @@ class AccountSchemaInsertRequest {
   AccountSchemaInsertRequest({
     required this.username,
     required this.password,
+    required this.createdAt,
   });
 
   final String username;
   final String password;
+  final DateTime createdAt;
 }
 
 class AccountSchemaUpdateRequest {
@@ -81,11 +83,13 @@ class AccountSchemaUpdateRequest {
     required this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   final int id;
   final String? username;
   final String? password;
+  final DateTime? createdAt;
 }
 
 class AccountSchemaViewQueryable extends KeyedViewQueryable<AccountSchemaView, int> {
@@ -104,7 +108,10 @@ class AccountSchemaViewQueryable extends KeyedViewQueryable<AccountSchemaView, i
 
   @override
   AccountSchemaView decode(TypedMap map) => AccountSchemaView(
-      id: map.get('id'), username: map.get('username'), password: map.get('password'));
+      id: map.get('id'),
+      username: map.get('username'),
+      password: map.get('password'),
+      createdAt: map.get('created_at'));
 }
 
 class AccountSchemaView {
@@ -112,9 +119,11 @@ class AccountSchemaView {
     required this.id,
     required this.username,
     required this.password,
+    required this.createdAt,
   });
 
   final int id;
   final String username;
   final String password;
+  final DateTime createdAt;
 }

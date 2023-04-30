@@ -19,9 +19,9 @@ Handler middleware(Handler handler) {
     }
 
     // Get authorization
-    final authorization = context.request.headers['Authorization'];
+    final token = context.request.headers['Authorization'];
     final isUserLoggedIn =
-        await GetIt.instance.get<TokenService>().isUserLoggedIn(authorization);
+        await GetIt.instance.get<TokenService>().isUserLoggedIn(token);
 
     // Execute code before request is handled.
     if (!isUserLoggedIn) {

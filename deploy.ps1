@@ -8,6 +8,10 @@ Remove-Item build\.dockerignore
 Remove-Item build\deploy.ps1
 Remove-Item build\stormberry_migrate.ps1
 
+# Setup Production
+Remove-Item build\main.dart
+Rename-Item build\main.production.dart -NewName main.dart
+
 # Copy custom Dockerfile to build
 Copy-Item Dockerfile build\
 

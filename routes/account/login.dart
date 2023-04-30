@@ -1,9 +1,9 @@
 import 'package:backend_playground/models/models.dart';
 import 'package:backend_playground/response/response.dart';
+import 'package:backend_playground/services/services.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stormberry/stormberry.dart';
-import 'package:uuid/uuid.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   switch (context.request.method) {
@@ -42,16 +42,9 @@ Future<Response> _onPostRequest(RequestContext context) async {
 
   // With WHERE clause, we should get only single row
   final id = response.first.id;
-  final token = const Uuid().v4();
 
   // Insert token to Database
-  await GetIt.I.get<Database>().loginSchemas.insertOne(
-        LoginSchemaInsertRequest(
-          token: token,
-          accountId: id,
-          createdAt: DateTime.now(),
-        ),
-      );
+  final token = await GetIt.I.get<TokenService>().setUserLoggedIn(id);
 
   return Response.json(
     body: {'user_id': id, 'token': token},
