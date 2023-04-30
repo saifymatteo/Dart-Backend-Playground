@@ -47,6 +47,7 @@ class TokenService {
         token: token,
         accountId: accountId,
         createdAt: DateTime.now(),
+        expiresAt: DateTime.now().add(const Duration(days: 1)),
       ),
     );
 

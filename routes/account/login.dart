@@ -1,3 +1,4 @@
+import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/models/models.dart';
 import 'package:backend_playground/response/response.dart';
 import 'package:backend_playground/services/services.dart';
@@ -9,11 +10,12 @@ Future<Response> onRequest(RequestContext context) async {
   switch (context.request.method) {
     case HttpMethod.post:
       return _onPostRequest(context);
+    case HttpMethod.patch:
+      return _onPatchRequest(context);
     case HttpMethod.delete:
     case HttpMethod.get:
     case HttpMethod.head:
     case HttpMethod.options:
-    case HttpMethod.patch:
     case HttpMethod.put:
   }
   return ApiResult.methodNotAllowed();
@@ -49,4 +51,50 @@ Future<Response> _onPostRequest(RequestContext context) async {
   return Response.json(
     body: {'user_id': id, 'token': token},
   );
+}
+
+Future<Response> _onPatchRequest(RequestContext context) async {
+  final json = await context.request.json() as Map<String, dynamic>? ?? {};
+
+  if (json.isEmpty) {
+    return ApiResult.badRequest();
+  }
+
+  final scope = json['scope'];
+  final token = json['token'];
+
+  if (scope == 'all') {
+    final idsToDelete =
+        await GetIt.instance.get<Database>().loginSchemas.queryLoginSchemas(
+              const QueryParams(where: 'expires_at < now()'),
+            );
+    if (idsToDelete.isEmpty) {
+      return ApiResult.notFound();
+    }
+
+    await GetIt.I
+        .get<Database>()
+        .loginSchemas
+        .deleteMany(idsToDelete.map((e) => e.id).toList());
+
+    return Response(body: 'OK');
+  }
+
+  if (scope == 'single' && token is String?) {
+    if (token.isNullOrWhiteSpace) return ApiResult.badRequest();
+
+    final id =
+        await GetIt.instance.get<Database>().loginSchemas.queryLoginSchemas(
+              QueryParams(where: "token = '$token'"),
+            );
+    if (id.isEmpty) {
+      return ApiResult.notFound();
+    }
+
+    await GetIt.instance.get<Database>().loginSchemas.deleteOne(id.first.id);
+
+    return Response(body: 'OK');
+  }
+
+  return ApiResult.badRequest();
 }

@@ -23,6 +23,8 @@ abstract class LoginSchema {
 
   DateTime get createdAt;
 
+  DateTime get expiresAt;
+
   AccountSchema get account;
 }
 
@@ -32,6 +34,7 @@ class LoginModel {
     this.id,
     this.token,
     this.createdAt,
+    this.expiresAt,
     this.account,
   });
 
@@ -39,6 +42,7 @@ class LoginModel {
         id: schema.id,
         token: schema.token,
         createdAt: schema.createdAt,
+        expiresAt: schema.expiresAt,
         account: AccountModel(
           id: schema.account.id,
           username: schema.account.username,
@@ -56,6 +60,9 @@ class LoginModel {
     if (createdAt == null) {
       throw ArgumentError.value(createdAt, 'createdAt');
     }
+    if (expiresAt == null) {
+      throw ArgumentError.value(expiresAt, 'expiresAt');
+    }
     if (account == null) {
       throw ArgumentError.value(account, 'account');
     }
@@ -66,6 +73,7 @@ class LoginModel {
     return LoginSchemaInsertRequest(
       token: model.token!,
       createdAt: model.createdAt!,
+      expiresAt: model.expiresAt!,
       accountId: model.account!.id!,
     );
   }
@@ -82,6 +90,7 @@ class LoginModel {
       id: model.id!,
       token: model.token,
       createdAt: model.createdAt,
+      expiresAt: model.expiresAt,
       accountId: model.account!.id,
     );
   }
@@ -97,6 +106,9 @@ class LoginModel {
   @JsonKey(name: 'createdAt')
   final DateTime? createdAt;
 
+  @JsonKey(name: 'expiresAt')
+  final DateTime? expiresAt;
+
   @JsonKey(name: 'account')
   final AccountModel? account;
 
@@ -104,12 +116,14 @@ class LoginModel {
     int? id,
     String? token,
     DateTime? createdAt,
+    DateTime? expiresAt,
     AccountModel? account,
   }) {
     return LoginModel(
       id: id ?? this.id,
       token: token ?? this.token,
       createdAt: createdAt ?? this.createdAt,
+      expiresAt: expiresAt ?? this.expiresAt,
       account: account ?? this.account,
     );
   }
