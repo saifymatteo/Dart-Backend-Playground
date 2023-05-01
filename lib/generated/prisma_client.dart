@@ -12,10 +12,30 @@ part 'prisma_client.g.dart';
 enum AccountScalarFieldEnum implements _i1.PrismaEnum {
   id,
   username,
-  password;
+  password,
+  @JsonValue('created_at')
+  createdAt(r'created_at');
+
+  const AccountScalarFieldEnum([this.originalName]);
 
   @override
-  String? get originalName => null;
+  final String? originalName;
+}
+
+enum LoginScalarFieldEnum implements _i1.PrismaEnum {
+  id,
+  token,
+  @JsonValue('created_at')
+  createdAt(r'created_at'),
+  @JsonValue('expires_at')
+  expiresAt(r'expires_at'),
+  @JsonValue('account_id')
+  accountId(r'account_id');
+
+  const LoginScalarFieldEnum([this.originalName]);
+
+  @override
+  final String? originalName;
 }
 
 enum PersonScalarFieldEnum implements _i1.PrismaEnum {
@@ -65,6 +85,8 @@ class AccountWhereInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
+    this.login,
     this.person,
   });
 
@@ -83,6 +105,11 @@ class AccountWhereInput implements _i1.JsonSerializable {
 
   final StringFilter? password;
 
+  @JsonKey(name: r'created_at')
+  final DateTimeFilter? createdAt;
+
+  final LoginListRelationFilter? login;
+
   final PersonListRelationFilter? person;
 
   @override
@@ -95,6 +122,8 @@ class AccountOrderByWithRelationInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
+    this.login,
     this.person,
   });
 
@@ -106,6 +135,11 @@ class AccountOrderByWithRelationInput implements _i1.JsonSerializable {
   final SortOrder? username;
 
   final SortOrder? password;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
+
+  final LoginOrderByRelationAggregateInput? login;
 
   final PersonOrderByRelationAggregateInput? person;
 
@@ -138,6 +172,7 @@ class AccountOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
     this.$count,
     this.$avg,
     this.$max,
@@ -154,6 +189,9 @@ class AccountOrderByWithAggregationInput implements _i1.JsonSerializable {
   final SortOrder? username;
 
   final SortOrder? password;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
 
   @JsonKey(name: r'_count')
   final AccountCountOrderByAggregateInput? $count;
@@ -184,6 +222,7 @@ class AccountScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountScalarWhereWithAggregatesInput.fromJson(
@@ -202,9 +241,198 @@ class AccountScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final StringWithAggregatesFilter? password;
 
+  @JsonKey(name: r'created_at')
+  final DateTimeWithAggregatesFilter? createdAt;
+
   @override
   Map<String, dynamic> toJson() =>
       _$AccountScalarWhereWithAggregatesInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginWhereInput implements _i1.JsonSerializable {
+  const LoginWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+    this.account,
+  });
+
+  factory LoginWhereInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginWhereInputFromJson(json);
+
+  final Iterable<LoginWhereInput>? AND;
+
+  final Iterable<LoginWhereInput>? OR;
+
+  final Iterable<LoginWhereInput>? NOT;
+
+  final BigIntFilter? id;
+
+  final StringFilter? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFilter? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFilter? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigIntFilter? accountId;
+
+  final AccountRelationFilter? account;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginWhereInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginOrderByWithRelationInput implements _i1.JsonSerializable {
+  const LoginOrderByWithRelationInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+    this.account,
+  });
+
+  factory LoginOrderByWithRelationInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginOrderByWithRelationInputFromJson(json);
+
+  final SortOrder? id;
+
+  final SortOrder? token;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final SortOrder? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final SortOrder? accountId;
+
+  final AccountOrderByWithRelationInput? account;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginOrderByWithRelationInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginWhereUniqueInput implements _i1.JsonSerializable {
+  const LoginWhereUniqueInput({
+    this.id,
+    this.token,
+  });
+
+  factory LoginWhereUniqueInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginWhereUniqueInputFromJson(json);
+
+  final BigInt? id;
+
+  final String? token;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginWhereUniqueInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginOrderByWithAggregationInput implements _i1.JsonSerializable {
+  const LoginOrderByWithAggregationInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+    this.$count,
+    this.$avg,
+    this.$max,
+    this.$min,
+    this.$sum,
+  });
+
+  factory LoginOrderByWithAggregationInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginOrderByWithAggregationInputFromJson(json);
+
+  final SortOrder? id;
+
+  final SortOrder? token;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final SortOrder? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final SortOrder? accountId;
+
+  @JsonKey(name: r'_count')
+  final LoginCountOrderByAggregateInput? $count;
+
+  @JsonKey(name: r'_avg')
+  final LoginAvgOrderByAggregateInput? $avg;
+
+  @JsonKey(name: r'_max')
+  final LoginMaxOrderByAggregateInput? $max;
+
+  @JsonKey(name: r'_min')
+  final LoginMinOrderByAggregateInput? $min;
+
+  @JsonKey(name: r'_sum')
+  final LoginSumOrderByAggregateInput? $sum;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginOrderByWithAggregationInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
+  const LoginScalarWhereWithAggregatesInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginScalarWhereWithAggregatesInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginScalarWhereWithAggregatesInputFromJson(json);
+
+  final Iterable<LoginScalarWhereWithAggregatesInput>? AND;
+
+  final Iterable<LoginScalarWhereWithAggregatesInput>? OR;
+
+  final Iterable<LoginScalarWhereWithAggregatesInput>? NOT;
+
+  final BigIntWithAggregatesFilter? id;
+
+  final StringWithAggregatesFilter? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeWithAggregatesFilter? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeWithAggregatesFilter? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigIntWithAggregatesFilter? accountId;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginScalarWhereWithAggregatesInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -427,6 +655,8 @@ class AccountCreateInput implements _i1.JsonSerializable {
     this.id,
     required this.username,
     required this.password,
+    required this.createdAt,
+    this.login,
     this.person,
   });
 
@@ -438,6 +668,11 @@ class AccountCreateInput implements _i1.JsonSerializable {
   final String username;
 
   final String password;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  final LoginCreateNestedManyWithoutAccountInput? login;
 
   final PersonCreateNestedManyWithoutAccountInput? person;
 
@@ -451,6 +686,8 @@ class AccountUncheckedCreateInput implements _i1.JsonSerializable {
     this.id,
     required this.username,
     required this.password,
+    required this.createdAt,
+    this.login,
     this.person,
   });
 
@@ -462,6 +699,11 @@ class AccountUncheckedCreateInput implements _i1.JsonSerializable {
   final String username;
 
   final String password;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  final LoginUncheckedCreateNestedManyWithoutAccountInput? login;
 
   final PersonUncheckedCreateNestedManyWithoutAccountInput? person;
 
@@ -475,6 +717,8 @@ class AccountUpdateInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
+    this.login,
     this.person,
   });
 
@@ -486,6 +730,11 @@ class AccountUpdateInput implements _i1.JsonSerializable {
   final StringFieldUpdateOperationsInput? username;
 
   final StringFieldUpdateOperationsInput? password;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  final LoginUpdateManyWithoutAccountNestedInput? login;
 
   final PersonUpdateManyWithoutAccountNestedInput? person;
 
@@ -499,6 +748,8 @@ class AccountUncheckedUpdateInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
+    this.login,
     this.person,
   });
 
@@ -510,6 +761,11 @@ class AccountUncheckedUpdateInput implements _i1.JsonSerializable {
   final StringFieldUpdateOperationsInput? username;
 
   final StringFieldUpdateOperationsInput? password;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  final LoginUncheckedUpdateManyWithoutAccountNestedInput? login;
 
   final PersonUncheckedUpdateManyWithoutAccountNestedInput? person;
 
@@ -523,6 +779,7 @@ class AccountCreateManyInput implements _i1.JsonSerializable {
     this.id,
     required this.username,
     required this.password,
+    required this.createdAt,
   });
 
   factory AccountCreateManyInput.fromJson(Map<String, dynamic> json) =>
@@ -534,6 +791,9 @@ class AccountCreateManyInput implements _i1.JsonSerializable {
 
   final String password;
 
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
   @override
   Map<String, dynamic> toJson() => _$AccountCreateManyInputToJson(this);
 }
@@ -544,6 +804,7 @@ class AccountUpdateManyMutationInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountUpdateManyMutationInput.fromJson(Map<String, dynamic> json) =>
@@ -555,6 +816,9 @@ class AccountUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final StringFieldUpdateOperationsInput? password;
 
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
   @override
   Map<String, dynamic> toJson() => _$AccountUpdateManyMutationInputToJson(this);
 }
@@ -565,6 +829,7 @@ class AccountUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountUncheckedUpdateManyInput.fromJson(Map<String, dynamic> json) =>
@@ -576,9 +841,216 @@ class AccountUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final StringFieldUpdateOperationsInput? password;
 
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
   @override
   Map<String, dynamic> toJson() =>
       _$AccountUncheckedUpdateManyInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginCreateInput implements _i1.JsonSerializable {
+  const LoginCreateInput({
+    this.id,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+    required this.account,
+  });
+
+  factory LoginCreateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginCreateInputFromJson(json);
+
+  final BigInt? id;
+
+  final String token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime expiresAt;
+
+  final AccountCreateNestedOneWithoutLoginInput account;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginCreateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedCreateInput implements _i1.JsonSerializable {
+  const LoginUncheckedCreateInput({
+    this.id,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+    required this.accountId,
+  });
+
+  factory LoginUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginUncheckedCreateInputFromJson(json);
+
+  final BigInt? id;
+
+  final String token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigInt accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginUncheckedCreateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUpdateInput implements _i1.JsonSerializable {
+  const LoginUpdateInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.account,
+  });
+
+  factory LoginUpdateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginUpdateInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFieldUpdateOperationsInput? expiresAt;
+
+  final AccountUpdateOneRequiredWithoutLoginNestedInput? account;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginUpdateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedUpdateInput implements _i1.JsonSerializable {
+  const LoginUncheckedUpdateInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginUncheckedUpdateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginUncheckedUpdateInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFieldUpdateOperationsInput? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigIntFieldUpdateOperationsInput? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginUncheckedUpdateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginCreateManyInput implements _i1.JsonSerializable {
+  const LoginCreateManyInput({
+    this.id,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+    required this.accountId,
+  });
+
+  factory LoginCreateManyInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginCreateManyInputFromJson(json);
+
+  final BigInt? id;
+
+  final String token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigInt accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginCreateManyInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUpdateManyMutationInput implements _i1.JsonSerializable {
+  const LoginUpdateManyMutationInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+  });
+
+  factory LoginUpdateManyMutationInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginUpdateManyMutationInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFieldUpdateOperationsInput? expiresAt;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginUpdateManyMutationInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedUpdateManyInput implements _i1.JsonSerializable {
+  const LoginUncheckedUpdateManyInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginUncheckedUpdateManyInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginUncheckedUpdateManyInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFieldUpdateOperationsInput? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigIntFieldUpdateOperationsInput? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginUncheckedUpdateManyInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -921,6 +1393,64 @@ class StringFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class DateTimeFilter implements _i1.JsonSerializable {
+  const DateTimeFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  factory DateTimeFilter.fromJson(Map<String, dynamic> json) =>
+      _$DateTimeFilterFromJson(json);
+
+  final DateTime? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<DateTime>? $in;
+
+  final Iterable<DateTime>? notIn;
+
+  final DateTime? lt;
+
+  final DateTime? lte;
+
+  final DateTime? gt;
+
+  final DateTime? gte;
+
+  final NestedDateTimeFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$DateTimeFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginListRelationFilter implements _i1.JsonSerializable {
+  const LoginListRelationFilter({
+    this.every,
+    this.some,
+    this.none,
+  });
+
+  factory LoginListRelationFilter.fromJson(Map<String, dynamic> json) =>
+      _$LoginListRelationFilterFromJson(json);
+
+  final LoginWhereInput? every;
+
+  final LoginWhereInput? some;
+
+  final LoginWhereInput? none;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginListRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
 class PersonListRelationFilter implements _i1.JsonSerializable {
   const PersonListRelationFilter({
     this.every,
@@ -939,6 +1469,22 @@ class PersonListRelationFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$PersonListRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginOrderByRelationAggregateInput implements _i1.JsonSerializable {
+  const LoginOrderByRelationAggregateInput({this.$count});
+
+  factory LoginOrderByRelationAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginOrderByRelationAggregateInputFromJson(json);
+
+  @JsonKey(name: r'_count')
+  final SortOrder? $count;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginOrderByRelationAggregateInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -963,6 +1509,7 @@ class AccountCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountCountOrderByAggregateInput.fromJson(
@@ -974,6 +1521,9 @@ class AccountCountOrderByAggregateInput implements _i1.JsonSerializable {
   final SortOrder? username;
 
   final SortOrder? password;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -1000,6 +1550,7 @@ class AccountMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountMaxOrderByAggregateInput.fromJson(Map<String, dynamic> json) =>
@@ -1010,6 +1561,9 @@ class AccountMaxOrderByAggregateInput implements _i1.JsonSerializable {
   final SortOrder? username;
 
   final SortOrder? password;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -1022,6 +1576,7 @@ class AccountMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountMinOrderByAggregateInput.fromJson(Map<String, dynamic> json) =>
@@ -1032,6 +1587,9 @@ class AccountMinOrderByAggregateInput implements _i1.JsonSerializable {
   final SortOrder? username;
 
   final SortOrder? password;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -1171,8 +1729,8 @@ class StringWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class DateTimeFilter implements _i1.JsonSerializable {
-  const DateTimeFilter({
+class DateTimeWithAggregatesFilter implements _i1.JsonSerializable {
+  const DateTimeWithAggregatesFilter({
     this.equals,
     this.$in,
     this.notIn,
@@ -1181,10 +1739,13 @@ class DateTimeFilter implements _i1.JsonSerializable {
     this.gt,
     this.gte,
     this.not,
+    this.$count,
+    this.$min,
+    this.$max,
   });
 
-  factory DateTimeFilter.fromJson(Map<String, dynamic> json) =>
-      _$DateTimeFilterFromJson(json);
+  factory DateTimeWithAggregatesFilter.fromJson(Map<String, dynamic> json) =>
+      _$DateTimeWithAggregatesFilterFromJson(json);
 
   final DateTime? equals;
 
@@ -1201,10 +1762,167 @@ class DateTimeFilter implements _i1.JsonSerializable {
 
   final DateTime? gte;
 
-  final NestedDateTimeFilter? not;
+  final NestedDateTimeWithAggregatesFilter? not;
+
+  @JsonKey(name: r'_count')
+  final NestedIntFilter? $count;
+
+  @JsonKey(name: r'_min')
+  final NestedDateTimeFilter? $min;
+
+  @JsonKey(name: r'_max')
+  final NestedDateTimeFilter? $max;
 
   @override
-  Map<String, dynamic> toJson() => _$DateTimeFilterToJson(this);
+  Map<String, dynamic> toJson() => _$DateTimeWithAggregatesFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class AccountRelationFilter implements _i1.JsonSerializable {
+  const AccountRelationFilter({
+    this.$is,
+    this.isNot,
+  });
+
+  factory AccountRelationFilter.fromJson(Map<String, dynamic> json) =>
+      _$AccountRelationFilterFromJson(json);
+
+  @JsonKey(name: r'is')
+  final AccountWhereInput? $is;
+
+  final AccountWhereInput? isNot;
+
+  @override
+  Map<String, dynamic> toJson() => _$AccountRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginCountOrderByAggregateInput implements _i1.JsonSerializable {
+  const LoginCountOrderByAggregateInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginCountOrderByAggregateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginCountOrderByAggregateInputFromJson(json);
+
+  final SortOrder? id;
+
+  final SortOrder? token;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final SortOrder? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final SortOrder? accountId;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginCountOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginAvgOrderByAggregateInput implements _i1.JsonSerializable {
+  const LoginAvgOrderByAggregateInput({
+    this.id,
+    this.accountId,
+  });
+
+  factory LoginAvgOrderByAggregateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginAvgOrderByAggregateInputFromJson(json);
+
+  final SortOrder? id;
+
+  @JsonKey(name: r'account_id')
+  final SortOrder? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginAvgOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginMaxOrderByAggregateInput implements _i1.JsonSerializable {
+  const LoginMaxOrderByAggregateInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginMaxOrderByAggregateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginMaxOrderByAggregateInputFromJson(json);
+
+  final SortOrder? id;
+
+  final SortOrder? token;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final SortOrder? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final SortOrder? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginMaxOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginMinOrderByAggregateInput implements _i1.JsonSerializable {
+  const LoginMinOrderByAggregateInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginMinOrderByAggregateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginMinOrderByAggregateInputFromJson(json);
+
+  final SortOrder? id;
+
+  final SortOrder? token;
+
+  @JsonKey(name: r'created_at')
+  final SortOrder? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final SortOrder? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final SortOrder? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginMinOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginSumOrderByAggregateInput implements _i1.JsonSerializable {
+  const LoginSumOrderByAggregateInput({
+    this.id,
+    this.accountId,
+  });
+
+  factory LoginSumOrderByAggregateInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginSumOrderByAggregateInputFromJson(json);
+
+  final SortOrder? id;
+
+  @JsonKey(name: r'account_id')
+  final SortOrder? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginSumOrderByAggregateInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -1254,25 +1972,6 @@ class StringNullableFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$StringNullableFilterToJson(this);
-}
-
-@_i1.jsonSerializable
-class AccountRelationFilter implements _i1.JsonSerializable {
-  const AccountRelationFilter({
-    this.$is,
-    this.isNot,
-  });
-
-  factory AccountRelationFilter.fromJson(Map<String, dynamic> json) =>
-      _$AccountRelationFilterFromJson(json);
-
-  @JsonKey(name: r'is')
-  final AccountWhereInput? $is;
-
-  final AccountWhereInput? isNot;
-
-  @override
-  Map<String, dynamic> toJson() => _$AccountRelationFilterToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -1427,55 +2126,6 @@ class PersonSumOrderByAggregateInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class DateTimeWithAggregatesFilter implements _i1.JsonSerializable {
-  const DateTimeWithAggregatesFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.not,
-    this.$count,
-    this.$min,
-    this.$max,
-  });
-
-  factory DateTimeWithAggregatesFilter.fromJson(Map<String, dynamic> json) =>
-      _$DateTimeWithAggregatesFilterFromJson(json);
-
-  final DateTime? equals;
-
-  @JsonKey(name: r'in')
-  final Iterable<DateTime>? $in;
-
-  final Iterable<DateTime>? notIn;
-
-  final DateTime? lt;
-
-  final DateTime? lte;
-
-  final DateTime? gt;
-
-  final DateTime? gte;
-
-  final NestedDateTimeWithAggregatesFilter? not;
-
-  @JsonKey(name: r'_count')
-  final NestedIntFilter? $count;
-
-  @JsonKey(name: r'_min')
-  final NestedDateTimeFilter? $min;
-
-  @JsonKey(name: r'_max')
-  final NestedDateTimeFilter? $max;
-
-  @override
-  Map<String, dynamic> toJson() => _$DateTimeWithAggregatesFilterToJson(this);
-}
-
-@_i1.jsonSerializable
 class StringNullableWithAggregatesFilter implements _i1.JsonSerializable {
   const StringNullableWithAggregatesFilter({
     this.equals,
@@ -1539,6 +2189,32 @@ class StringNullableWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class LoginCreateNestedManyWithoutAccountInput implements _i1.JsonSerializable {
+  const LoginCreateNestedManyWithoutAccountInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory LoginCreateNestedManyWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginCreateNestedManyWithoutAccountInputFromJson(json);
+
+  final Iterable<LoginCreateWithoutAccountInput>? create;
+
+  final Iterable<LoginCreateOrConnectWithoutAccountInput>? connectOrCreate;
+
+  final LoginCreateManyAccountInputEnvelope? createMany;
+
+  final Iterable<LoginWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginCreateNestedManyWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class PersonCreateNestedManyWithoutAccountInput
     implements _i1.JsonSerializable {
   const PersonCreateNestedManyWithoutAccountInput({
@@ -1563,6 +2239,33 @@ class PersonCreateNestedManyWithoutAccountInput
   @override
   Map<String, dynamic> toJson() =>
       _$PersonCreateNestedManyWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedCreateNestedManyWithoutAccountInput
+    implements _i1.JsonSerializable {
+  const LoginUncheckedCreateNestedManyWithoutAccountInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory LoginUncheckedCreateNestedManyWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUncheckedCreateNestedManyWithoutAccountInputFromJson(json);
+
+  final Iterable<LoginCreateWithoutAccountInput>? create;
+
+  final Iterable<LoginCreateOrConnectWithoutAccountInput>? connectOrCreate;
+
+  final LoginCreateManyAccountInputEnvelope? createMany;
+
+  final Iterable<LoginWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUncheckedCreateNestedManyWithoutAccountInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -1637,6 +2340,68 @@ class StringFieldUpdateOperationsInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class DateTimeFieldUpdateOperationsInput implements _i1.JsonSerializable {
+  const DateTimeFieldUpdateOperationsInput({this.set});
+
+  factory DateTimeFieldUpdateOperationsInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$DateTimeFieldUpdateOperationsInputFromJson(json);
+
+  final DateTime? set;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$DateTimeFieldUpdateOperationsInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUpdateManyWithoutAccountNestedInput implements _i1.JsonSerializable {
+  const LoginUpdateManyWithoutAccountNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory LoginUpdateManyWithoutAccountNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUpdateManyWithoutAccountNestedInputFromJson(json);
+
+  final Iterable<LoginCreateWithoutAccountInput>? create;
+
+  final Iterable<LoginCreateOrConnectWithoutAccountInput>? connectOrCreate;
+
+  final Iterable<LoginUpsertWithWhereUniqueWithoutAccountInput>? upsert;
+
+  final LoginCreateManyAccountInputEnvelope? createMany;
+
+  final Iterable<LoginWhereUniqueInput>? set;
+
+  final Iterable<LoginWhereUniqueInput>? disconnect;
+
+  final Iterable<LoginWhereUniqueInput>? delete;
+
+  final Iterable<LoginWhereUniqueInput>? connect;
+
+  final Iterable<LoginUpdateWithWhereUniqueWithoutAccountInput>? update;
+
+  final Iterable<LoginUpdateManyWithWhereWithoutAccountInput>? updateMany;
+
+  final Iterable<LoginScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUpdateManyWithoutAccountNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class PersonUpdateManyWithoutAccountNestedInput
     implements _i1.JsonSerializable {
   const PersonUpdateManyWithoutAccountNestedInput({
@@ -1682,6 +2447,54 @@ class PersonUpdateManyWithoutAccountNestedInput
   @override
   Map<String, dynamic> toJson() =>
       _$PersonUpdateManyWithoutAccountNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedUpdateManyWithoutAccountNestedInput
+    implements _i1.JsonSerializable {
+  const LoginUncheckedUpdateManyWithoutAccountNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory LoginUncheckedUpdateManyWithoutAccountNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUncheckedUpdateManyWithoutAccountNestedInputFromJson(json);
+
+  final Iterable<LoginCreateWithoutAccountInput>? create;
+
+  final Iterable<LoginCreateOrConnectWithoutAccountInput>? connectOrCreate;
+
+  final Iterable<LoginUpsertWithWhereUniqueWithoutAccountInput>? upsert;
+
+  final LoginCreateManyAccountInputEnvelope? createMany;
+
+  final Iterable<LoginWhereUniqueInput>? set;
+
+  final Iterable<LoginWhereUniqueInput>? disconnect;
+
+  final Iterable<LoginWhereUniqueInput>? delete;
+
+  final Iterable<LoginWhereUniqueInput>? connect;
+
+  final Iterable<LoginUpdateWithWhereUniqueWithoutAccountInput>? update;
+
+  final Iterable<LoginUpdateManyWithWhereWithoutAccountInput>? updateMany;
+
+  final Iterable<LoginScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUncheckedUpdateManyWithoutAccountNestedInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -1733,6 +2546,59 @@ class PersonUncheckedUpdateManyWithoutAccountNestedInput
 }
 
 @_i1.jsonSerializable
+class AccountCreateNestedOneWithoutLoginInput implements _i1.JsonSerializable {
+  const AccountCreateNestedOneWithoutLoginInput({
+    this.create,
+    this.connectOrCreate,
+    this.connect,
+  });
+
+  factory AccountCreateNestedOneWithoutLoginInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$AccountCreateNestedOneWithoutLoginInputFromJson(json);
+
+  final AccountCreateWithoutLoginInput? create;
+
+  final AccountCreateOrConnectWithoutLoginInput? connectOrCreate;
+
+  final AccountWhereUniqueInput? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$AccountCreateNestedOneWithoutLoginInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class AccountUpdateOneRequiredWithoutLoginNestedInput
+    implements _i1.JsonSerializable {
+  const AccountUpdateOneRequiredWithoutLoginNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.connect,
+    this.update,
+  });
+
+  factory AccountUpdateOneRequiredWithoutLoginNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$AccountUpdateOneRequiredWithoutLoginNestedInputFromJson(json);
+
+  final AccountCreateWithoutLoginInput? create;
+
+  final AccountCreateOrConnectWithoutLoginInput? connectOrCreate;
+
+  final AccountUpsertWithoutLoginInput? upsert;
+
+  final AccountWhereUniqueInput? connect;
+
+  final AccountUpdateWithoutLoginInput? update;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$AccountUpdateOneRequiredWithoutLoginNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class AccountCreateNestedOneWithoutPersonInput implements _i1.JsonSerializable {
   const AccountCreateNestedOneWithoutPersonInput({
     this.create,
@@ -1753,21 +2619,6 @@ class AccountCreateNestedOneWithoutPersonInput implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$AccountCreateNestedOneWithoutPersonInputToJson(this);
-}
-
-@_i1.jsonSerializable
-class DateTimeFieldUpdateOperationsInput implements _i1.JsonSerializable {
-  const DateTimeFieldUpdateOperationsInput({this.set});
-
-  factory DateTimeFieldUpdateOperationsInput.fromJson(
-          Map<String, dynamic> json) =>
-      _$DateTimeFieldUpdateOperationsInputFromJson(json);
-
-  final DateTime? set;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$DateTimeFieldUpdateOperationsInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -1896,6 +2747,43 @@ class NestedStringFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$NestedStringFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class NestedDateTimeFilter implements _i1.JsonSerializable {
+  const NestedDateTimeFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  factory NestedDateTimeFilter.fromJson(Map<String, dynamic> json) =>
+      _$NestedDateTimeFilterFromJson(json);
+
+  final DateTime? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<DateTime>? $in;
+
+  final Iterable<DateTime>? notIn;
+
+  final DateTime? lt;
+
+  final DateTime? lte;
+
+  final DateTime? gt;
+
+  final DateTime? gte;
+
+  final NestedDateTimeFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$NestedDateTimeFilterToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2092,89 +2980,6 @@ class NestedStringWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class NestedDateTimeFilter implements _i1.JsonSerializable {
-  const NestedDateTimeFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.not,
-  });
-
-  factory NestedDateTimeFilter.fromJson(Map<String, dynamic> json) =>
-      _$NestedDateTimeFilterFromJson(json);
-
-  final DateTime? equals;
-
-  @JsonKey(name: r'in')
-  final Iterable<DateTime>? $in;
-
-  final Iterable<DateTime>? notIn;
-
-  final DateTime? lt;
-
-  final DateTime? lte;
-
-  final DateTime? gt;
-
-  final DateTime? gte;
-
-  final NestedDateTimeFilter? not;
-
-  @override
-  Map<String, dynamic> toJson() => _$NestedDateTimeFilterToJson(this);
-}
-
-@_i1.jsonSerializable
-class NestedStringNullableFilter implements _i1.JsonSerializable {
-  const NestedStringNullableFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.contains,
-    this.startsWith,
-    this.endsWith,
-    this.not,
-  });
-
-  factory NestedStringNullableFilter.fromJson(Map<String, dynamic> json) =>
-      _$NestedStringNullableFilterFromJson(json);
-
-  final String? equals;
-
-  @JsonKey(name: r'in')
-  final Iterable<String>? $in;
-
-  final Iterable<String>? notIn;
-
-  final String? lt;
-
-  final String? lte;
-
-  final String? gt;
-
-  final String? gte;
-
-  final String? contains;
-
-  final String? startsWith;
-
-  final String? endsWith;
-
-  final NestedStringNullableFilter? not;
-
-  @override
-  Map<String, dynamic> toJson() => _$NestedStringNullableFilterToJson(this);
-}
-
-@_i1.jsonSerializable
 class NestedDateTimeWithAggregatesFilter implements _i1.JsonSerializable {
   const NestedDateTimeWithAggregatesFilter({
     this.equals,
@@ -2223,6 +3028,52 @@ class NestedDateTimeWithAggregatesFilter implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$NestedDateTimeWithAggregatesFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class NestedStringNullableFilter implements _i1.JsonSerializable {
+  const NestedStringNullableFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.contains,
+    this.startsWith,
+    this.endsWith,
+    this.not,
+  });
+
+  factory NestedStringNullableFilter.fromJson(Map<String, dynamic> json) =>
+      _$NestedStringNullableFilterFromJson(json);
+
+  final String? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<String>? $in;
+
+  final Iterable<String>? notIn;
+
+  final String? lt;
+
+  final String? lte;
+
+  final String? gt;
+
+  final String? gte;
+
+  final String? contains;
+
+  final String? startsWith;
+
+  final String? endsWith;
+
+  final NestedStringNullableFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$NestedStringNullableFilterToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2320,6 +3171,100 @@ class NestedIntNullableFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$NestedIntNullableFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginCreateWithoutAccountInput implements _i1.JsonSerializable {
+  const LoginCreateWithoutAccountInput({
+    this.id,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+  });
+
+  factory LoginCreateWithoutAccountInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginCreateWithoutAccountInputFromJson(json);
+
+  final BigInt? id;
+
+  final String token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime expiresAt;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginCreateWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedCreateWithoutAccountInput implements _i1.JsonSerializable {
+  const LoginUncheckedCreateWithoutAccountInput({
+    this.id,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+  });
+
+  factory LoginUncheckedCreateWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUncheckedCreateWithoutAccountInputFromJson(json);
+
+  final BigInt? id;
+
+  final String token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime expiresAt;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUncheckedCreateWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginCreateOrConnectWithoutAccountInput implements _i1.JsonSerializable {
+  const LoginCreateOrConnectWithoutAccountInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory LoginCreateOrConnectWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginCreateOrConnectWithoutAccountInputFromJson(json);
+
+  final LoginWhereUniqueInput where;
+
+  final LoginCreateWithoutAccountInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginCreateOrConnectWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginCreateManyAccountInputEnvelope implements _i1.JsonSerializable {
+  const LoginCreateManyAccountInputEnvelope({
+    required this.data,
+    this.skipDuplicates,
+  });
+
+  factory LoginCreateManyAccountInputEnvelope.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginCreateManyAccountInputEnvelopeFromJson(json);
+
+  final Iterable<LoginCreateManyAccountInput> data;
+
+  final bool? skipDuplicates;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginCreateManyAccountInputEnvelopeToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2429,6 +3374,111 @@ class PersonCreateManyAccountInputEnvelope implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$PersonCreateManyAccountInputEnvelopeToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUpsertWithWhereUniqueWithoutAccountInput
+    implements _i1.JsonSerializable {
+  const LoginUpsertWithWhereUniqueWithoutAccountInput({
+    required this.where,
+    required this.update,
+    required this.create,
+  });
+
+  factory LoginUpsertWithWhereUniqueWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUpsertWithWhereUniqueWithoutAccountInputFromJson(json);
+
+  final LoginWhereUniqueInput where;
+
+  final LoginUpdateWithoutAccountInput update;
+
+  final LoginCreateWithoutAccountInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUpsertWithWhereUniqueWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUpdateWithWhereUniqueWithoutAccountInput
+    implements _i1.JsonSerializable {
+  const LoginUpdateWithWhereUniqueWithoutAccountInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory LoginUpdateWithWhereUniqueWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUpdateWithWhereUniqueWithoutAccountInputFromJson(json);
+
+  final LoginWhereUniqueInput where;
+
+  final LoginUpdateWithoutAccountInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUpdateWithWhereUniqueWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUpdateManyWithWhereWithoutAccountInput
+    implements _i1.JsonSerializable {
+  const LoginUpdateManyWithWhereWithoutAccountInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory LoginUpdateManyWithWhereWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUpdateManyWithWhereWithoutAccountInputFromJson(json);
+
+  final LoginScalarWhereInput where;
+
+  final LoginUpdateManyMutationInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUpdateManyWithWhereWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginScalarWhereInput implements _i1.JsonSerializable {
+  const LoginScalarWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginScalarWhereInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginScalarWhereInputFromJson(json);
+
+  final Iterable<LoginScalarWhereInput>? AND;
+
+  final Iterable<LoginScalarWhereInput>? OR;
+
+  final Iterable<LoginScalarWhereInput>? NOT;
+
+  final BigIntFilter? id;
+
+  final StringFilter? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFilter? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFilter? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigIntFilter? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginScalarWhereInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2544,11 +3594,167 @@ class PersonScalarWhereInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class AccountCreateWithoutLoginInput implements _i1.JsonSerializable {
+  const AccountCreateWithoutLoginInput({
+    this.id,
+    required this.username,
+    required this.password,
+    required this.createdAt,
+    this.person,
+  });
+
+  factory AccountCreateWithoutLoginInput.fromJson(Map<String, dynamic> json) =>
+      _$AccountCreateWithoutLoginInputFromJson(json);
+
+  final BigInt? id;
+
+  final String username;
+
+  final String password;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  final PersonCreateNestedManyWithoutAccountInput? person;
+
+  @override
+  Map<String, dynamic> toJson() => _$AccountCreateWithoutLoginInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class AccountUncheckedCreateWithoutLoginInput implements _i1.JsonSerializable {
+  const AccountUncheckedCreateWithoutLoginInput({
+    this.id,
+    required this.username,
+    required this.password,
+    required this.createdAt,
+    this.person,
+  });
+
+  factory AccountUncheckedCreateWithoutLoginInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$AccountUncheckedCreateWithoutLoginInputFromJson(json);
+
+  final BigInt? id;
+
+  final String username;
+
+  final String password;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  final PersonUncheckedCreateNestedManyWithoutAccountInput? person;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$AccountUncheckedCreateWithoutLoginInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class AccountCreateOrConnectWithoutLoginInput implements _i1.JsonSerializable {
+  const AccountCreateOrConnectWithoutLoginInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory AccountCreateOrConnectWithoutLoginInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$AccountCreateOrConnectWithoutLoginInputFromJson(json);
+
+  final AccountWhereUniqueInput where;
+
+  final AccountCreateWithoutLoginInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$AccountCreateOrConnectWithoutLoginInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class AccountUpsertWithoutLoginInput implements _i1.JsonSerializable {
+  const AccountUpsertWithoutLoginInput({
+    required this.update,
+    required this.create,
+  });
+
+  factory AccountUpsertWithoutLoginInput.fromJson(Map<String, dynamic> json) =>
+      _$AccountUpsertWithoutLoginInputFromJson(json);
+
+  final AccountUpdateWithoutLoginInput update;
+
+  final AccountCreateWithoutLoginInput create;
+
+  @override
+  Map<String, dynamic> toJson() => _$AccountUpsertWithoutLoginInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class AccountUpdateWithoutLoginInput implements _i1.JsonSerializable {
+  const AccountUpdateWithoutLoginInput({
+    this.id,
+    this.username,
+    this.password,
+    this.createdAt,
+    this.person,
+  });
+
+  factory AccountUpdateWithoutLoginInput.fromJson(Map<String, dynamic> json) =>
+      _$AccountUpdateWithoutLoginInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? username;
+
+  final StringFieldUpdateOperationsInput? password;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  final PersonUpdateManyWithoutAccountNestedInput? person;
+
+  @override
+  Map<String, dynamic> toJson() => _$AccountUpdateWithoutLoginInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class AccountUncheckedUpdateWithoutLoginInput implements _i1.JsonSerializable {
+  const AccountUncheckedUpdateWithoutLoginInput({
+    this.id,
+    this.username,
+    this.password,
+    this.createdAt,
+    this.person,
+  });
+
+  factory AccountUncheckedUpdateWithoutLoginInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$AccountUncheckedUpdateWithoutLoginInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? username;
+
+  final StringFieldUpdateOperationsInput? password;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  final PersonUncheckedUpdateManyWithoutAccountNestedInput? person;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$AccountUncheckedUpdateWithoutLoginInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class AccountCreateWithoutPersonInput implements _i1.JsonSerializable {
   const AccountCreateWithoutPersonInput({
     this.id,
     required this.username,
     required this.password,
+    required this.createdAt,
+    this.login,
   });
 
   factory AccountCreateWithoutPersonInput.fromJson(Map<String, dynamic> json) =>
@@ -2559,6 +3765,11 @@ class AccountCreateWithoutPersonInput implements _i1.JsonSerializable {
   final String username;
 
   final String password;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  final LoginCreateNestedManyWithoutAccountInput? login;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -2571,6 +3782,8 @@ class AccountUncheckedCreateWithoutPersonInput implements _i1.JsonSerializable {
     this.id,
     required this.username,
     required this.password,
+    required this.createdAt,
+    this.login,
   });
 
   factory AccountUncheckedCreateWithoutPersonInput.fromJson(
@@ -2582,6 +3795,11 @@ class AccountUncheckedCreateWithoutPersonInput implements _i1.JsonSerializable {
   final String username;
 
   final String password;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  final LoginUncheckedCreateNestedManyWithoutAccountInput? login;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -2633,6 +3851,8 @@ class AccountUpdateWithoutPersonInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
+    this.login,
   });
 
   factory AccountUpdateWithoutPersonInput.fromJson(Map<String, dynamic> json) =>
@@ -2643,6 +3863,11 @@ class AccountUpdateWithoutPersonInput implements _i1.JsonSerializable {
   final StringFieldUpdateOperationsInput? username;
 
   final StringFieldUpdateOperationsInput? password;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  final LoginUpdateManyWithoutAccountNestedInput? login;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -2655,6 +3880,8 @@ class AccountUncheckedUpdateWithoutPersonInput implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
+    this.login,
   });
 
   factory AccountUncheckedUpdateWithoutPersonInput.fromJson(
@@ -2667,9 +3894,40 @@ class AccountUncheckedUpdateWithoutPersonInput implements _i1.JsonSerializable {
 
   final StringFieldUpdateOperationsInput? password;
 
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  final LoginUncheckedUpdateManyWithoutAccountNestedInput? login;
+
   @override
   Map<String, dynamic> toJson() =>
       _$AccountUncheckedUpdateWithoutPersonInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginCreateManyAccountInput implements _i1.JsonSerializable {
+  const LoginCreateManyAccountInput({
+    this.id,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+  });
+
+  factory LoginCreateManyAccountInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginCreateManyAccountInputFromJson(json);
+
+  final BigInt? id;
+
+  final String token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime expiresAt;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginCreateManyAccountInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2703,6 +3961,89 @@ class PersonCreateManyAccountInput implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$PersonCreateManyAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUpdateWithoutAccountInput implements _i1.JsonSerializable {
+  const LoginUpdateWithoutAccountInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+  });
+
+  factory LoginUpdateWithoutAccountInput.fromJson(Map<String, dynamic> json) =>
+      _$LoginUpdateWithoutAccountInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFieldUpdateOperationsInput? expiresAt;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginUpdateWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedUpdateWithoutAccountInput implements _i1.JsonSerializable {
+  const LoginUncheckedUpdateWithoutAccountInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+  });
+
+  factory LoginUncheckedUpdateWithoutAccountInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUncheckedUpdateWithoutAccountInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFieldUpdateOperationsInput? expiresAt;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUncheckedUpdateWithoutAccountInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginUncheckedUpdateManyWithoutLoginInput
+    implements _i1.JsonSerializable {
+  const LoginUncheckedUpdateManyWithoutLoginInput({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+  });
+
+  factory LoginUncheckedUpdateManyWithoutLoginInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$LoginUncheckedUpdateManyWithoutLoginInputFromJson(json);
+
+  final BigIntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTimeFieldUpdateOperationsInput? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTimeFieldUpdateOperationsInput? expiresAt;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$LoginUncheckedUpdateManyWithoutLoginInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2816,6 +4157,7 @@ class Account implements _i1.JsonSerializable {
     required this.id,
     required this.username,
     required this.password,
+    required this.createdAt,
   });
 
   factory Account.fromJson(Map<String, dynamic> json) =>
@@ -2827,8 +4169,40 @@ class Account implements _i1.JsonSerializable {
 
   final String password;
 
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
   @override
   Map<String, dynamic> toJson() => _$AccountToJson(this);
+}
+
+@_i1.jsonSerializable
+class Login implements _i1.JsonSerializable {
+  const Login({
+    required this.id,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+    required this.accountId,
+  });
+
+  factory Login.fromJson(Map<String, dynamic> json) => _$LoginFromJson(json);
+
+  final BigInt id;
+
+  final String token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigInt accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2872,6 +4246,57 @@ class AccountFluent<T> extends _i1.PrismaFluent<T> {
     super.original,
     super.$query,
   );
+
+  Future<Iterable<Login>?> login({
+    LoginWhereInput? where,
+    Iterable<LoginOrderByWithRelationInput>? orderBy,
+    LoginWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<LoginScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'login',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'login',
+    );
+    final fields = LoginScalarFieldEnum.values.toGraphQLFields();
+    compiler(Iterable<Map> login) =>
+        login.map((Map login) => Login.fromJson(login.cast()));
+    return query(fields)
+        .then((json) => json is Iterable ? compiler(json.cast()) : null);
+  }
 
   Future<Iterable<Person>?> person({
     PersonWhereInput? where,
@@ -2935,6 +4360,33 @@ class AccountFluent<T> extends _i1.PrismaFluent<T> {
       key: r'_count',
     );
     return AccountCountOutputType(query);
+  }
+}
+
+class LoginFluent<T> extends _i1.PrismaFluent<T> {
+  const LoginFluent(
+    super.original,
+    super.$query,
+  );
+
+  AccountFluent<Account> account() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'account',
+          fields: fields,
+        )
+      ]),
+      key: r'account',
+    );
+    final future = query(AccountScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) => json is Map
+            ? Account.fromJson(json.cast<String, dynamic>())
+            : throw Exception('Not found TypeRefType.string(value: account)'));
+    return AccountFluent<Account>(
+      future,
+      query,
+    );
   }
 }
 
@@ -3493,6 +4945,529 @@ extension AccountModelDelegateExtension on _i1.ModelDelegate<Account> {
   }
 }
 
+extension LoginModelDelegateExtension on _i1.ModelDelegate<Login> {
+  LoginFluent<Login?> findUnique({required LoginWhereUniqueInput where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findUniquelogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findUniquelogin',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) =>
+            json is Map ? Login.fromJson(json.cast<String, dynamic>()) : null);
+    return LoginFluent<Login?>(
+      future,
+      query,
+    );
+  }
+
+  LoginFluent<Login> findUniqueOrThrow({required LoginWhereUniqueInput where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findUniqueloginOrThrow',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findUniqueloginOrThrow',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) => json is Map
+            ? Login.fromJson(json.cast<String, dynamic>())
+            : throw Exception('Not found TypeRefType.string(value: login)'));
+    return LoginFluent<Login>(
+      future,
+      query,
+    );
+  }
+
+  LoginFluent<Login?> findFirst({
+    LoginWhereInput? where,
+    Iterable<LoginOrderByWithRelationInput>? orderBy,
+    LoginWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<LoginScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findFirstlogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findFirstlogin',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) =>
+            json is Map ? Login.fromJson(json.cast<String, dynamic>()) : null);
+    return LoginFluent<Login?>(
+      future,
+      query,
+    );
+  }
+
+  LoginFluent<Login> findFirstOrThrow({
+    LoginWhereInput? where,
+    Iterable<LoginOrderByWithRelationInput>? orderBy,
+    LoginWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<LoginScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findFirstloginOrThrow',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findFirstloginOrThrow',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) => json is Map
+            ? Login.fromJson(json.cast<String, dynamic>())
+            : throw Exception('Not found TypeRefType.string(value: login)'));
+    return LoginFluent<Login>(
+      future,
+      query,
+    );
+  }
+
+  Future<Iterable<Login>> findMany({
+    LoginWhereInput? where,
+    Iterable<LoginOrderByWithRelationInput>? orderBy,
+    LoginWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<LoginScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findManylogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findManylogin',
+    );
+    final fields = LoginScalarFieldEnum.values.toGraphQLFields();
+    compiler(Iterable<Map> findManylogin) => findManylogin
+        .map((Map findManylogin) => Login.fromJson(findManylogin.cast()));
+    return query(fields).then((json) => json is Iterable
+        ? compiler(json.cast())
+        : throw Exception('Unable to parse response'));
+  }
+
+  LoginFluent<Login> create({required LoginCreateInput data}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'createOnelogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'createOnelogin',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) => json is Map
+            ? Login.fromJson(json.cast<String, dynamic>())
+            : throw Exception('Not found TypeRefType.string(value: login)'));
+    return LoginFluent<Login>(
+      future,
+      query,
+    );
+  }
+
+  Future<AffectedRowsOutput> createMany({
+    required Iterable<LoginCreateManyInput> data,
+    bool? skipDuplicates,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      ),
+      _i2.GraphQLArg(
+        r'skipDuplicates',
+        skipDuplicates,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'createManylogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'createManylogin',
+    );
+    final fields = const ['count'].map((e) => _i2.GraphQLField(e));
+    compiler(Map createManylogin) =>
+        AffectedRowsOutput.fromJson(createManylogin.cast());
+    return query(fields).then((json) => json is Map
+        ? compiler(json)
+        : throw Exception('Unable to parse response'));
+  }
+
+  LoginFluent<Login?> update({
+    required LoginUpdateInput data,
+    required LoginWhereUniqueInput where,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      ),
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'updateOnelogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'updateOnelogin',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) =>
+            json is Map ? Login.fromJson(json.cast<String, dynamic>()) : null);
+    return LoginFluent<Login?>(
+      future,
+      query,
+    );
+  }
+
+  Future<AffectedRowsOutput> updateMany({
+    required LoginUpdateManyMutationInput data,
+    LoginWhereInput? where,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      ),
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'updateManylogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'updateManylogin',
+    );
+    final fields = const ['count'].map((e) => _i2.GraphQLField(e));
+    compiler(Map updateManylogin) =>
+        AffectedRowsOutput.fromJson(updateManylogin.cast());
+    return query(fields).then((json) => json is Map
+        ? compiler(json)
+        : throw Exception('Unable to parse response'));
+  }
+
+  LoginFluent<Login> upsert({
+    required LoginWhereUniqueInput where,
+    required LoginCreateInput create,
+    required LoginUpdateInput update,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'create',
+        create,
+      ),
+      _i2.GraphQLArg(
+        r'update',
+        update,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'upsertOnelogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'upsertOnelogin',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) => json is Map
+            ? Login.fromJson(json.cast<String, dynamic>())
+            : throw Exception('Not found TypeRefType.string(value: login)'));
+    return LoginFluent<Login>(
+      future,
+      query,
+    );
+  }
+
+  LoginFluent<Login?> delete({required LoginWhereUniqueInput where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'deleteOnelogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'deleteOnelogin',
+    );
+    final future = query(LoginScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) =>
+            json is Map ? Login.fromJson(json.cast<String, dynamic>()) : null);
+    return LoginFluent<Login?>(
+      future,
+      query,
+    );
+  }
+
+  Future<AffectedRowsOutput> deleteMany({LoginWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'deleteManylogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'deleteManylogin',
+    );
+    final fields = const ['count'].map((e) => _i2.GraphQLField(e));
+    compiler(Map deleteManylogin) =>
+        AffectedRowsOutput.fromJson(deleteManylogin.cast());
+    return query(fields).then((json) => json is Map
+        ? compiler(json)
+        : throw Exception('Unable to parse response'));
+  }
+
+  AggregateLogin aggregate({
+    LoginWhereInput? where,
+    Iterable<LoginOrderByWithRelationInput>? orderBy,
+    LoginWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'aggregatelogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'aggregatelogin',
+    );
+    return AggregateLogin(query);
+  }
+
+  Future<Iterable<LoginGroupByOutputType>> groupBy({
+    LoginWhereInput? where,
+    Iterable<LoginOrderByWithAggregationInput>? orderBy,
+    required Iterable<LoginScalarFieldEnum> by,
+    LoginScalarWhereWithAggregatesInput? having,
+    int? take,
+    int? skip,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'by',
+        by,
+      ),
+      _i2.GraphQLArg(
+        r'having',
+        having,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'groupBylogin',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'groupBylogin',
+    );
+    final fields = by.map((e) => _i2.GraphQLField(e.originalName ?? e.name));
+    compiler(Iterable<Map> groupBylogin) =>
+        groupBylogin.map((Map groupBylogin) =>
+            LoginGroupByOutputType.fromJson(groupBylogin.cast()));
+    return query(fields).then((json) => json is Iterable
+        ? compiler(json.cast())
+        : throw Exception('Unable to parse response'));
+  }
+}
+
 extension PersonModelDelegateExtension on _i1.ModelDelegate<Person> {
   PersonFluent<Person?> findUnique({required PersonWhereUniqueInput where}) {
     final args = [
@@ -4023,6 +5998,7 @@ class AccountGroupByOutputType implements _i1.JsonSerializable {
     this.id,
     this.username,
     this.password,
+    this.createdAt,
   });
 
   factory AccountGroupByOutputType.fromJson(Map<String, dynamic> json) =>
@@ -4034,8 +6010,41 @@ class AccountGroupByOutputType implements _i1.JsonSerializable {
 
   final String? password;
 
+  @JsonKey(name: r'created_at')
+  final DateTime? createdAt;
+
   @override
   Map<String, dynamic> toJson() => _$AccountGroupByOutputTypeToJson(this);
+}
+
+@_i1.jsonSerializable
+class LoginGroupByOutputType implements _i1.JsonSerializable {
+  const LoginGroupByOutputType({
+    this.id,
+    this.token,
+    this.createdAt,
+    this.expiresAt,
+    this.accountId,
+  });
+
+  factory LoginGroupByOutputType.fromJson(Map<String, dynamic> json) =>
+      _$LoginGroupByOutputTypeFromJson(json);
+
+  final BigInt? id;
+
+  final String? token;
+
+  @JsonKey(name: r'created_at')
+  final DateTime? createdAt;
+
+  @JsonKey(name: r'expires_at')
+  final DateTime? expiresAt;
+
+  @JsonKey(name: r'account_id')
+  final BigInt? accountId;
+
+  @override
+  Map<String, dynamic> toJson() => _$LoginGroupByOutputTypeToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -4159,6 +6168,77 @@ class AggregateAccount {
   }
 }
 
+class AggregateLogin {
+  const AggregateLogin(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  LoginCountAggregateOutputType $count() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_count',
+          fields: fields,
+        )
+      ]),
+      key: r'_count',
+    );
+    return LoginCountAggregateOutputType(query);
+  }
+
+  LoginAvgAggregateOutputType $avg() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_avg',
+          fields: fields,
+        )
+      ]),
+      key: r'_avg',
+    );
+    return LoginAvgAggregateOutputType(query);
+  }
+
+  LoginSumAggregateOutputType $sum() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_sum',
+          fields: fields,
+        )
+      ]),
+      key: r'_sum',
+    );
+    return LoginSumAggregateOutputType(query);
+  }
+
+  LoginMinAggregateOutputType $min() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_min',
+          fields: fields,
+        )
+      ]),
+      key: r'_min',
+    );
+    return LoginMinAggregateOutputType(query);
+  }
+
+  LoginMaxAggregateOutputType $max() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_max',
+          fields: fields,
+        )
+      ]),
+      key: r'_max',
+    );
+    return LoginMaxAggregateOutputType(query);
+  }
+}
+
 class AggregatePerson {
   const AggregatePerson(this.$query);
 
@@ -4235,6 +6315,19 @@ class AccountCountOutputType {
 
   final _i1.PrismaFluentQuery $query;
 
+  Future<int> login() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'login',
+          fields: fields,
+        )
+      ]),
+      key: r'login',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
   Future<int> person() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -4289,6 +6382,19 @@ class AccountCountAggregateOutputType {
         )
       ]),
       key: r'password',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> createdAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'created_at',
+          fields: fields,
+        )
+      ]),
+      key: r'created_at',
     );
     return query(const []).then((value) => (value as int));
   }
@@ -4388,6 +6494,20 @@ class AccountMinAggregateOutputType {
     );
     return query(const []).then((value) => (value as String?));
   }
+
+  Future<DateTime?> createdAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'created_at',
+          fields: fields,
+        )
+      ]),
+      key: r'created_at',
+    );
+    return query(const [])
+        .then((value) => value is String ? DateTime.parse(value) : null);
+  }
 }
 
 class AccountMaxAggregateOutputType {
@@ -4432,6 +6552,314 @@ class AccountMaxAggregateOutputType {
       key: r'password',
     );
     return query(const []).then((value) => (value as String?));
+  }
+
+  Future<DateTime?> createdAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'created_at',
+          fields: fields,
+        )
+      ]),
+      key: r'created_at',
+    );
+    return query(const [])
+        .then((value) => value is String ? DateTime.parse(value) : null);
+  }
+}
+
+class LoginCountAggregateOutputType {
+  const LoginCountAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<int> id() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'id',
+          fields: fields,
+        )
+      ]),
+      key: r'id',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> token() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'token',
+          fields: fields,
+        )
+      ]),
+      key: r'token',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> createdAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'created_at',
+          fields: fields,
+        )
+      ]),
+      key: r'created_at',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> expiresAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'expires_at',
+          fields: fields,
+        )
+      ]),
+      key: r'expires_at',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> accountId() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'account_id',
+          fields: fields,
+        )
+      ]),
+      key: r'account_id',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> $all() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_all',
+          fields: fields,
+        )
+      ]),
+      key: r'_all',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+}
+
+class LoginAvgAggregateOutputType {
+  const LoginAvgAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<double?> id() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'id',
+          fields: fields,
+        )
+      ]),
+      key: r'id',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> accountId() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'account_id',
+          fields: fields,
+        )
+      ]),
+      key: r'account_id',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+}
+
+class LoginSumAggregateOutputType {
+  const LoginSumAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<BigInt?> id() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'id',
+          fields: fields,
+        )
+      ]),
+      key: r'id',
+    );
+    return query(const []).then((value) => (value as BigInt?));
+  }
+
+  Future<BigInt?> accountId() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'account_id',
+          fields: fields,
+        )
+      ]),
+      key: r'account_id',
+    );
+    return query(const []).then((value) => (value as BigInt?));
+  }
+}
+
+class LoginMinAggregateOutputType {
+  const LoginMinAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<BigInt?> id() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'id',
+          fields: fields,
+        )
+      ]),
+      key: r'id',
+    );
+    return query(const []).then((value) => (value as BigInt?));
+  }
+
+  Future<String?> token() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'token',
+          fields: fields,
+        )
+      ]),
+      key: r'token',
+    );
+    return query(const []).then((value) => (value as String?));
+  }
+
+  Future<DateTime?> createdAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'created_at',
+          fields: fields,
+        )
+      ]),
+      key: r'created_at',
+    );
+    return query(const [])
+        .then((value) => value is String ? DateTime.parse(value) : null);
+  }
+
+  Future<DateTime?> expiresAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'expires_at',
+          fields: fields,
+        )
+      ]),
+      key: r'expires_at',
+    );
+    return query(const [])
+        .then((value) => value is String ? DateTime.parse(value) : null);
+  }
+
+  Future<BigInt?> accountId() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'account_id',
+          fields: fields,
+        )
+      ]),
+      key: r'account_id',
+    );
+    return query(const []).then((value) => (value as BigInt?));
+  }
+}
+
+class LoginMaxAggregateOutputType {
+  const LoginMaxAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<BigInt?> id() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'id',
+          fields: fields,
+        )
+      ]),
+      key: r'id',
+    );
+    return query(const []).then((value) => (value as BigInt?));
+  }
+
+  Future<String?> token() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'token',
+          fields: fields,
+        )
+      ]),
+      key: r'token',
+    );
+    return query(const []).then((value) => (value as String?));
+  }
+
+  Future<DateTime?> createdAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'created_at',
+          fields: fields,
+        )
+      ]),
+      key: r'created_at',
+    );
+    return query(const [])
+        .then((value) => value is String ? DateTime.parse(value) : null);
+  }
+
+  Future<DateTime?> expiresAt() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'expires_at',
+          fields: fields,
+        )
+      ]),
+      key: r'expires_at',
+    );
+    return query(const [])
+        .then((value) => value is String ? DateTime.parse(value) : null);
+  }
+
+  Future<BigInt?> accountId() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'account_id',
+          fields: fields,
+        )
+      ]),
+      key: r'account_id',
+    );
+    return query(const []).then((value) => (value as BigInt?));
   }
 }
 
@@ -4845,10 +7273,10 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     final engine = _i5.BinaryEngine(
       logger: logger,
       schema:
-          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgogIG91dHB1dCAgID0gIi4uL2xpYi9nZW5lcmF0ZWQiCn0KCmRhdGFzb3VyY2UgZGIgewogIHByb3ZpZGVyID0gInBvc3RncmVzcWwiCiAgdXJsICAgICAgPSBlbnYoIkRBVEFCQVNFX1VSTCIpCn0KCm1vZGVsIGFjY291bnQgewogIGlkICAgICAgIEJpZ0ludCAgIEBpZChtYXA6ICJpZCIpIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICB1c2VybmFtZSBTdHJpbmcgICBAdW5pcXVlKG1hcDogInVzZXJuYW1lIikgQGRiLlZhckNoYXIoNTApCiAgcGFzc3dvcmQgU3RyaW5nICAgQGRiLlZhckNoYXIoNTApCiAgcGVyc29uICAgcGVyc29uW10KfQoKbW9kZWwgcGVyc29uIHsKICBpZCAgICAgICAgICAgIEJpZ0ludCAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgZmlyc3RfbmFtZSAgICBTdHJpbmcgICBAZGIuVmFyQ2hhcig1MCkKICBsYXN0X25hbWUgICAgIFN0cmluZyAgIEBkYi5WYXJDaGFyKDUwKQogIGdlbmRlciAgICAgICAgU3RyaW5nICAgQGRiLlZhckNoYXIoNykKICBkYXRlX29mX2JpcnRoIERhdGVUaW1lIEBkYi5EYXRlCiAgZW1haWwgICAgICAgICBTdHJpbmc/ICBAdW5pcXVlKG1hcDogImVtYWlsIikgQGRiLlZhckNoYXIoMTUwKQogIGFjY291bnRfaWQgICAgQmlnSW50CiAgYWNjb3VudCAgICAgICBhY2NvdW50ICBAcmVsYXRpb24oZmllbGRzOiBbYWNjb3VudF9pZF0sIHJlZmVyZW5jZXM6IFtpZF0sIG9uVXBkYXRlOiBSZXN0cmljdCwgbWFwOiAiYWNjb3VudF9pZCIpCn0K',
+          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgogIG91dHB1dCAgID0gIi4uL2xpYi9nZW5lcmF0ZWQiCn0KCmRhdGFzb3VyY2UgZGIgewogIHByb3ZpZGVyID0gInBvc3RncmVzcWwiCiAgdXJsICAgICAgPSBlbnYoIkRBVEFCQVNFX1VSTCIpCn0KCm1vZGVsIGFjY291bnQgewogIGlkICAgICAgICAgQmlnSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICB1c2VybmFtZSAgIFN0cmluZyAgIEB1bmlxdWUobWFwOiAiX19hY2NvdW50LnVzZXJuYW1lIikKICBwYXNzd29yZCAgIFN0cmluZwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWUgQGRiLlRpbWVzdGFtcCg2KQogIGxvZ2luICAgICAgbG9naW5bXQogIHBlcnNvbiAgICAgcGVyc29uW10KfQoKbW9kZWwgbG9naW4gewogIGlkICAgICAgICAgQmlnSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICB0b2tlbiAgICAgIFN0cmluZyAgIEB1bmlxdWUobWFwOiAiX19sb2dpbi50b2tlbiIpCiAgY3JlYXRlZF9hdCBEYXRlVGltZSBAZGIuVGltZXN0YW1wKDYpCiAgZXhwaXJlc19hdCBEYXRlVGltZSBAZGIuVGltZXN0YW1wKDYpCiAgYWNjb3VudF9pZCBCaWdJbnQKICBhY2NvdW50ICAgIGFjY291bnQgIEByZWxhdGlvbihmaWVsZHM6IFthY2NvdW50X2lkXSwgcmVmZXJlbmNlczogW2lkXSwgb25EZWxldGU6IFNldE51bGwpCn0KCm1vZGVsIHBlcnNvbiB7CiAgaWQgICAgICAgICAgICBCaWdJbnQgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGZpcnN0X25hbWUgICAgU3RyaW5nCiAgbGFzdF9uYW1lICAgICBTdHJpbmcKICBnZW5kZXIgICAgICAgIFN0cmluZwogIGRhdGVfb2ZfYmlydGggRGF0ZVRpbWUgQGRiLlRpbWVzdGFtcCg2KQogIGVtYWlsICAgICAgICAgU3RyaW5nPyAgQHVuaXF1ZShtYXA6ICJfX3BlcnNvbi5lbWFpbCIpCiAgYWNjb3VudF9pZCAgICBCaWdJbnQKICBhY2NvdW50ICAgICAgIGFjY291bnQgIEByZWxhdGlvbihmaWVsZHM6IFthY2NvdW50X2lkXSwgcmVmZXJlbmNlczogW2lkXSwgb25EZWxldGU6IFNldE51bGwpCn0K',
       datasources: datasources?.toJson().cast() ?? const {},
       executable:
-          r'D:\Developer\Git\Dart-Frog-Playground\node_modules\prisma\query-engine-windows.exe',
+          r'C:\Users\Matteo\AppData\Local\npm-cache\_npx\2778af9cee32ff87\node_modules\prisma\query-engine-windows.exe',
     );
     return PrismaClient._internal(engine);
   }
@@ -4870,6 +7298,11 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         transaction: transaction ?? _transaction,
       );
   _i1.ModelDelegate<Account> get account => _i1.ModelDelegate<Account>(
+        _engine,
+        headers: _headers,
+        transaction: _transaction,
+      );
+  _i1.ModelDelegate<Login> get login => _i1.ModelDelegate<Login>(
         _engine,
         headers: _headers,
         transaction: _transaction,

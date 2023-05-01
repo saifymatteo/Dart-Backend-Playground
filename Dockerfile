@@ -1,6 +1,6 @@
 # Official Dart image: https://hub.docker.com/_/dart
 # Specify the Dart SDK base image version using dart:<version> (ex: dart:2.17)
-FROM dart:stable AS builder
+FROM dart:stable AS build
 
 RUN set -eux; \
     case "$(dpkg --print-architecture)" in \
@@ -59,22 +59,16 @@ RUN dart run orm precache -t query
 # Build minimal serving image from AOT-compiled `/server` and required system
 # libraries and configuration files stored in `/runtime/` from the build stage.
 FROM scratch
-COPY --from=builder /runtime/ /
-COPY --from=builder /app/bin/server /app/bin/
+COPY --from=build /runtime/ /
+COPY --from=odroe/prisma-dart:amd64 /runtime /
+COPY --from=build /app/bin/server /app/bin/
 
 #COPY .dart_tool/prisma/query-engine /app/bin/
-COPY --from=builder /app/prisma /prisma/
-COPY --from=builder /app/node_modules/prisma/query-engine-* /prisma/
+COPY --from=build /app/prisma /prisma/
+COPY --from=build /app/node_modules/prisma/query-engine-* /prisma/
 
-# Copy runtime dependencies
-#COPY --from=builder /runtime /
-#COPY --from=odroe/prisma-dart:amd64 /runtime /
-
+EXPOSE 8080
+EXPOSE 5432
 
 # Start server.
 CMD ["/app/bin/server"]
-
-
-# Push schema to database
-#RUN npx prisma db push
-

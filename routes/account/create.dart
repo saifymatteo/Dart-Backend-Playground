@@ -1,6 +1,7 @@
+import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/generated/prisma_client.dart';
 import 'package:dart_frog/dart_frog.dart';
-import '../../components/response/response.dart';
+
 import '../../main.dart';
 
 Future<Response> onRequest(RequestContext context) async {

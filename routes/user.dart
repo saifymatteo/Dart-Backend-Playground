@@ -1,7 +1,8 @@
+import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/generated/prisma_client.dart';
-import 'package:backend_playground/user/token.dart';
+import 'package:backend_playground/services/token.dart';
 import 'package:dart_frog/dart_frog.dart';
-import '../components/response/response.dart';
+
 import '../main.dart';
 
 Future<Response> onRequest(RequestContext context) async {
@@ -54,7 +55,7 @@ Future<Response> _onPostRequest(RequestContext context) async {
   }
 
   final token = context.request.headers['Authorization'];
-  final userId = getIt<UserToken>().getUserId(token);
+  final userId = getIt<TokenService>().getUserId(token);
   final user = AccountCreateNestedOneWithoutPersonInput(
     connect: AccountWhereUniqueInput(id: BigInt.from(userId)),
   );

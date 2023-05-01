@@ -1,8 +1,9 @@
+import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/generated/prisma_client.dart';
-import 'package:backend_playground/user/user.dart';
+import 'package:backend_playground/services/services.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:uuid/uuid.dart';
-import '../../components/response/response.dart';
+
 import '../../main.dart';
 
 Future<Response> onRequest(RequestContext context) async {
@@ -38,7 +39,7 @@ Future<Response> _onPostRequest(RequestContext context) async {
 
   final token = const Uuid().v4();
 
-  getIt.get<UserToken>().setUserLoggedIn(MapEntry(id, 'Bearer $token'));
+  getIt.get<TokenService>().setUserLoggedIn(MapEntry(id, 'Bearer $token'));
 
   return Response.json(
     body: {'user_id': id, 'token': token},

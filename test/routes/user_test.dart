@@ -1,11 +1,11 @@
 import 'dart:io';
 
+import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/generated/prisma_client.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
-import '../../components/response/api_result.dart';
 import '../../main.dart';
 import '../../routes/user.dart' as route;
 import '../base_uri.dart';

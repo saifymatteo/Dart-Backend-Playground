@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:logging/logging.dart';
 
 /// Main class for managing all users' tokens
-class UserToken {
+class TokenService {
   final Map<int, String> _tokens = {};
 
   /// Get all tokens

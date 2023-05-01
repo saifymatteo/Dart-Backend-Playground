@@ -1,11 +1,10 @@
+import 'package:backend_playground/components/components.dart';
 import 'package:backend_playground/exception/exception.dart';
-import 'package:backend_playground/user/user.dart';
+import 'package:backend_playground/services/services.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:orm/orm.dart';
 
-import '../components/response/api_result.dart';
-import '../components/utility/utility.dart';
 import '../main.dart';
 
 Handler middleware(Handler handler) {
@@ -20,7 +19,8 @@ Handler middleware(Handler handler) {
 
     // Get authorization
     final authorization = context.request.headers['Authorization'];
-    final isUserLoggedIn = getIt.get<UserToken>().isUserLoggedIn(authorization);
+    final isUserLoggedIn =
+        getIt.get<TokenService>().isUserLoggedIn(authorization);
 
     // Execute code before request is handled.
     if (!isUserLoggedIn) {
