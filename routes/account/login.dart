@@ -62,6 +62,7 @@ Future<Response> _onPatchRequest(RequestContext context) async {
 
   final scope = json['scope'];
   final token = json['token'];
+  final isBot = context.request.headers['Yo'] == 'Bot';
 
   if (scope == 'all') {
     final idsToDelete =
@@ -69,6 +70,7 @@ Future<Response> _onPatchRequest(RequestContext context) async {
               const QueryParams(where: 'expires_at < now()'),
             );
     if (idsToDelete.isEmpty) {
+      if (isBot) return Response(body: 'No token to delete');
       return ApiResult.notFound();
     }
 
