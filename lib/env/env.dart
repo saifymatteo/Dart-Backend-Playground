@@ -1,21 +1,26 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:envied/envied.dart';
 
 part 'env.g.dart';
 
 @Envied(path: '.env', obfuscate: true)
 abstract class Env {
-  @EnviedField(varName: 'DATABASE_HOST')
-  static final databaseHost = _Env.databaseHost;
+  @EnviedField(varName: 'DB_HOST_ADDRESS')
+  static final dbHostAddress = _Env.dbHostAddress;
 
-  @EnviedField(varName: 'DATABASE_PORT')
-  static final databasePort = _Env.databasePort;
+  @EnviedField(varName: 'DB_HOST_UNIX_INSTANCE')
+  static final dbHostUnixInstance = _Env.dbHostUnixInstance;
 
-  @EnviedField(varName: 'DATABASE_NAME')
-  static final databaseName = _Env.databaseName;
+  @EnviedField(varName: 'DB_PORT')
+  static final dbPort = _Env.dbPort;
 
-  @EnviedField(varName: 'DATABASE_USERNAME')
-  static final databaseUsername = _Env.databaseUsername;
+  @EnviedField(varName: 'DB_NAME')
+  static final dbName = _Env.dbName;
 
-  @EnviedField(varName: 'DATABASE_PASSWORD')
-  static final databasePassword = _Env.databasePassword;
+  @EnviedField(varName: 'DB_USERNAME')
+  static final dbUsername = _Env.dbUsername;
+
+  @EnviedField(varName: 'DB_PASSWORD')
+  static final dbPassword = _Env.dbPassword;
 }

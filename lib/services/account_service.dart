@@ -28,7 +28,11 @@ class AccountGrpcService extends AccountGrpcServiceBase {
     }
 
     final insert = await repository.insertOne(
-      AccountSchemaInsertRequest(username: username, password: password),
+      AccountSchemaInsertRequest(
+        username: username,
+        password: password,
+        createdAt: DateTime.now(),
+      ),
     );
 
     final response = await repository.queryAccountSchema(insert);

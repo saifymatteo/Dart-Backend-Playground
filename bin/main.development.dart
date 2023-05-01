@@ -15,13 +15,13 @@ import 'package:stormberry/stormberry.dart';
 /// Constant [Database] object
 Database initDatabase() => Database(
       debugPrint: true,
-      host: Env.dbHostUnixInstance,
+      host: Env.dbHostAddress,
       port: int.parse(Env.dbPort),
       database: Env.dbName,
       user: Env.dbUsername,
       password: Env.dbPassword,
       useSSL: false,
-      isUnixSocket: true,
+      isUnixSocket: false,
     );
 
 Future<void> main() async {

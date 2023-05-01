@@ -55,9 +55,6 @@ class PersonGrpcService extends PersonGrpcServiceBase {
       email: person.email,
       account: AccountGrpc(id: person.account.id),
     );
-
-    // TODO: implement createPerson
-    throw UnimplementedError();
   }
 
   @override

@@ -46,9 +46,7 @@ class _PersonSchemaRepository extends BaseRepository
       'RETURNING "id"',
       values.values,
     );
-    var result = rows
-        .map<int>((r) => TextEncoder.i.decode(r.toColumnMap()['id']))
-        .toList();
+    var result = rows.map<int>((r) => TextEncoder.i.decode(r.toColumnMap()['id'])).toList();
 
     return result;
   }
@@ -106,8 +104,7 @@ class PersonSchemaUpdateRequest {
   final int? accountId;
 }
 
-class PersonSchemaViewQueryable
-    extends KeyedViewQueryable<PersonSchemaView, int> {
+class PersonSchemaViewQueryable extends KeyedViewQueryable<PersonSchemaView, int> {
   @override
   String get keyName => 'id';
 
