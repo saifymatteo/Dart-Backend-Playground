@@ -11,6 +11,11 @@ A playground backend for `dart_frog` package
 2. Dart Frog
 3. Stormberry ORM
 
+### Deployment Stack
+1. Google Cloud Run (Docker)
+2. Google Cloud Scheduler (Cron jobs)
+3. [Render.com](https://render.com) (Postgres)
+
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg

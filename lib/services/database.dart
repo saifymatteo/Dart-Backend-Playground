@@ -18,7 +18,6 @@ class DevDatabaseService extends DatabaseService {
         user: Env.dbUsername,
         password: Env.dbPassword,
         useSSL: true,
-        isUnixSocket: false,
       );
 }
 
@@ -27,12 +26,11 @@ class ProdDatabaseService extends DatabaseService {
   @override
   Database initDatabase() => Database(
         debugPrint: true,
-        host: Env.dbHostUnixInstance,
+        host: Env.dbHostAddress,
         port: int.parse(Env.dbPort),
         database: Env.dbName,
         user: Env.dbUsername,
         password: Env.dbPassword,
-        useSSL: false,
-        isUnixSocket: true,
+        useSSL: true,
       );
 }
